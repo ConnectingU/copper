@@ -1,6 +1,6 @@
 import { JsonController, Get } from 'routing-controllers';
 import { Service } from 'typedi';
-import { Logger } from '../../../libs/logs/logger';
+import { Logger } from '../../../libs/logger';
 import { PingService } from '../services/pingService';
 
 @JsonController()

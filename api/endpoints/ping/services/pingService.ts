@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Logger } from '../../../libs/logs/logger';
+import { Logger } from '../../../libs/logger';
 import { Service } from 'typedi';
 import { PingObject } from '../models/pingModel';
 
