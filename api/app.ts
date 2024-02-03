@@ -7,8 +7,9 @@ import { Logger } from './libs/logger';
 import { useExpressServer, useContainer as routingContainer } from 'routing-controllers';
 import * as http from 'http';
 import { PrismaClient } from '@prisma/client';
+import { TokenVerification } from './middleware/token-verification';
 
-export const prisma = new PrismaClient();
+export const db = new PrismaClient();
 
 const baseDir = __dirname;
 const expressApp = express();
@@ -18,7 +19,8 @@ routingContainer(Container);
 useExpressServer(expressApp, {
 	routePrefix: process.env.API_ROOT,
 	defaultErrorHandler: false,
-	controllers: [baseDir + '/endpoints/**/controllers/*{.js,.ts}']
+	controllers: [baseDir + '/endpoints/**/controllers/*{.js,.ts}'],
+	authorizationChecker: TokenVerification.verify,
 });
 
 expressApp.use(bodyParser.urlencoded({ extended: false }));
