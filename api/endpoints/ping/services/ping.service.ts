@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Logger } from '../../../libs/logger';
 import { Service } from 'typedi';
-import { PingObject } from '../models/pingModel';
+import { PingObject } from '../models/ping.model';
 
 @Service()
 export class PingService {

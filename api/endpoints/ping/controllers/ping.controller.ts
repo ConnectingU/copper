@@ -1,13 +1,14 @@
-import { JsonController, Get, Req, Res } from 'routing-controllers';
+import { JsonController, Get, Req, Res, Authorized } from 'routing-controllers';
 import { Service } from 'typedi';
 import { Logger } from '../../../libs/logger';
-import { PingService } from '../services/pingService';
+import { PingService } from '../services/ping.service';
 
 @JsonController()
 @Service()
 export class PingController {
 	constructor(public _pingService: PingService) { }
 	
+	@Authorized()
 	@Get('/ping')
 	public async ping(@Req() req, @Res() res): Promise<string> {
 		try {
