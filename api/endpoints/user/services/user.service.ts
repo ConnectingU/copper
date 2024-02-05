@@ -19,7 +19,7 @@ export class UserService {
 		try {
 			const hashedPassword = await Password.encrypt(password);
 			const emailUsed = await db.user.findUnique({ where: { email } });
-			const isValid = validator.validate(email)
+			const isValid = validator.validate(email);
 
 			if (emailUsed) {
 				throw new NotAcceptableError('E-Mail already in use!');
