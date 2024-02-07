@@ -1,19 +1,24 @@
-import axios from 'axios';
-import { Logger } from '../../../libs/logger';
 import { Service } from 'typedi';
-import { PingObject } from '../models/ping.model';
+import * as jwt from 'jsonwebtoken';
 
 @Service()
 export class PingService {
 	constructor() {}
 
-	async pingExecutor(): Promise<PingObject> {
-		try {
-			const pingResponse: PingObject = await axios.get('http://worldtimeapi.org/api/timezone/America/St_Johns');
-			return Promise.resolve(pingResponse.data.datetime);
-		} catch (error) {
-			Logger.error('Service: ping', 'errorInfo:' + JSON.stringify(error));
-			return Promise.reject(error);
+	async find(req) {
+		let isAuthenticated = false;
+		let token = req.headers['authorization'];
+		let decoded;
+
+		if (token) {
+			token = token.split(' ')[1];
+			decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 		}
+		
+		if (decoded) {
+			isAuthenticated = true;
+		}
+
+		return `${new Date()}: Service is running. isAuthenticated: ${isAuthenticated}`;
 	}
 }

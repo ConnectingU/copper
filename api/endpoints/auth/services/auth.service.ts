@@ -1,4 +1,3 @@
-import { Logger } from '../../../libs/logger';
 import { Password } from '../../../libs/password';
 import { Service } from 'typedi';
 import { db } from '../../../app';
@@ -11,35 +10,30 @@ export class AuthService {
 
 	async tokenExecutor(body) {
 		const { email, password } = body;
-
-		try {
-			const user = await db.user.findUnique({
-				where: {
-					email
-				}
-			});
-
-			if (!user) {
-				throw new NotAcceptableError('User does not exist!');
+		
+		const user = await db.user.findUnique({
+			where: {
+				email
 			}
+		});
 
-			const passwordMatch = Password.compare(password, user.password);
-
-			if (!passwordMatch) {
-				throw new NotAcceptableError('Password Incorrect!');
-			}
-			
-			const token = jwt.sign({
-				id: user.id,
-				email: user.email,
-			}, process.env.JWT_ACCESS_SECRET, {
-				expiresIn: '1d',
-			});
-
-			return token;
-		} catch (error) {
-			Logger.error('Service: login', 'errorInfo:' + JSON.stringify(error));
-			return JSON.stringify(error);
+		if (!user) {
+			throw new NotAcceptableError('User does not exist!');
 		}
+
+		const passwordMatch = Password.compare(password, user.password);
+
+		if (!passwordMatch) {
+			throw new NotAcceptableError('Password Incorrect!');
+		}
+			
+		const token = jwt.sign({
+			id: user.id,
+			email: user.email,
+		}, process.env.JWT_ACCESS_SECRET, {
+			expiresIn: '1d',
+		});
+
+		return token;
 	}
 }

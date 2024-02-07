@@ -1,4 +1,4 @@
-import { JsonController, Post, Get, Patch, UseBefore, Req, Res, Authorized } from 'routing-controllers';
+import { JsonController, Post, Get, Patch, UseBefore, Req, Res, Authorized, HttpError } from 'routing-controllers';
 import { Service } from 'typedi';
 import { Logger } from '../../../libs/logger';
 import { UserService } from '../services/user.service';
@@ -19,7 +19,10 @@ export class AuthController {
 			return res.json(resp);
 		} catch (error) {
 			Logger.error('Controller: User', 'ErrorInfo:' + JSON.stringify(error));
-			return res.json(error);
+			if (error instanceof HttpError) {
+				res.status(error.httpCode).json(error);
+			}
+			return res.status(error);
 		}
 	}
 
@@ -30,10 +33,13 @@ export class AuthController {
 		try {
 			const resp = await this._userService.read(req);
 			Logger.info('Controller: User', 'Response:' + JSON.stringify(resp));
-			return res.json(resp);
+			return res.send(resp);
 		} catch (error) {
 			Logger.error('Controller: User', 'ErrorInfo:' + JSON.stringify(error));
-			return res.json(error);
+			if (error instanceof HttpError) {
+				res.status(error.httpCode).json(error);
+			}
+			return res.status(error);
 		}
 	}
 
@@ -43,11 +49,14 @@ export class AuthController {
 	public async update(@Req() req, @Res() res) {
 		try {
 			const resp = await this._userService.update(req);
-			Logger.info('Controller: token', 'response:' + JSON.stringify(resp));
+			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: token', 'errorInfo:' + JSON.stringify(error));
-			return res.json(error);
+			Logger.error('Controller: Auth', 'ErrorInfo:' + JSON.stringify(error));
+			if (error instanceof HttpError) {
+				res.status(error.httpCode).json(error);
+			}
+			return res.status(error);
 		}
 	}
 }

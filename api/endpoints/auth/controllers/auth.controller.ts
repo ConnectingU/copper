@@ -1,4 +1,4 @@
-import { JsonController, Post, UseBefore, Req, Res } from 'routing-controllers';
+import { JsonController, Post, UseBefore, Req, Res, HttpError } from 'routing-controllers';
 import { Service } from 'typedi';
 import { Logger } from '../../../libs/logger';
 import { AuthService } from '../services/auth.service';
@@ -18,8 +18,11 @@ export class AuthController {
 			Logger.info('Controller: token', 'response:' + JSON.stringify(resp));
 			return res.json({token: resp});
 		} catch (error) {
-			Logger.error('Controller: token', 'errorInfo:' + JSON.stringify(error));
-			return res.json(error);
+			Logger.error('Controller: User', 'ErrorInfo:' + JSON.stringify(error));
+			if (error instanceof HttpError) {
+				res.status(error.httpCode).json(error);
+			}
+			return res.status(error);
 		}
 	}
 }
