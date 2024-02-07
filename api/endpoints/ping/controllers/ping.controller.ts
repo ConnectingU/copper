@@ -1,4 +1,4 @@
-import { JsonController, Get, Req, Res, HttpError, Action } from 'routing-controllers';
+import { JsonController, Get, Req, Res, HttpError } from 'routing-controllers';
 import { Service } from 'typedi';
 import { Logger } from '../../../libs/logger';
 import { PingService } from '../services/ping.service';
@@ -9,7 +9,7 @@ export class PingController {
 	constructor(public _pingService: PingService) { }
 	
 	@Get('/ping')
-	public async find(@Req() req, @Res() res, action: Action) {
+	public async find(@Req() req, @Res() res) {
 		try {
 			const resp = await this._pingService.find(req);
 			Logger.info('Controller: ping', 'response:' + JSON.stringify(resp));
