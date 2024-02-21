@@ -18,6 +18,6 @@ export class TokenVerification {
 			return true;
 		}
 
-		return false;
+		return action.response.red;
 	}
 }

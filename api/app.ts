@@ -8,6 +8,7 @@ import { useExpressServer, useContainer as routingContainer } from 'routing-cont
 import * as http from 'http';
 import { PrismaClient } from '@prisma/client';
 import { TokenVerification } from './middleware/token-verification';
+import * as cookieParser from 'cookie-parser';
 
 export const db = new PrismaClient();
 
@@ -21,8 +22,13 @@ useExpressServer(expressApp, {
 	defaultErrorHandler: false,
 	controllers: [baseDir + '/endpoints/**/controllers/*{.js,.ts}'],
 	authorizationChecker: TokenVerification.verify,
+	cors: {
+		origin:'http://localhost:3000',
+		credentials: true,
+	},
 });
 
+expressApp.use(cookieParser);
 expressApp.use(bodyParser.urlencoded({ extended: false }));
 expressApp.use(bodyParser.json());
 

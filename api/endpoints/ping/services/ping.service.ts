@@ -8,7 +8,7 @@ export class PingService {
 	async find(req) {
 		let isAuthenticated = false;
 		let token = req.headers['authorization'];
-		let decoded;
+		let decoded: any;
 
 		if (token) {
 			token = token.split(' ')[1];
@@ -19,6 +19,6 @@ export class PingService {
 			isAuthenticated = true;
 		}
 
-		return `${new Date()}: Service is running. isAuthenticated: ${isAuthenticated}`;
+		return {'date': Date(), 'status': 'Service is running.', 'isAuthenticated': isAuthenticated};
 	}
 }

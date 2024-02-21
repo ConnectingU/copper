@@ -8,8 +8,8 @@ import * as jwt from 'jsonwebtoken';
 export class AuthService {
 	constructor() {}
 
-	async tokenExecutor(body) {
-		const { email, password } = body;
+	async token(req) {
+		const { email, password } = req.body;
 		
 		const user = await db.user.findUnique({
 			where: {
