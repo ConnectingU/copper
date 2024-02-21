@@ -1,7 +1,5 @@
-import { Password } from '../../../libs/password';
 import { Service } from 'typedi';
 import { db } from '../../../app';
-import * as validator from 'email-validator';
 import { NotAcceptableError, NotFoundError } from 'routing-controllers';
 
 @Service()
