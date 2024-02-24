@@ -13,6 +13,17 @@ export class CommunityUserService {
 			throw new NotAcceptableError('Missing required fields!');
 		}
 
+		const userExists = await db.communityUser.findMany({
+			where: {
+				userId,
+				communityId
+			} 
+		});
+
+		if (userExists.length >= 1) {
+			throw new NotAcceptableError('User already in community!');
+		}
+
 		const communityUser = await db.communityUser.create({
 			data: {
 				userId,
@@ -52,19 +63,28 @@ export class CommunityUserService {
 	}
 	
 	async update(req) {
-		const communityId: number = +req.params.id;
+		const communityUserId: number = +req.params.id;
 		const body = req.body;
 
-		const community = await db.community.update({
+		const communityUser = await db.communityUser.update({
 			where: {
-				id: communityId,
+				id: communityUserId,
 			},
 			data: {
-				avatarUrl: body.avatarUrl || undefined,
-				bio: body.bio || undefined,
+				role: body.role || undefined,
 			}
 		});
 
-		return community;
+		return communityUser;
+	}
+
+	async delete(req) {
+		const communityUserId: number = +req.params.id;
+
+		await db.communityUser.delete({
+			where: {
+				id: communityUserId,
+			}
+		});
 	}
 }
