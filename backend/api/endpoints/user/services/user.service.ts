@@ -46,6 +46,17 @@ export class UserService {
 				id: true,
 				email: true,
 				username: true,
+				communityMembers: {
+					select: {
+						community: {
+							select: {
+								id: true,
+								name: true,
+								avatarUrl: true,
+							}
+						}
+					}
+				},
 				createdAt: true,
 				updatedAt: true,
 			}

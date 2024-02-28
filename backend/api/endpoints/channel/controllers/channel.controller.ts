@@ -33,7 +33,7 @@ export class AuthController {
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this._channelService.read(req);
-			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
+			// Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
 			Logger.error('Controller: Community', 'ErrorInfo:' + JSON.stringify(error));

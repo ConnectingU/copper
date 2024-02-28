@@ -5,10 +5,12 @@ import * as bodyParser from 'body-parser';
 import Container from 'typedi';
 import { Logger } from './libs/logger';
 import { useExpressServer, useContainer as routingContainer } from 'routing-controllers';
+import { SocketControllers } from 'socket-controllers';
 import * as http from 'http';
 import { PrismaClient } from '@prisma/client';
 import { TokenVerification } from './middleware/token-verification';
 import * as cookieParser from 'cookie-parser';
+import { Server } from 'socket.io';
 
 export const db = new PrismaClient();
 
@@ -33,6 +35,18 @@ expressApp.use(bodyParser.urlencoded({ extended: false }));
 expressApp.use(bodyParser.json());
 
 const server = http.createServer(expressApp);
+const io = new Server(server, {
+	cors: {
+		origin: 'http://localhost:3000',
+	},
+});
+
+new SocketControllers({
+	io,
+	container: Container,
+	controllers: [baseDir + '/sockets/**/controllers/*{.js,.ts}'],
+});
+
 server.listen(process.env.PORT, () => {
 	Logger.info('Server', 'Application running on', `${process.env.HOSTNAME}:${process.env.PORT}${process.env.API_ROOT}`);
 });

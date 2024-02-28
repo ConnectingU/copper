@@ -48,6 +48,19 @@ export class ChannelService {
 				id: true,
 				name: true,
 				messages: {
+					select: {
+						id: true,
+						content: true,
+						user: {
+							select: {
+								id: true,
+								displayName: true,
+								username: true,
+							}
+						},
+						createdAt: true,
+						updatedAt: true,
+					},
 					orderBy: {
 						createdAt: 'desc'
 					},

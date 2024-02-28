@@ -4,6 +4,7 @@ export class Logger {
 	}
 
 	public static info(namespace: string, message: string, object?: any): void | string {
+		if (process.env.VERBOSE_LOGGING === 'false') return;
 		if(object) {
 			return console.log(`[${this.getTimeStamp()}] [INFO] [${namespace}] ${message}`, object);
 		} else {
@@ -12,6 +13,7 @@ export class Logger {
 	}
 
 	public static warn(namespace: string, message: string, object?: any): void | string {
+		if (process.env.VERBOSE_LOGGING === 'false') return;
 		if(object) {
 			console.log(`[${this.getTimeStamp()}] [WARN] [${namespace}] ${message}`, object);
 		} else {
@@ -28,6 +30,7 @@ export class Logger {
 	}
 
 	public static debug(namespace: string, message: string, object?: any): void | string {
+		if (process.env.VERBOSE_LOGGING === 'false') return;
 		if(object) {
 			console.log(`[${this.getTimeStamp()}] [DEBUG] [${namespace}] ${message}`, object);
 		} else {

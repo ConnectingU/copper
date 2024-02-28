@@ -22,7 +22,12 @@ export class CommunityService {
 		const community = await db.community.create({
 			data: {
 				name,
-				bio
+				bio,
+				channels: {
+					create: {
+						name: 'general'
+					}
+				}
 			}
 		});
 
@@ -37,6 +42,7 @@ export class CommunityService {
 				name: true,
 				bio: true,
 				avatarUrl: true,
+				channels: true,
 				createdAt: true,
 			}
 		});
