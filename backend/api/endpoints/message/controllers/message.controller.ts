@@ -7,7 +7,7 @@ import {json as bodyParserJson} from 'body-parser';
 
 @JsonController('/message')
 @Service()
-export class AuthController {
+export class MessageController {
 	constructor(public _messageService: MessageService) { }
 
 	@Authorized()

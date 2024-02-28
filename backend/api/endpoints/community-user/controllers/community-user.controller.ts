@@ -7,7 +7,7 @@ import {json as bodyParserJson} from 'body-parser';
 
 @JsonController('/community-user')
 @Service()
-export class AuthController {
+export class CommunityUserController {
 	constructor(public _communityUserService: CommunityUserService) { }
 
 	@Authorized()

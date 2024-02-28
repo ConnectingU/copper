@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 export async function sendMessage(content: string, channelId: number, userId: number) {
 	const body = { content, channelId, userId};
 	const JWT = Cookies.get('auth');
-	console.log(JWT)
 	try {
 		const config = {
 			'headers': {

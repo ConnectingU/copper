@@ -16,7 +16,8 @@ export class AuthController {
 		try {
 			const resp = await this._authService.token(req);
 			Logger.info('Controller: token', 'response:' + JSON.stringify(resp));
-			res.cookie('auth', resp, { maxAge: 43200000, Secure: false });
+			res.cookie('auth', resp.token, { maxAge: 43200000, Secure: false });
+			res.cookie('userId', resp.id, { maxAge: 43200000, Secure: false });
 			return res.send({token: resp});
 		} catch (error) {
 			Logger.error('Controller: User', 'ErrorInfo:' + JSON.stringify(error));

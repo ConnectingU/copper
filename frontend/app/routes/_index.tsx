@@ -7,8 +7,9 @@ import { Message } from '~/components/Message';
 import { getChannel } from '~/services/channel.service';
 import { getCommunity } from '~/services/community.service';
 import { sendMessage } from '~/services/messages.service';
-import { getCommunities } from '~/services/user.service';
+import { getCommunities, getUser } from '~/services/user.service';
 import io from 'socket.io-client';
+import Cookies from 'js-cookie';
 
 let socket = io('http://localhost:8500/message/1');
 
@@ -19,17 +20,25 @@ export default function Index() {
 	const [community, setCommunity] = useState({});
 	const [channels, setChannels] = useState([]);
 	const [messages, setMessages] = useState<any>([]);
+
 	const formik = useFormik({
 		initialValues: {
 			message: '',
 		},
 		onSubmit: async (values) => {
-			socket.emit('message', {content: values.message, userId: 1});
+			const userId = Number(Cookies.get('userId'));
+			socket.emit('message', {content: values.message, userId});
+			const user = await getUser(userId);
+			const newMessage = {content: values.message, user: user, createdAt: new Date()};
+			setMessages((message: any) => [newMessage, ...messages]);
 			values.message = '';
 		}
 	});
 
-	// 
+	socket.on('message', (message: any) => {
+		const newMessage = {content: message.content, user: message.user, createdAt: message.createdAt};
+		setMessages((message: any) => [newMessage, ...messages]);
+	});
 
 	useEffect(() => {
 		if(currentChannel.id !== 0) {
