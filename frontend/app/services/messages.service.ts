@@ -1,18 +1,23 @@
-import http from "./AxiosInstance";
 import Cookies from 'js-cookie';
+import { Service } from "./service";
 
-export async function sendMessage(content: string, channelId: number, userId: number) {
-	const body = { content, channelId, userId};
-	const JWT = Cookies.get('auth');
-	try {
+class MessageService extends Service {
+	async sendMessage(content: string, channelId: number, userId: number) {
 		const config = {
-			'headers': {
-				'Authorization': `Bearer ${JWT}`
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
-		};
-		return await http.post('http://localhost:8500/api/message', body, config);
-	} catch(error) {
-		console.error(error);
-		throw error;
+		}
+
+		const body = { content, channelId, userId};
+		try {
+			return await this.http.post(`${this.baseURL}/message`, body, config);
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
 	}
 }
+
+const messageService = new MessageService();
+export default messageService as MessageService;

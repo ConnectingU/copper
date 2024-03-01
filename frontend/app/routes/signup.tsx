@@ -14,8 +14,7 @@ import { useNavigate } from '@remix-run/react';
 import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import { login } from '~/services/auth.service';
-import { signup } from '~/services/user.service';
+import { AuthService, UserService } from '~/services/services';
 
 export default function Signup() {
 	const navigate = useNavigate();
@@ -36,8 +35,8 @@ export default function Signup() {
 				setUsernameInvalid.on();
 			}
 			if (!passwordInvalid && !usernameInvalid) {
-				await signup(values.email, values.password, values.username);
-				await login(values.email, values.password);
+				await UserService.signup(values.email, values.password, values.username);
+				await AuthService.login(values.email, values.password);
 				if(Cookies.get('auth')) {
 					navigate('/');
 				}

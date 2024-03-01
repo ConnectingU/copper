@@ -10,10 +10,10 @@ import {
 	Link,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { login } from '../services/auth.service';
 import Cookies from 'js-cookie';
 import { useNavigate } from '@remix-run/react';
 import { useEffect } from 'react';
+import { AuthService } from '~/services/services';
 
 export default function Login() {
 	const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Login() {
 			password: '',
 		},
 		onSubmit: async (values) => {
-			await login(values.email, values.password);
+			await AuthService.login(values.email, values.password);
 			if(Cookies.get('auth')) {
 				navigate('/');
 			}

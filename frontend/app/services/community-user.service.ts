@@ -1,19 +1,23 @@
-import http from "./AxiosInstance";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+import { Service } from "./service";
 
-export async function getCommunityUser(communityId: number) {
-	const JWT = Cookies.get('auth');
-	try {
+class CommunityUserService extends Service {
+	async getCommunityUser(communityId: number) {
 		const config = {
-			'headers': {
-				'Authorization': `Bearer ${JWT}`
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
-		};
+		}
 
-		const resp = await http.get(`http://localhost:8500/api/community/${communityId}`, config);
-		return resp.data
-	} catch(error) {
-		console.error(error);
-		throw error;
+		try {	
+			const resp = await this.http.get(`${this.baseURL}/community/${communityId}`, config);
+			return resp.data
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
 	}
 }
+
+const communityUserService = new CommunityUserService();
+export default communityUserService as CommunityUserService;

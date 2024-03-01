@@ -1,19 +1,23 @@
 import Cookies from "js-cookie";
-import http from "./AxiosInstance";
+import { Service } from "./service";
 
-export async function getChannel(channelId: number) {
-	const JWT = Cookies.get('auth');
-	try {
+class ChannelService extends Service {
+	async getChannel(channelId: number) {
 		const config = {
-			'headers': {
-				'Authorization': `Bearer ${JWT}`
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
-		};
+		}
 
-		const resp = await http.get(`http://localhost:8500/api/channel/${channelId}`, config);
-		return resp.data
-	} catch(error) {
-		console.error(error);
-		throw error;
+		try {	
+			const resp = await this.http.get(`http://localhost:8500/api/channel/${channelId}`, config);
+			return resp.data
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
 	}
 }
+
+const channelService = new ChannelService();
+export default channelService as ChannelService;
