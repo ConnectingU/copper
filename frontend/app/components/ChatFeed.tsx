@@ -3,7 +3,8 @@ import { Message } from "./Message";
 import { ArrowBigRight } from "lucide-react";
 
 interface ChatFeed {
-	currentChannel: any;
+	currentChannelId: number;
+	currentChannelName: string;
 	messages: any;
 	formik: any;
 }
@@ -12,7 +13,7 @@ export function ChatFeed(props: ChatFeed) {
 	return (
 		<Flex direction='column'>
 			<Box w='80vw' h='6vh' bgColor='#FFB669' display='flex' alignItems='center' boxShadow='2xl' borderBottom='1px' borderColor='gray'>
-				<Text pl={4} fontSize={16} fontWeight='bold'># {props.currentChannel.name}</Text>
+				<Text pl={4} fontSize={16} fontWeight='bold'># {props.currentChannelName}</Text>
 			</Box>
 			<Flex direction='column-reverse' h='88vh' gap={3} px={4} pt={2} overflow='scroll'>
 				{props.messages.map((message: any, index: number) => (

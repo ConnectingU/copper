@@ -12,7 +12,7 @@ export default function Index() {
 	const currentCommunity: number = Number(communityId);
 	const [community, setCommunity] = useState({});
 	const [channels, setChannels] = useState([]);
-	const [posts, setPosts] = useState<any>([])
+	const [posts, setPosts] = useState<any>([]);
 
 	useEffect(() => {
 		CommunityService.getCommunity(currentCommunity).then((data): void => {

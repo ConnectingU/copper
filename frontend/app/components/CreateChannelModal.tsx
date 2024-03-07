@@ -1,9 +1,9 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react"
-import { useParams } from "@remix-run/react"
-import { useFormik } from "formik"
-import { PlusCircle } from "lucide-react"
-import React from "react"
-import { ChannelService } from "~/services/services"
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
+import { useParams } from "@remix-run/react";
+import { useFormik } from "formik";
+import { PlusCircle } from "lucide-react";
+import React from "react";
+import { ChannelService } from "~/services/services";
 
 export function CreateChannelModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()

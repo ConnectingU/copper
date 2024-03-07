@@ -1,11 +1,9 @@
-import { Wrap, Flex, Text, Image, Heading, Box, Button, FormControl, Input} from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { ArrowBigRight, Globe2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from "@remix-run/react";
 import { AuthRedirect } from '~/components/AuthRedirect';
-import { Message } from '~/components/Message';
-import { ChannelService, CommunityService, MessageService, UserService } from '~/services/services';
+import { ChannelService, CommunityService, UserService } from '~/services/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { MainLayout } from '~/components/MainLayout';
@@ -15,9 +13,10 @@ import { ChatFeed } from '~/components/ChatFeed';
 let socket = io();
 
 export default function CommunityPage() {
-	const { communityId } = useParams();
+	const { communityId, channelId } = useParams();
 	const currentCommunity: number = Number(communityId);
-	const [currentChannel, setCurrentChannel] = useState({id: 0, name: ''});
+	const currentChannelId: number = Number(channelId);
+	const [currentChannelName, setCurrentChannelName] = useState('');
 	const [community, setCommunity] = useState({});
 	const [channels, setChannels] = useState([]);
 	const [messages, setMessages] = useState<any>([]);
@@ -42,39 +41,39 @@ export default function CommunityPage() {
 	});
 
 	useEffect(() => {
-		if(currentChannel.id !== 0) {
+		if(currentChannelId !== 0) {
 			socket.disconnect();
 			socket = io(
-				`http://localhost:8500/message/${currentChannel.id}`, {
+				`http://localhost:8500/message/${currentChannelId}`, {
 					reconnection: false,
 					reconnectionAttempts: 3,
 				}
 			);
 		}
-	}, [currentChannel.id]);
+	}, [currentChannelId]);
 
 	useEffect(() => {
 		CommunityService.getCommunity(currentCommunity).then((data): void => {
 			setCommunity({...data, id: currentCommunity});
 			setChannels(data.channels);
-			setCurrentChannel({id: data.channels[0].id, name: data.channels[0].name});
 		});
 	}, [currentCommunity]);
 
 	useEffect(() => {
-		if (currentChannel.id !== 0) {
-			ChannelService.getChannel(currentChannel.id).then((data) => {
+		if (currentChannelId!== 0) {
+			ChannelService.getChannel(currentChannelId).then((data) => {
+				setCurrentChannelName(data.name);
 				setMessages(data.messages);
 			});
 		}
-	}, [currentChannel])
+	}, [currentChannelId]);
 
 	return (
 		<AuthRedirect>
 			<Flex>
 				<MainLayout>
 					<FeedSelector community={community} channels={channels} />
-					<ChatFeed currentChannel={currentChannel} messages={messages} formik={formik} />
+					<ChatFeed currentChannelId={currentChannelId} currentChannelName={currentChannelName} messages={messages} formik={formik} />
 				</MainLayout>
 			</Flex>
 		</AuthRedirect>
