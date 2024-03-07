@@ -8,16 +8,16 @@ import { ChannelService, CommunityService, MessageService, UserService } from '~
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { MainLayout } from '~/components/MainLayout';
-
-let socket = io('http://localhost:8500/message/1');
+import { Post } from '~/components/Post';
 
 export default function Index() {
-	const [currentCommunity, setCurrentCommunity] = useState(0);
+	const [currentCommunity, setCurrentCommunity] = useState(3);
 	const [currentChannel, setCurrentChannel] = useState({id: 0, name: ''});
 	const [communities, setCommunities] = useState([]);
 	const [community, setCommunity] = useState({});
 	const [channels, setChannels] = useState([]);
 	const [messages, setMessages] = useState<any>([]);
+	const [posts, setPosts] = useState<any>([])
 
 	const formik = useFormik({
 		initialValues: {
@@ -25,7 +25,6 @@ export default function Index() {
 		},
 		onSubmit: async (values) => {
 			const userId = Number(Cookies.get('userId'));
-			socket.emit('message', {content: values.message, userId});
 			const user = await UserService.getUser(userId);
 			const newMessage = {content: values.message, user: user, createdAt: new Date()};
 			setMessages((message: any) => [newMessage, ...messages]);
@@ -33,23 +32,12 @@ export default function Index() {
 		}
 	});
 
-	socket.on('message', (message: any) => {
-		const newMessage = {content: message.content, user: message.user, createdAt: message.createdAt};
-		setMessages((message: any) => [newMessage, ...messages]);
-	});
-
-	useEffect(() => {
-		if(currentChannel.id !== 0) {
-			socket.disconnect();
-			socket = io(`http://localhost:8500/message/${currentChannel.id}`);
-		}
-	}, [currentChannel.id]);
-
 	useEffect(() => {
 		if (currentCommunity !== 0) {
 			CommunityService.getCommunity(currentCommunity).then((data): void => {
 				setCommunity(data);
 				setChannels(data.channels);
+				setPosts(data.posts);
 				setCurrentChannel({id: data.channels[0].id, name: data.channels[0].name});
 			});
 		}
@@ -71,11 +59,17 @@ export default function Index() {
 
 	return (
 		<AuthRedirect>
-			<Flex>
-				<MainLayout>
-					<Flex></Flex>
-				</MainLayout>
-			</Flex>
+				<Flex>
+					<MainLayout>
+						<Box w='100%'>
+							<Flex direction='column' h='100vh' gap={3} px={4} pt={2} overflow='scroll' alignItems='center'>
+								{posts.map((post: any, index: number) => (
+									<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} />
+								))}
+							</Flex>
+						</Box>
+					</MainLayout>
+				</Flex>
 		</AuthRedirect>
 	);
 }

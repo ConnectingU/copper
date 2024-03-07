@@ -1,9 +1,10 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
-import { Globe2 } from "lucide-react";
+import { Globe2, PlusSquare } from "lucide-react";
 import { UserService } from "~/services/services";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from '@remix-run/react';
+import { CreateCommunityModal } from "./CreateCommunityModal";
 
 interface MainLayoutProps {
 	children: React.ReactNode;
@@ -39,12 +40,13 @@ export function MainLayout(props: MainLayoutProps) {
 							w={14}
 							h={14}
 							onClick={() => {
-								navigate(`/community/${community.id}`)
+								navigate(`/community/${community.id}/posts`)
 							}}
 						>
 							{community.name.charAt(0)}
 						</Button>
 					))}
+					<CreateCommunityModal />
 				</Flex>
 			</Box>
 			{props.children}

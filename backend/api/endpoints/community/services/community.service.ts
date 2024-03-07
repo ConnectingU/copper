@@ -42,6 +42,20 @@ export class CommunityService {
 				name: true,
 				bio: true,
 				avatarUrl: true,
+				posts: {
+					select: {
+						title: true,
+						content: true,
+						image: true,
+						user: {
+							select: {
+								displayName: true,
+								username: true,
+								avatarUrl: true,
+							}
+						}
+					}
+				},
 				channels: true,
 				createdAt: true,
 			}
