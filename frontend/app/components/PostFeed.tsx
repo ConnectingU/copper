@@ -1,6 +1,7 @@
 import { Flex, Box, Text, Input, FormControl, Button } from "@chakra-ui/react";
 import { Post } from "./Post";
 import { ArrowBigRight } from "lucide-react";
+import { CreatePostModal } from "./CreatePostModal";
 
 interface ChatFeed {
 	posts: any;
@@ -29,6 +30,7 @@ export function PostFeed(props: ChatFeed) {
 				{props.posts.map((post: any, index: number) => (
 					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} />
 				))}
+				<CreatePostModal />
 			</Flex>
 		</Box>
 	);
