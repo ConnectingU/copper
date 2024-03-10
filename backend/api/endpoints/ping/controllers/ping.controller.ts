@@ -6,12 +6,12 @@ import { PingService } from '../services/ping.service';
 @JsonController()
 @Service()
 export class PingController {
-	constructor(public _pingService: PingService) { }
+	constructor(public service: PingService) { }
 	
 	@Get('/ping')
 	public async find(@Req() req, @Res() res) {
 		try {
-			const resp = await this._pingService.find(req);
+			const resp = await this.service.find(req);
 			Logger.info('Controller: ping', 'response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {

@@ -8,14 +8,14 @@ import {json as bodyParserJson} from 'body-parser';
 @JsonController('/channel')
 @Service()
 export class ChannelController {
-	constructor(public _channelService: ChannelService) { }
+	constructor(public service: ChannelService) { }
 
 	@Authorized()
 	@Post()
 	@UseBefore(bodyParserJson())
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._channelService.create(req);
+			const resp = await this.service.create(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -32,7 +32,7 @@ export class ChannelController {
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._channelService.read(req);
+			const resp = await this.service.read(req);
 			// Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -49,7 +49,7 @@ export class ChannelController {
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res) {
 		try {
-			const resp = await this._channelService.update(req);
+			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -66,7 +66,7 @@ export class ChannelController {
 	@UseBefore(bodyParserJson())
 	public async delete(@Req() req, @Res() res) {
 		try {
-			const resp = await this._channelService.delete(req);
+			const resp = await this.service.delete(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {

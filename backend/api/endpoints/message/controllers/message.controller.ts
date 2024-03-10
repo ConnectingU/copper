@@ -8,14 +8,14 @@ import {json as bodyParserJson} from 'body-parser';
 @JsonController('/message')
 @Service()
 export class MessageController {
-	constructor(public _messageService: MessageService) { }
+	constructor(public service: MessageService) { }
 
 	@Authorized()
 	@Post()
 	@UseBefore(bodyParserJson())
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._messageService.create(req);
+			const resp = await this.service.create(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -32,7 +32,7 @@ export class MessageController {
 	@UseBefore(bodyParserJson())
 	public async all(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._messageService.read(req);
+			const resp = await this.service.read(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -49,7 +49,7 @@ export class MessageController {
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._messageService.read(req);
+			const resp = await this.service.read(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -66,7 +66,7 @@ export class MessageController {
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res) {
 		try {
-			const resp = await this._messageService.update(req);
+			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -83,7 +83,7 @@ export class MessageController {
 	@UseBefore(bodyParserJson())
 	public async delete(@Req() req, @Res() res) {
 		try {
-			const resp = await this._messageService.delete(req);
+			const resp = await this.service.delete(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {

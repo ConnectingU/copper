@@ -25,14 +25,14 @@ const fileUploadOptions = {
 @JsonController('/community')
 @Service()
 export class CommunityController {
-	constructor(public _communityService: CommunityService) { }
+	constructor(public service: CommunityService) { }
 
 	@Authorized()
 	@Post()
 	@UseBefore(bodyParserJson())
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._communityService.create(req);
+			const resp = await this.service.create(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -49,7 +49,7 @@ export class CommunityController {
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._communityService.read(req);
+			const resp = await this.service.read(req);
 			Logger.info('Controller: Community', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -66,7 +66,7 @@ export class CommunityController {
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res, @UploadedFile('avatar', { options: fileUploadOptions}) file) {
 		try {
-			const resp = await this._communityService.update(req);
+			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp) + 'File:' + JSON.stringify(file));
 			return res.json(resp);
 		} catch (error) {

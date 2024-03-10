@@ -8,13 +8,13 @@ import {json as bodyParserJson} from 'body-parser';
 @JsonController('/auth')
 @Service()
 export class AuthController {
-	constructor(public _authService: AuthService) { }
+	constructor(public service: AuthService) { }
 
 	@Post('/token')
 	@UseBefore(bodyParserJson())
 	public async token(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._authService.token(req);
+			const resp = await this.service.token(req);
 			Logger.info('Controller: token', 'response:' + JSON.stringify(resp));
 			res.cookie('auth', resp.token, { maxAge: 43200000, Secure: false });
 			res.cookie('userId', resp.id, { maxAge: 43200000, Secure: false });

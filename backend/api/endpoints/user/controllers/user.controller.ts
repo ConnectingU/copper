@@ -8,13 +8,13 @@ import {json as bodyParserJson} from 'body-parser';
 @JsonController('/user')
 @Service()
 export class UserController {
-	constructor(public _userService: UserService) { }
+	constructor(public service: UserService) { }
 
 	@Post()
 	@UseBefore(bodyParserJson())
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._userService.create(req);
+			const resp = await this.service.create(req);
 			Logger.info('Controller: User', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -31,7 +31,7 @@ export class UserController {
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._userService.read(req);
+			const resp = await this.service.read(req);
 			Logger.info('Controller: User', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -48,7 +48,7 @@ export class UserController {
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res) {
 		try {
-			const resp = await this._userService.update(req);
+			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {

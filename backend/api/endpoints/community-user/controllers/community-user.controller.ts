@@ -8,14 +8,14 @@ import {json as bodyParserJson} from 'body-parser';
 @JsonController('/community-user')
 @Service()
 export class CommunityUserController {
-	constructor(public _communityUserService: CommunityUserService) { }
+	constructor(public service: CommunityUserService) { }
 
 	@Authorized()
 	@Post()
 	@UseBefore(bodyParserJson())
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._communityUserService.create(req);
+			const resp = await this.service.create(req);
 			Logger.info('Controller: Community-User', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -32,7 +32,7 @@ export class CommunityUserController {
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
-			const resp = await this._communityUserService.read(req);
+			const resp = await this.service.read(req);
 			Logger.info('Controller: Community-User', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
@@ -49,7 +49,7 @@ export class CommunityUserController {
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res) {
 		try {
-			const resp = await this._communityUserService.update(req);
+			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
@@ -66,7 +66,7 @@ export class CommunityUserController {
 	@UseBefore(bodyParserJson())
 	public async delete(@Req() req, @Res() res) {
 		try {
-			const resp = await this._communityUserService.delete(req);
+			const resp = await this.service.delete(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
