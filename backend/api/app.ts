@@ -30,7 +30,7 @@ useExpressServer(expressApp, {
 	},
 });
 
-expressApp.use(express.static('uploads'))
+expressApp.use(express.static('uploads'));
 expressApp.use(cookieParser);
 expressApp.use(bodyParser.urlencoded({ extended: false }));
 expressApp.use(bodyParser.json());

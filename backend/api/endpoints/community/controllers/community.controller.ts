@@ -13,8 +13,6 @@ const fileUploadOptions = {
 			cb(null, path.resolve(__dirname, '../../../../uploads/community-avatars/'));
 		},
 		filename: (req: any, file: any, cb: any) => {
-			// const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    		// cb(null, file.fieldname + '-' + uniqueSuffix + '.png');
 			cb(null, req.params.id + '-avatar.png');
 		}
 	}),
@@ -67,10 +65,9 @@ export class CommunityController {
 	@Patch('/:id')
 	@UseBefore(bodyParserJson())
 	public async update(@Req() req, @Res() res, @UploadedFile('avatar', { options: fileUploadOptions}) file) {
-		console.log(req.file)
 		try {
 			const resp = await this._communityService.update(req);
-			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp) + 'File:' + JSON.stringify(file));
 			return res.json(resp);
 		} catch (error) {
 			Logger.error('Controller: Auth', 'ErrorInfo:' + JSON.stringify(error));
