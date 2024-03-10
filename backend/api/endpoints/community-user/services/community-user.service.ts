@@ -35,6 +35,24 @@ export class CommunityUserService {
 		return communityUser;
 	}
 
+	async all(req){
+		const communityId: number = +req.params.id;
+		const communityUsers = await db.communityUser.findMany({
+			where: { communityId: communityId},
+			select:{
+				id: true,
+				user: true,
+				role: true,
+			}
+		});
+
+		if (!communityUsers) {
+			throw new NotFoundError('No users found.');
+		}
+
+		return communityUsers;
+	};
+
 	async read(req) {
 		const communityUserId: number = +req.params.id;
 		const communityUser = await db.communityUser.findUnique({

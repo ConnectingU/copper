@@ -15,12 +15,12 @@ export class AuthController {
 	public async token(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.token(req);
-			Logger.info('Controller: token', 'response:' + JSON.stringify(resp));
+			Logger.info('Controller: Auth -token', 'response:' + JSON.stringify(resp));
 			res.cookie('auth', resp.token, { maxAge: 43200000, Secure: false });
 			res.cookie('userId', resp.id, { maxAge: 43200000, Secure: false });
 			return res.send({token: resp});
 		} catch (error) {
-			Logger.error('Controller: User', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: Auth -token', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				return res.status(error.httpCode).json(error);
 			}

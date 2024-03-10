@@ -33,6 +33,25 @@ export class CommunityService {
 
 		return community;
 	}
+	
+	async all(req){
+		const communityName: string = req.params.name;
+		const community = await db.community.findMany({
+			where: { name: {contains: communityName}},
+			select:{
+				id: true,
+				name: true,
+				bio: true,
+				avatarUrl: true,
+			}
+		});
+
+		if (!community) {
+			throw new NotFoundError('Communities not found.');
+		}
+
+		return community;
+	};
 
 	async read(req) {
 		const communityId: number = +req.params.id;
@@ -84,5 +103,15 @@ export class CommunityService {
 		});
 
 		return community;
+	}
+
+	async delete(req) {
+		const communityId: number = +req.params.id;
+
+		await db.community.delete({
+			where: {
+				id: communityId,
+			}
+		});
 	}
 }
