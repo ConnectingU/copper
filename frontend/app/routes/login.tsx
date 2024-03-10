@@ -40,6 +40,7 @@ export default function Login() {
 		<Flex as='main' w='100%' h='100vh' flexDir='column' justify='center' alignItems='center' p={6}>
 			<Stack spacing={8}>
 				<Stack spacing={4} textAlign='center'>
+					<img src='\logo-transparent.png' alt='logo' width='400px' />
 					<Heading fontSize='4xl'>Log in to your account</Heading>
 					<Text color='gray'>
 						Don't have an account? <Link color='lightblue' href='/signup'>Sign up</Link>
