@@ -71,13 +71,14 @@ export class CommunityService {
 	async update(req) {
 		const communityId: number = +req.params.id;
 		const body = req.body;
+		const avatarUrl = req.file ? `${communityId}-avatar.png` : undefined;
 
 		const community = await db.community.update({
 			where: {
 				id: communityId,
 			},
 			data: {
-				avatarUrl: body.avatarUrl || undefined,
+				avatarUrl: avatarUrl || undefined,
 				bio: body.bio || undefined,
 			}
 		});

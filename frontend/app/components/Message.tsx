@@ -4,6 +4,7 @@ interface MessageProps {
 	message: string;
 	name: string;
 	date: Date;
+	hideInfo?: boolean;
 }
 
 export function Message(props: MessageProps) {
@@ -14,11 +15,11 @@ export function Message(props: MessageProps) {
 	let formatedDate: string = date + ' ' + new Date(props.date).toLocaleTimeString();
 	return (
 		<>
-			<Box w='512px'>
+			<Box w='512px' pl={props.hideInfo ? 14 : 0}>
 				<Flex alignItems='center' gap='2'>
-					<Avatar name={props.name} bgColor='lightGray' />
+					<Avatar name={props.name} bgColor='lightGray' hidden={props.hideInfo}/>
 					<Flex direction='column'>
-						<Box display='flex' alignItems='center'>
+						<Box display='flex' alignItems='center' hidden={props.hideInfo}>
 							<Text fontWeight='bold' fontSize='20'>{props.name}</Text>
 							<Text pl={2} fontWeight='light' fontSize={10}>{formatedDate}</Text>
 						</Box>

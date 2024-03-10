@@ -3,6 +3,7 @@ import { useNavigate } from "@remix-run/react";
 import { PlusCircle } from "lucide-react";
 import { CreateChannelModal } from "./CreateChannelModal";
 import { useReducer } from "react";
+import { colours } from "~/ui-config";
 
 interface FeedSelectorProps {
 	community: any;
@@ -12,7 +13,7 @@ interface FeedSelectorProps {
 export function FeedSelector(props: FeedSelectorProps) {
 	const navigate = useNavigate();
 	return (
-		<Box w='15vw' h='100vh' justifyItems='center' bgColor='#FF7C36' borderRight='1px' borderColor='gray' boxShadow='2xl'>
+		<Box minW='17rem' h='100vh' justifyItems='center' bgColor={colours['channel-bar']} borderRight='1px' borderColor='gray' boxShadow='2xl'>
 			<Flex alignItems='center' gap={2} direction='column' h='100%' pt={3}>
 				<Text fontSize={18} fontWeight='bold'>{(props.community as { name: string }).name}</Text>
 				<Button
