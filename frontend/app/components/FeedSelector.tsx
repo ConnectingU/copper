@@ -1,8 +1,7 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { useNavigate } from "@remix-run/react";
+import { Link, useMatches } from "@remix-run/react";
 import { PlusCircle } from "lucide-react";
 import { CreateChannelModal } from "./CreateChannelModal";
-import { useReducer } from "react";
 import { colours } from "~/ui-config";
 
 interface FeedSelectorProps {
@@ -11,20 +10,37 @@ interface FeedSelectorProps {
 }
 
 export function FeedSelector(props: FeedSelectorProps) {
-	const navigate = useNavigate();
+	const matches = useMatches();
+
+	// Get the active button index from the current URL
+	const activeButton = matches.findIndex((match) => match.pathname.includes("/posts")) !== -1 ? null : props.channels.findIndex((channel) => matches.some((match) => match.pathname.includes(channel.id)));
+
 	return (
-		<Box minW='17rem' h='100vh' justifyItems='center' bgColor={colours['channel-bar']} borderRight='1px' borderColor='gray' boxShadow='2xl'>
-			<Flex alignItems='center' gap={2} direction='column' h='100%' pt={3}>
-				<Flex direction='row'>
-					<Text fontSize={18} fontWeight='bold'>{(props.community as { name: string }).name}</Text>
+		<Box minW="17rem" h="100vh" justifyItems="center" bgColor={colours["channel-bar"]} borderRight="1px" borderColor="gray" boxShadow="2xl">
+			<Flex alignItems="center" gap={2} direction="column" h="100%" pt={3}>
+				<Flex direction="row">
+					<Text fontSize={18} fontWeight="bold">
+						{(props.community as { name: string }).name}
+					</Text>
 				</Flex>
 				<Button
 					w={236}
 					h={8}
-					onClick={() => {
-						navigate(`/community/${props.community.id}/posts`)
-					}}
-				>
+					as={Link}
+					to={`/community/${props.community.id}/posts`}
+					style={
+						activeButton === null
+							? {
+									borderRadius: "10px",
+									background: "linear-gradient(315deg, #ffffff, #e6e6e6)",
+									boxShadow: "-3px -3px 6px #666666, 3px 3px 6px #ffffff",
+							  }
+							: {
+									borderRadius: "10px",
+									background: "linear-gradient(315deg, #ffffffa, #e6e6e6)",
+									boxShadow: "none",
+							  }
+					}>
 					Posts
 				</Button>
 				<Text fontSize={18}>Channels</Text>
@@ -33,10 +49,21 @@ export function FeedSelector(props: FeedSelectorProps) {
 						key={index}
 						w={236}
 						h={8}
-						onClick={() => {
-							navigate(`/community/${props.community.id}/${channel.id}`)
-						}}
-					>
+						as={Link}
+						to={`/community/${props.community.id}/${channel.id}`}
+						style={
+							activeButton === index
+								? {
+										borderRadius: "10px",
+										background: "linear-gradient(315deg, #ffffff, #e6e6e6)",
+										boxShadow: "-3px -3px 6px #666666, 3px 3px 6px #ffffff",
+								  }
+								: {
+										borderRadius: "10px",
+										background: "linear-gradient(315deg, #ffffffa, #e6e6e6)",
+										boxShadow: "none",
+								  }
+						}>
 						#{channel.name}
 					</Button>
 				))}
