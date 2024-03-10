@@ -15,15 +15,17 @@ export function FeedSelector(props: FeedSelectorProps) {
 	return (
 		<Box minW='17rem' h='100vh' justifyItems='center' bgColor={colours['channel-bar']} borderRight='1px' borderColor='gray' boxShadow='2xl'>
 			<Flex alignItems='center' gap={2} direction='column' h='100%' pt={3}>
-				<Text fontSize={18} fontWeight='bold'>{(props.community as { name: string }).name}</Text>
+				<Flex direction='row'>
+					<Text fontSize={18} fontWeight='bold'>{(props.community as { name: string }).name}</Text>
+				</Flex>
 				<Button
-						w={236}
-						h={8}
-						onClick={() => {
-							navigate(`/community/${props.community.id}/posts`)
-						}}
-					>
-						Posts
+					w={236}
+					h={8}
+					onClick={() => {
+						navigate(`/community/${props.community.id}/posts`)
+					}}
+				>
+					Posts
 				</Button>
 				<Text fontSize={18}>Channels</Text>
 				{props.channels.map((channel: any, index: number) => (

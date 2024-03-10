@@ -21,7 +21,6 @@ export function ChatFeed(props: ChatFeed) {
 				minH='calc(100vh - 8rem)'
 				maxH='calc(100vh - 8rem)'
 				w='100%'
-				gap={3}
 				px={4}
 				pt={2}
 				overflow='scroll'
@@ -46,10 +45,14 @@ export function ChatFeed(props: ChatFeed) {
 							}
 					/>
 				))}
+				<Flex direction='column'>
+					<Text fontSize={20} fontWeight='bold' pl={2}>#{props.currentChannelName}</Text>
+					<Text fontSize={12} pl={2} pb={2} color='gray'>Scroll down to see new messages</Text>
+				</Flex>
 			</Flex>
 			<Box maxW='100%' h='4rem' display='flex' flexDirection='row' alignItems='center' boxShadow='xl' px={3}>
 				<form style={{ width: '100%' }} onSubmit={props.formik.handleSubmit}>
-					<Flex direction='row' minW='100%' gap={3}>
+					<Flex direction='row' minW='100%'>
 						<FormControl>
 							<Input
 								id='message'
