@@ -18,7 +18,6 @@ export class MessageService {
 				userId,
 				channelId,
 				content,
-
 			}
 		});
 
@@ -64,27 +63,29 @@ export class MessageService {
 	}
 	
 	async update(req) {
-		const communityUserId: number = +req.params.id;
+		const messageId: number = +req.params.id;
 		const body = req.body;
+		const imageUrl = req.file ? `${messageId}-image.png` : undefined;
 
-		const communityUser = await db.communityUser.update({
+		const message = await db.message.update({
 			where: {
-				id: communityUserId,
+				id: messageId,
 			},
 			data: {
-				role: body.role || undefined,
+				content: body.role || undefined,
+				image: imageUrl || undefined,
 			}
 		});
 
-		return communityUser;
+		return message;
 	}
 
 	async delete(req) {
-		const communityUserId: number = +req.params.id;
+		const messageId: number = +req.params.id;
 
-		await db.communityUser.delete({
+		await db.message.delete({
 			where: {
-				id: communityUserId,
+				id: messageId,
 			}
 		});
 	}

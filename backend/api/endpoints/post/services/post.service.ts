@@ -75,12 +75,14 @@ export class PostService {
 	async update(req) {
 		const postId: number = +req.params.id;
 		const body = req.body;
+		const imageUrl = req.file ? `${postId}-image.png` : undefined;
 
 		const post = await db.post.update({
 			where: { id: postId },
 			data: {
 				title: body.title || undefined,
 				content: body.content || undefined,
+				image: imageUrl || undefined,
 			}
 		});
 

@@ -73,6 +73,7 @@ export class UserService {
 	async update(req) {
 		const userId: number = +req.params.id;
 		const body = req.body;
+		const avatarUrl = req.file ? `${userId}-avatar.png` : undefined;
 		let hashedPassword: string;
 		if (body.password) {
 			hashedPassword = await Password.encrypt(body.password);
@@ -84,7 +85,7 @@ export class UserService {
 			},
 			data: {
 				username: body.username || undefined,
-				avatarUrl: body.avatarUrl || undefined,
+				avatarUrl: avatarUrl || undefined,
 				bio: body.bio || undefined,
 				displayName: body.displayName || undefined,
 				password: hashedPassword || undefined,
