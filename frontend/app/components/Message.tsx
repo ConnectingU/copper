@@ -12,11 +12,12 @@ export function Message(props: MessageProps) {
 	if (date == new Date().toDateString()) {
 		date = 'Today';
 	}
-	let formatedDate: string = date + ' ' + new Date(props.date).toLocaleTimeString();
+	const time = new Date(props.date).toLocaleTimeString();
+	let formatedDate: string = date + ' ' + time.split(':')[0] + ':' + time.split(':')[1] + ' ' + time.split(' ')[1];
 	return (
-		<Box w='512px' pl={props.hideInfo ? 14 : 0} pt={props.hideInfo ? 0 : 2}>
-			<Flex alignItems='center' gap='2'>
-				<Avatar name={props.name} bgColor='lightGray' hidden={props.hideInfo}/>
+		<Box w='100%' pl={props.hideInfo ? 14 : 0} pt={props.hideInfo ? 0 : 2}>
+			<Flex gap='2'>
+				<Avatar name={props.name} bgColor='lightGray' hidden={props.hideInfo} />
 				<Flex direction='column'>
 					<Box display='flex' alignItems='center' hidden={props.hideInfo}>
 						<Text fontWeight='bold' fontSize='20'>{props.name}</Text>
