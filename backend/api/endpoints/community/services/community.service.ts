@@ -51,7 +51,7 @@ export class CommunityService {
 		}
 
 		return community;
-	};
+	}
 
 	async read(req) {
 		const communityId: number = +req.params.id;
