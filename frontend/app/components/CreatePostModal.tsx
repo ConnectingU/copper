@@ -55,15 +55,15 @@ export function CreatePostModal() {
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Post Title</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='post-title' />
+								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Post Content</FormLabel>
-								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='post-content' />
+								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Post Image</FormLabel>
-								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='post-image' />
+								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='Image' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
