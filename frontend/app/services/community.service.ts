@@ -18,6 +18,22 @@ class CommunityService extends Service {
 		}
 	}
 
+	async getAllCommunities() {
+		const config = {
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
+			}
+		}
+		
+		try {
+			const resp = await this.http.get(`${this.baseURL}/community`, config);
+			return resp.data;
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
+	}
+
 	async createCommunity(name: string, bio: string) {
 		const body = {name, bio};
 		const config = {
