@@ -9,20 +9,20 @@ interface PostProps {
 }
 
 export function Post(props: PostProps) {
+	console.log(props.imgUrl);
 	return (
 		<Box>
-			<Card boxShadow='xl' w='768px' overflow='hidden'>
-				<Box w='768px' h='80px' display='flex' alignItems='center' px={2} gap={3} borderBottom='1px' borderColor='lightgray'>
+			<Card boxShadow='xl' maxW='512px' overflow='hidden'>
+				<Box maxW='512px' h='80px' display='flex' alignItems='center' px={2} gap={3} borderBottom='1px' borderColor='lightgray'>
 					<Avatar name={props.name} bgColor='lightGray' />
 					<VStack alignItems='start' gap={0}>
 						<Text fontSize={24}>{props.title}</Text>
 						<Text fontSize={16}>By: {props.name}</Text>
 					</VStack>
 				</Box>
-				<Box w='768px'>
+				<Box w='512px'>
 					<VStack alignItems='start'>
-						<Image w='768px' objectFit='cover' src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg"/>
-						{props.imgUrl ? null : (<img src={props.imgUrl}/>)}
+						{props.imgUrl ? (<Image w='768px' objectFit='cover' src={`http://localhost:8500/post-images/${props.imgUrl}`}/>) : null}
 						<Text fontSize={16} px={4} pb={4}>{props.description}</Text>
 					</VStack>
 				</Box>

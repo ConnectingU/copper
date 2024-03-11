@@ -2,7 +2,7 @@ import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
 import { PlusCircle } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import Cookies from 'js-cookie';
 import { PostService } from "~/services/services";
 
@@ -13,21 +13,24 @@ export function CreatePostModal() {
 	const { communityId } = useParams();
 	const currentCommunity: number = Number(communityId);
     const userId: number = Number(Cookies.get('userId'));
+	const [file, setFile] = useState<File | null>(null);
 
-	const formik = useFormik({
-		initialValues: {
-			title: '',
-            content: '',
-            image: ''
-		},
-		onSubmit: async (values) => {
-			if (values.title !== '') {
-				await PostService.createPost(values.title, values.content, values.image, currentCommunity, userId);
+		const formik = useFormik({
+			initialValues: {
+				title: '',
+	            content: '',
+			},
+			onSubmit: async (values) => {
+				if (values.title !== '') {
+					const post = await PostService.createPost(values.title, values.content, currentCommunity, userId);
+					if (file) {
+						await PostService.updatePost(post.data.id, undefined, undefined, file);
+					}
+				}
+				values.title = '';
+				window.location.reload();
 			}
-			values.title = '';
-			window.location.reload();
-		}
-	});
+		});
 
 	return (
 		<>
@@ -54,13 +57,13 @@ export function CreatePostModal() {
 								<FormLabel>Post Title</FormLabel>
 								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='post-title' />
 							</FormControl>
-                            <FormControl>
+							<FormControl>
 								<FormLabel>Post Content</FormLabel>
 								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='post-content' />
 							</FormControl>
-                            <FormControl>
+							<FormControl>
 								<FormLabel>Post Image</FormLabel>
-								<Input id='image' ref={initialRef} onChange={formik.handleChange} value={formik.values.image} placeholder='post-image' />
+								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='post-image' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
