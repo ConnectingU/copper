@@ -34,6 +34,30 @@ class CommunityService extends Service {
 			throw error;
 		}
 	}
+
+	async updateCommunity(communityId?: number, name?: string, bio?: string, image?: File) {
+		const config = {
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
+				'Content-Type': 'multipart/form-data',
+			}
+		}
+		
+		const formData = new FormData();
+		formData.append('name', name ?? '');
+		formData.append('bio', bio ?? '');
+		if (image) {
+			formData.append('avatar', image);
+		}
+		
+		try {
+			return await this.http.patch(`${this.baseURL}/community/${communityId}`, formData, config);
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
+
+	}
 }
 
 const communityService = new CommunityService();
