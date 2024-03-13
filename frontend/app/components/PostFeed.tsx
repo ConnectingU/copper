@@ -11,7 +11,7 @@ export function PostFeed(props: ChatFeed) {
 	return (
 		<Box w='100%'>
 			<Flex
-				direction='column-reverse'
+				direction='column'
 				h='100vh'
 				gap={3}
 				px={4}
@@ -27,10 +27,10 @@ export function PostFeed(props: ChatFeed) {
 					},
 				}}
 			>
+				<CreatePostModal />
 				{props.posts.map((post: any, index: number) => (
 					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} imgUrl={post.image} />
 				))}
-				<CreatePostModal />
 			</Flex>
 		</Box>
 	);

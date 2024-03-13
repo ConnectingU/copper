@@ -73,6 +73,9 @@ export class CommunityService {
 								avatarUrl: true,
 							}
 						}
+					},
+					orderBy: {
+						createdAt: 'desc'
 					}
 				},
 				channels: true,
