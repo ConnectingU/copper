@@ -52,7 +52,7 @@ export function ChatFeed(props: ChatFeed) {
 			</Flex>
 			<Box maxW='100%' h='4rem' display='flex' flexDirection='row' alignItems='center' boxShadow='xl' px={3}>
 				<form style={{ width: '100%' }} onSubmit={props.formik.handleSubmit}>
-					<Flex direction='row' minW='100%'>
+					<Flex direction='row' minW='100%' gap={2}>
 						<FormControl>
 							<Input
 								id='message'

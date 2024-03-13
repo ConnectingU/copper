@@ -10,7 +10,7 @@ import { MainLayout } from '~/components/MainLayout';
 import { FeedSelector } from '~/components/FeedSelector';
 import { ChatFeed } from '~/components/ChatFeed';
 
-let socket = io();
+let socket = io('http://localhost:8500/message/');
 
 export default function CommunityPage() {
 	const { communityId, channelId } = useParams();

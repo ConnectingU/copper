@@ -1,11 +1,12 @@
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
-import { Globe2, PlusSquare } from "lucide-react";
+import { Globe2, Settings } from "lucide-react";
 import { UserService } from "~/services/services";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from '@remix-run/react';
 import { CreateCommunityModal } from "./CreateCommunityModal";
 import { colours } from "~/ui-config";
+import { SettingsModal } from "./SettingsModal";
 
 interface MainLayoutProps {
 	children: React.ReactNode;
@@ -24,10 +25,10 @@ export function MainLayout(props: MainLayoutProps) {
 
 	return (
 		<>
-			<Box minW='5rem' h='100vh' justifyItems='center' bgColor={colours['community-bar']} borderRight='1px' borderColor='gray'>
-				<Flex alignItems='center' gap={3} direction='column' h='100%' pt={3}>
+			<Flex minW='5rem' maxH='100vh' justifyItems='center' direction='column' bgColor={colours['community-bar']} borderRight='1px' borderColor='gray' gap={3} py={3}>
+				<Flex alignItems='center' gap={3} direction='column'>
 					<Button 
-						w={14} 
+						w={14}
 						h={14}
 						onClick={() => {
 							navigate('/')
@@ -35,6 +36,8 @@ export function MainLayout(props: MainLayoutProps) {
 					>
 						<Globe2 />
 					</Button>
+				</Flex>
+				<Flex alignItems='center' gap={3} direction='column' h='full' overflow='scroll'>
 					{communities.map((community: any, index: number) => (
 						<Button
 							key={index}
@@ -50,7 +53,10 @@ export function MainLayout(props: MainLayoutProps) {
 					))}
 					<CreateCommunityModal />
 				</Flex>
-			</Box>
+				<Flex alignItems='center' gap={3} direction='column'>
+					<SettingsModal />
+				</Flex>
+			</Flex>
 			{props.children}
 		</>
 	)

@@ -25,7 +25,7 @@ class PostService extends Service {
 				'Content-Type': 'multipart/form-data',
 			}
 		}
-		console.log('image', image)
+		
 		const formData = new FormData();
 		formData.append('title', title ?? '');
 		formData.append('content', content ?? '');

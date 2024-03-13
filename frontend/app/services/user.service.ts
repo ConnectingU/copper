@@ -19,7 +19,7 @@ class UserService extends Service {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
-
+		
 		try {
 			const user = await this.http.get(`${this.baseURL}/user/${userId}`, config);
 			return user.data;
@@ -46,6 +46,30 @@ class UserService extends Service {
 			throw error;
 		}
 	}
+
+	// async updateUser(userId: number, displayName?: string, content?: string, image?: File) {
+	// 	const config = {
+	// 		headers: {
+	// 			'Authorization': `Bearer ${Cookies.get('auth')}`,
+	// 			'Content-Type': 'multipart/form-data',
+	// 		}
+	// 	}
+		
+	// 	const formData = new FormData();
+	// 	formData.append('title', title ?? '');
+	// 	formData.append('content', content ?? '');
+	// 	if (image) {
+	// 		formData.append('image', image);
+	// 	}
+		
+	// 	try {
+	// 		return await this.http.patch(`${this.baseURL}/post/${postId}`, formData, config);
+	// 	} catch(error) {
+	// 		console.error(error);
+	// 		throw error;
+	// 	}
+
+	// }
 }
 
 const userService = new UserService();
