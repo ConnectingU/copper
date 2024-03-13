@@ -37,7 +37,7 @@ export function MainLayout(props: MainLayoutProps) {
 						<Globe2 />
 					</Button>
 				</Flex>
-				<Flex alignItems='center' gap={3} direction='column' h='full' overflow='scroll'>
+				<Flex alignItems='center' gap={3} direction='column' h='full'>
 					{communities.map((community: any, index: number) => (
 						<Button
 							key={index}

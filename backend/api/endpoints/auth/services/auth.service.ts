@@ -21,8 +21,8 @@ export class AuthService {
 			throw new NotAcceptableError('User does not exist!');
 		}
 
-		const passwordMatch = Password.compare(password, user.password);
-
+		const passwordMatch = await Password.compare(password, user.password);
+		
 		if (!passwordMatch) {
 			throw new NotAcceptableError('Password Incorrect!');
 		}
