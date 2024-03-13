@@ -1,5 +1,4 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
 import { PlusSquare } from "lucide-react";
 import Cookies from "js-cookie";

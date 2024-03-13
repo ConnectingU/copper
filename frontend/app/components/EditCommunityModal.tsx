@@ -1,31 +1,26 @@
-import { useDisclosure, IconButton, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
+import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
 import { Pencil } from "lucide-react";
-import React from "react";
-import Cookies from 'js-cookie';
-import { PostService } from "~/services/services";
+import React, { useState } from "react";
+import {CommunityService } from "~/services/services";
 
 export function EditCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = React.useRef(null)
 	const finalRef = React.useRef(null)
 	const { communityId } = useParams();
-    const { name } = useParams();
 	const currentCommunity: number = Number(communityId);
-    const userId: number = Number(Cookies.get('userId'));
+	const [file, setFile] = useState<File | undefined>(undefined);
 
 	const formik = useFormik({
 		initialValues: {
-			title: '',
-            content: '',
-            image: ''
+			name: '',
+			bio: '',
 		},
 		onSubmit: async (values) => {
-			if (values.title !== '') {
-				await PostService.createPost(values.title, values.content, values.image, currentCommunity, userId);
-			}
-			values.title = '';
+			const post = await CommunityService.updateCommunity(currentCommunity, values.name, values.bio, file);
+			values.name = '';
 			window.location.reload();
 		}
 	});
@@ -46,6 +41,7 @@ export function EditCommunityModal() {
 				finalFocusRef={finalRef}
 				isOpen={isOpen}
 				onClose={onClose}
+				
 			>
 				<ModalOverlay />
 				<ModalContent>
@@ -54,21 +50,21 @@ export function EditCommunityModal() {
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody pb={6}>
 							<FormControl>
-								<FormLabel>Community name</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder={name} />
+								<FormLabel>Community Name</FormLabel>
+								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='Name' />
 							</FormControl>
-                            <FormControl>
-								<FormLabel>Bio</FormLabel>
-								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='post-content' />
+							<FormControl>
+								<FormLabel>Community Bio</FormLabel>
+								<Input id='bio' ref={initialRef} onChange={formik.handleChange} value={formik.values.bio} placeholder='Bio' />
 							</FormControl>
-                            <FormControl>
-								<FormLabel>Community Icon</FormLabel>
-								<Input id='image' ref={initialRef} onChange={formik.handleChange} value={formik.values.image} placeholder='post-image' />
+							<FormControl>
+								<FormLabel>Community Avatar</FormLabel>
+								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : undefined)}} placeholder='Image' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
 							<Button type='submit' onClick={onClose} colorScheme='blue' mr={3}>
-								Create
+								Submit
 							</Button>
 						</ModalFooter>
 					</form>

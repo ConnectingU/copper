@@ -97,8 +97,9 @@ export class CommunityService {
 				id: communityId,
 			},
 			data: {
-				avatarUrl: avatarUrl || undefined,
+				name: body.name || undefined,
 				bio: body.bio || undefined,
+				avatarUrl: avatarUrl || undefined,
 			}
 		});
 
