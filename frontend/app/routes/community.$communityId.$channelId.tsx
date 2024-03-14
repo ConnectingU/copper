@@ -30,6 +30,7 @@ export default function CommunityPage() {
 			const userId = Number(Cookies.get('userId'));
 			socket.emit('message', {content: values.message, userId});
 			const user = await UserService.getUser(userId);
+			console.log(user);
 			const newMessage = {content: values.message, user: user, createdAt: new Date()};
 			setMessages((message: any) => [newMessage, ...messages]);
 			values.message = '';
