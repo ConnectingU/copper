@@ -1,6 +1,5 @@
 import { Box, Button, Flex, IconButton, Text } from "@chakra-ui/react";
 import { Link, useMatches } from "@remix-run/react";
-import { KeyRound, PlusCircle } from "lucide-react";
 import { CreateChannelModal } from "./CreateChannelModal";
 import { colours } from "~/ui-config";
 import { EditCommunityModal } from "./EditCommunityModal";

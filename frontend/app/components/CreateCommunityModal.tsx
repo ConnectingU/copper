@@ -1,14 +1,15 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { PlusSquare } from "lucide-react";
+import { PlusSquare, UndoIcon } from "lucide-react";
 import Cookies from "js-cookie";
-import React from "react";
+import React, { useState } from "react";
 import { CommunityService, CommunityUserService } from "~/services/services";
 
 export function CreateCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = React.useRef(null)
 	const finalRef = React.useRef(null)
+	const [file, setFile] = useState<File | undefined>(undefined);
 
 	const formik = useFormik({
 		initialValues: {
@@ -19,6 +20,9 @@ export function CreateCommunityModal() {
 			if (values.name !== '') {
 				const community = await CommunityService.createCommunity(values.name, values.bio);
 				await CommunityUserService.createCommunityUser(Number(Cookies.get('userId')), community.id);
+				if (file) {
+					CommunityService.updateCommunity(community.id, undefined, undefined, file);
+				}
 			}
 			values.name = '';
 			values.bio = '';
@@ -54,6 +58,10 @@ export function CreateCommunityModal() {
 							<FormControl>
 								<FormLabel>Community Bio</FormLabel>
 								<Input id='bio' ref={initialRef} onChange={formik.handleChange} value={formik.values.bio} placeholder='Bio' />
+							</FormControl>
+							<FormControl>
+								<FormLabel>Community Avatar</FormLabel>
+								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : undefined)}} placeholder='Image' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
