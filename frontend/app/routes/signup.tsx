@@ -79,6 +79,7 @@ export default function Signup() {
 									placeholder='E-Mail'
 									onChange={formik.handleChange}
 									value={formik.values.email}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<FormControl>
@@ -88,6 +89,7 @@ export default function Signup() {
 									placeholder='Username'
 									onChange={formik.handleChange}
 									value={formik.values.username}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<FormControl>
@@ -97,6 +99,7 @@ export default function Signup() {
 									placeholder='Password'
 									onChange={formik.handleChange}
 									value={formik.values.password}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<FormControl>
@@ -106,6 +109,7 @@ export default function Signup() {
 									placeholder='Confirm Password'
 									onChange={formik.handleChange}
 									value={formik.values.confirmpassword}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<Button type='submit' bgColor='orange'>Sign up</Button>

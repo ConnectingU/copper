@@ -51,15 +51,15 @@ export function EditCommunityModal() {
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Community Name</FormLabel>
-								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='Name' />
+								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='Name' autoComplete="off" />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Community Bio</FormLabel>
-								<Input id='bio' ref={initialRef} onChange={formik.handleChange} value={formik.values.bio} placeholder='Bio' />
+								<Input id='bio' ref={initialRef} onChange={formik.handleChange} value={formik.values.bio} placeholder='Bio' autoComplete="off" />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Community Avatar</FormLabel>
-								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : undefined)}} placeholder='Image' />
+								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : undefined)}} placeholder='Image' autoComplete="off" />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

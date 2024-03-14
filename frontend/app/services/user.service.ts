@@ -47,29 +47,28 @@ class UserService extends Service {
 		}
 	}
 
-	// async updateUser(userId: number, displayName?: string, content?: string, image?: File) {
-	// 	const config = {
-	// 		headers: {
-	// 			'Authorization': `Bearer ${Cookies.get('auth')}`,
-	// 			'Content-Type': 'multipart/form-data',
-	// 		}
-	// 	}
+	async updateUser(userId: number, displayName?: string, image?: File) {
+		const config = {
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
+				'Content-Type': 'multipart/form-data',
+			}
+		}
 		
-	// 	const formData = new FormData();
-	// 	formData.append('title', title ?? '');
-	// 	formData.append('content', content ?? '');
-	// 	if (image) {
-	// 		formData.append('image', image);
-	// 	}
+		const formData = new FormData();
+		formData.append('displayName', displayName ?? '');
+		if (image) {
+			formData.append('avatar', image);
+		}
 		
-	// 	try {
-	// 		return await this.http.patch(`${this.baseURL}/post/${postId}`, formData, config);
-	// 	} catch(error) {
-	// 		console.error(error);
-	// 		throw error;
-	// 	}
+		try {
+			return await this.http.patch(`${this.baseURL}/user/${userId}`, formData, config);
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
 
-	// }
+	}
 }
 
 const userService = new UserService();

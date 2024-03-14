@@ -119,3 +119,8 @@ dist
 .pnp.*
 
 .VSCodeCounter/
+
+# Files in community-avatar directory
+community-avatars/*
+user-avatars/*
+post-images/*

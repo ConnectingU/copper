@@ -4,6 +4,7 @@ interface PostProps {
 	name: string;
 	title: string;
 	description: string;
+	avatarUrl?: string;
 	imgUrl?: string;
 	date: Date;
 }
@@ -14,7 +15,7 @@ export function Post(props: PostProps) {
 		<Box>
 			<Card boxShadow='xl' maxW='512px' overflow='hidden'>
 				<Box maxW='512px' h='80px' display='flex' alignItems='center' px={2} gap={3} borderBottom='1px' borderColor='lightgray'>
-					<Avatar name={props.name} bgColor='lightGray' />
+					<Avatar name={props.name} bgColor='lightGray' src={`http://localhost:8500/user-avatars/${props.avatarUrl}`} />
 					<VStack alignItems='start' gap={0}>
 						<Text fontSize={24}>{props.title}</Text>
 						<Text fontSize={16}>By: {props.name}</Text>

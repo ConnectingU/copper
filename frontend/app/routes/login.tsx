@@ -64,6 +64,7 @@ export default function Login() {
 									placeholder='E-Mail'
 									onChange={formik.handleChange}
 									value={formik.values.email}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<FormControl>
@@ -73,6 +74,7 @@ export default function Login() {
 									placeholder='Password'
 									onChange={formik.handleChange}
 									value={formik.values.password}
+									autoComplete="off"
 								/>
 							</FormControl>
 							<Button type='submit' bgColor='orange'>Sign in</Button>

@@ -55,11 +55,11 @@ export function CreatePostModal() {
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Post Title</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' />
+								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete="off" />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Post Content</FormLabel>
-								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' />
+								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' autoComplete="off" />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Post Image</FormLabel>

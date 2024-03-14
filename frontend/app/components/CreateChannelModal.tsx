@@ -48,7 +48,7 @@ export function CreateChannelModal() {
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Channel Name</FormLabel>
-								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='#channel-name' />
+								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='#channel-name' autoComplete="off" />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

@@ -20,4 +20,9 @@ export class MessageController {
 	message(@ConnectedSocket() socket: any, @MessageBody() message: any, @NspParam('channelId') channelId: any) {
 		MessageService.handleMessage(socket, message, channelId);
 	}
+
+	@OnMessage('typing')
+	typing(@ConnectedSocket() socket: any, @MessageBody() message: any) {
+		MessageService.handleTyping(socket, message);
+	}
 }

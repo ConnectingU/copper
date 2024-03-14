@@ -17,6 +17,7 @@ export class MessageService {
 						id: true,
 						username: true,
 						displayName: true,
+						avatarUrl: true,
 					},
 				},
 				channelId: true,
@@ -26,5 +27,25 @@ export class MessageService {
 		});
 		socket.broadcast.emit('message', newMessage);
 		Logger.info('Socket-Controller: Message', 'Message: ' +  JSON.stringify(newMessage));
+	}
+
+	static async handleTyping(socket: any, message: any) {
+		const user = await db.user.findUnique({
+			where: {
+				id: message.userId,
+			},
+			select: {
+				id: true,
+				username: true,
+				displayName: true,
+			},
+		});
+		const resp = {
+			...user,
+			isTyping: message.isTyping,
+		};
+
+		socket.broadcast.emit('typing', resp);
+		Logger.info('Socket-Controller: Message', 'Typing: ' +  JSON.stringify(message));
 	}
 }

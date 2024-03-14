@@ -63,7 +63,7 @@ export class UserController {
 	@Authorized()
 	@Patch('/:id')
 	@UseBefore(bodyParserJson())
-	public async update(@Req() req: Request, @Res() res: Response, @UploadedFile('image', { options: fileUploadOptions}) file) {
+	public async update(@Req() req: Request, @Res() res: Response, @UploadedFile('avatar', { options: fileUploadOptions}) file) {
 		try {
 			const resp = await this.service.update(req);
 			Logger.info('Controller: Auth', 'Response:' + JSON.stringify(resp) + 'File:' + JSON.stringify(file));

@@ -29,7 +29,7 @@ export function PostFeed(props: ChatFeed) {
 			>
 				<CreatePostModal />
 				{props.posts.map((post: any, index: number) => (
-					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} imgUrl={post.image} />
+					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} avatarUrl={post.user.avatarUrl} date={post.createdAt} imgUrl={post.image} />
 				))}
 			</Flex>
 		</Box>

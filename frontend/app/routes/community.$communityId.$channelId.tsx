@@ -20,6 +20,7 @@ export default function CommunityPage() {
 	const [community, setCommunity] = useState({});
 	const [channels, setChannels] = useState([]);
 	const [messages, setMessages] = useState<any>([]);
+	const [userTyping, setUserTyping] = useState('');
 
 	const formik = useFormik({
 		initialValues: {
@@ -33,6 +34,11 @@ export default function CommunityPage() {
 			setMessages((message: any) => [newMessage, ...messages]);
 			values.message = '';
 		}
+	});
+
+	socket.on('typing', (message: any) => {
+		if (message.isTyping) setUserTyping(`${message.displayName} is typing...`);
+		else setUserTyping('');
 	});
 
 	socket.on('message', (message: any) => {
@@ -68,12 +74,21 @@ export default function CommunityPage() {
 		}
 	}, [currentChannelId]);
 
+	useEffect(() => {
+		if (formik.values.message.length > 0) {
+			socket.emit('typing', {userId: Number(Cookies.get('userId')), isTyping: true});
+		}
+		if (formik.values.message.length === 0) {
+			socket.emit('typing', {userId: Number(Cookies.get('userId')), isTyping: false});
+		}
+	}, [formik.values.message]);
+
 	return (
 		<AuthRedirect>
 			<Flex>
 				<MainLayout>
 					<FeedSelector community={community} channels={channels} />
-					<ChatFeed currentChannelId={currentChannelId} currentChannelName={currentChannelName} messages={messages} formik={formik} />
+					<ChatFeed currentChannelId={currentChannelId} currentChannelName={currentChannelName} messages={messages} userTyping={userTyping} formik={formik} />
 				</MainLayout>
 			</Flex>
 		</AuthRedirect>

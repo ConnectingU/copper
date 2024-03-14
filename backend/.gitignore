@@ -117,3 +117,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Files in community-avatar directory
+uploads/community-avatars/*
+uploads/user-avatars/*
+uploads/post-images/*

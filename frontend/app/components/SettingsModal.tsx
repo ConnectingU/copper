@@ -26,9 +26,7 @@ export function SettingsModal() {
 			displayName: '',
 		},
 		onSubmit: async (values) => {
-			if (values.displayName !== '') {
-				// await UserService.updateUser(values.displayName, values.content, userId);
-			}
+			await UserService.updateUser(userId, values.displayName, file || undefined);
 			values.displayName = '';
 			window.location.reload();
 		}
@@ -57,7 +55,7 @@ export function SettingsModal() {
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Display Name</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.displayName} placeholder={currentUser.displayName || 'Display Name'} />
+								<Input id='displayName' ref={initialRef} onChange={formik.handleChange} value={formik.values.displayName} placeholder={currentUser.displayName || 'Display Name'} autoComplete="off" />
 							</FormControl>
 							<FormControl>
 								<FormLabel>Avatar</FormLabel>

@@ -7,6 +7,7 @@ interface ChatFeed {
 	currentChannelId: number;
 	currentChannelName: string;
 	messages: any[];
+	userTyping: any;
 	formik: any;
 }
 
@@ -32,13 +33,15 @@ export function ChatFeed(props: ChatFeed) {
 						backgroundColor: '#FFB669',
 					},
 				}}
-			>
+			>	
+				<Text fontSize={12} pl={2} color='gray'>{props.userTyping}</Text>
 				{props.messages.map((message: any, index: number) => (
 					<Message
 						key={index}
 						message={message.content}
 						name={message.user.displayName || message.user.username}
 						date={message.createdAt}
+						avatarUrl={message.user.avatarUrl}
 						hideInfo={
 							index != props.messages.length - 1 && message.user.id == props.messages[index + 1].user.id && ((new Date(message.createdAt).getTime() - new Date(props.messages[index + 1].createdAt).getTime()) <= 3600000) ? 
 								true : false
@@ -51,7 +54,7 @@ export function ChatFeed(props: ChatFeed) {
 				</Flex>
 			</Flex>
 			<Box maxW='100%' h='4rem' display='flex' flexDirection='row' alignItems='center' boxShadow='xl' px={3}>
-				<form style={{ width: '100%' }} onSubmit={props.formik.handleSubmit}>
+				<form style={{ width: '100%' }} onSubmit={props.formik.handleSubmit} autoComplete='false'>
 					<Flex direction='row' minW='100%' gap={2}>
 						<FormControl>
 							<Input
@@ -59,6 +62,7 @@ export function ChatFeed(props: ChatFeed) {
 								type='text'
 								placeholder='Message'
 								onChange={props.formik.handleChange}
+								autoComplete="off"
 								value={props.formik.values.message}
 							/>
 						</FormControl>
