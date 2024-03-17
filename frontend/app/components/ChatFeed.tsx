@@ -1,5 +1,5 @@
 import { Flex, Box, Text, Input, FormControl, Button } from "@chakra-ui/react";
-import { Message } from "./Message";
+import { Message } from "./UI/Message";
 import { ArrowBigRight } from "lucide-react";
 import { colours } from "~/ui-config";
 
@@ -14,8 +14,8 @@ interface ChatFeed {
 export function ChatFeed(props: ChatFeed) {
 	return (
 		<Flex direction='column' w='100%'>
-			<Box w='100%' h='4rem' bgColor={colours['channel-top-bar']} display='flex' alignItems='center' boxShadow='2xl' borderBottom='1px' borderColor='gray'>
-				<Text pl={4} fontSize={16} fontWeight='bold'># {props.currentChannelName}</Text>
+			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl'>
+				<Text pl={4} fontSize={16} fontWeight='bold' textColor='white'># {props.currentChannelName}</Text>
 			</Box>
 			<Flex
 				direction='column-reverse'
@@ -27,10 +27,7 @@ export function ChatFeed(props: ChatFeed) {
 				overflow='scroll'
 				css={{
 					'&::-webkit-scrollbar': {
-						width: '0.4rem',
-					},
-					'&::-webkit-scrollbar-thumb': {
-						backgroundColor: '#FFB669',
+						width: '0rem',
 					},
 				}}
 			>	
@@ -49,7 +46,7 @@ export function ChatFeed(props: ChatFeed) {
 					/>
 				))}
 				<Flex direction='column'>
-					<Text fontSize={20} fontWeight='bold' pl={2}>#{props.currentChannelName}</Text>
+					<Text fontSize={20} fontWeight='bold' pl={2} textColor='white'>#{props.currentChannelName}</Text>
 					<Text fontSize={12} pl={2} pb={2} color='gray'>Scroll down to see new messages</Text>
 				</Flex>
 			</Flex>
@@ -61,12 +58,13 @@ export function ChatFeed(props: ChatFeed) {
 								id='message'
 								type='text'
 								placeholder='Message'
+								border='1px solid rgba(0, 0, 0, 0.2)'
 								onChange={props.formik.handleChange}
 								autoComplete="off"
 								value={props.formik.values.message}
 							/>
 						</FormControl>
-						<Button type='submit' bgColor='#FFCC9F'><ArrowBigRight/></Button>
+						<Button type='submit' bgColor='rgba(0, 0, 0, 0.2)'><ArrowBigRight color='gray'/></Button>
 					</Flex>
 				</form>
 			</Box>

@@ -14,7 +14,7 @@ import { useNavigate } from '@remix-run/react';
 import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import { AuthService, UserService } from '~/services/services';
+import { AuthService, UserService } from '~/services';
 
 export default function Signup() {
 	const navigate = useNavigate();

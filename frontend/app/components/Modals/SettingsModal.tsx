@@ -4,7 +4,8 @@ import { useFormik } from "formik";
 import { Settings } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
-import { UserService, PostService } from "~/services/services";
+import { UserService, PostService } from "~/services";
+import SquareButton from "../UI/SquareButton";
 
 export function SettingsModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,13 +35,13 @@ export function SettingsModal() {
 
 	return (
 		<>
-			<Button 
-				w={14} 
+			<SquareButton 
+				w={14}
 				h={14}
 				onClick={onOpen}
 			>
-				<Settings />
-			</Button>
+				<Settings color='white' />
+			</SquareButton>
 			<Modal
 				initialFocusRef={initialRef}
 				finalFocusRef={finalRef}
@@ -48,16 +49,16 @@ export function SettingsModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
 					<ModalHeader>Settings</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
-						<ModalBody pb={6}>
+						<ModalBody pb={1}>
 							<FormControl>
 								<FormLabel>Display Name</FormLabel>
 								<Input id='displayName' ref={initialRef} onChange={formik.handleChange} value={formik.values.displayName} placeholder={currentUser.displayName || 'Display Name'} autoComplete="off" />
 							</FormControl>
-							<FormControl>
+							<FormControl pt={2}>
 								<FormLabel>Avatar</FormLabel>
 								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='Image' />
 							</FormControl>

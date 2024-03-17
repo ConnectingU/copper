@@ -3,12 +3,12 @@ import { useFormik } from 'formik';
 import { ArrowBigRight, Globe2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { AuthRedirect } from '~/components/AuthRedirect';
-import { Message } from '~/components/Message';
-import { ChannelService, CommunityService, MessageService, UserService } from '~/services/services';
+import { Message } from '~/components/UI/Message';
+import { ChannelService, CommunityService, MessageService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
-import { MainLayout } from '~/components/MainLayout';
-import { Post } from '~/components/Post';
+import { CommunitySelector } from '~/components/CommunitySelector';
+import { Post } from '~/components/UI/Post';
 
 export default function Index() {
 	const [currentCommunity, setCurrentCommunity] = useState(3);
@@ -59,16 +59,15 @@ export default function Index() {
 
 	return (
 		<AuthRedirect>
-				<Flex>
-					<MainLayout>
-						<Box w='100%'>
-							<Flex direction='column' h='100vh' gap={3} px={4} pt={2} overflow='scroll' alignItems='center'>
-								{posts.map((post: any, index: number) => (
-									<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} />
-								))}
-							</Flex>
-						</Box>
-					</MainLayout>
+				<Flex w='100%'>
+					<Box w='100%'>
+						<Flex direction='column' h='100vh' gap={3} px={4} pt={2} overflow='scroll' alignItems='center'>
+							{posts.map((post: any, index: number) => (
+								<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} />
+							))}
+						</Flex>
+					</Box>
+
 				</Flex>
 		</AuthRedirect>
 	);

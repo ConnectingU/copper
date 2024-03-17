@@ -1,9 +1,10 @@
 import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
-import { Pencil } from "lucide-react";
+import { Pencil, Square } from "lucide-react";
 import React, { useState } from "react";
-import {CommunityService } from "~/services/services";
+import {CommunityService } from "~/services";
+import SquareButton from "../UI/SquareButton";
 
 export function EditCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,15 +28,13 @@ export function EditCommunityModal() {
 
 	return (
 		<>
-			<IconButton
-                isRound={true}
-                variant='solid'
-                size="xs"
-                aria-label='Edit Community'
-                fontSize='5px'
-                icon={<Pencil size={15} />}
+			<SquareButton
+				w={9}
+				h={9}
                 onClick={onOpen}
-            />
+            >
+				<Pencil size={15} />
+			</SquareButton>
 			<Modal
 				initialFocusRef={initialRef}
 				finalFocusRef={finalRef}
@@ -44,20 +43,20 @@ export function EditCommunityModal() {
 				
 			>
 				<ModalOverlay />
-				<ModalContent>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
 					<ModalHeader>Edit Community</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
-						<ModalBody pb={6}>
+						<ModalBody pb={1}>
 							<FormControl>
 								<FormLabel>Community Name</FormLabel>
 								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='Name' autoComplete="off" />
 							</FormControl>
-							<FormControl>
+							<FormControl pt={2}>
 								<FormLabel>Community Bio</FormLabel>
 								<Input id='bio' ref={initialRef} onChange={formik.handleChange} value={formik.values.bio} placeholder='Bio' autoComplete="off" />
 							</FormControl>
-							<FormControl>
+							<FormControl pt={2}>
 								<FormLabel>Community Avatar</FormLabel>
 								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : undefined)}} placeholder='Image' autoComplete="off" />
 							</FormControl>

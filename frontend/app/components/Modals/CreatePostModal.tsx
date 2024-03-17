@@ -1,10 +1,11 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
-import { PlusCircle } from "lucide-react";
+import { SquarePen } from "lucide-react";
 import React, { useState } from "react";
 import Cookies from 'js-cookie';
-import { PostService } from "~/services/services";
+import { PostService } from "~/services";
+import SquareButton from "../UI/SquareButton";
 
 export function CreatePostModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,13 +35,13 @@ export function CreatePostModal() {
 
 	return (
 		<>
-			<Button
-				w={236}
-				h={8}
+			<SquareButton
+				w={10}
+				h={10}
 				onClick={onOpen}
 			>
-				<PlusCircle />
-			</Button>
+				<SquarePen width={18} />
+			</SquareButton>
 			<Modal
 				initialFocusRef={initialRef}
 				finalFocusRef={finalRef}
@@ -48,20 +49,20 @@ export function CreatePostModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
 					<ModalHeader>Create a new post</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
-						<ModalBody pb={6}>
+						<ModalBody>
 							<FormControl>
 								<FormLabel>Post Title</FormLabel>
 								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete="off" />
 							</FormControl>
-							<FormControl>
+							<FormControl pt={2}>
 								<FormLabel>Post Content</FormLabel>
 								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' autoComplete="off" />
 							</FormControl>
-							<FormControl>
+							<FormControl pt={2}>
 								<FormLabel>Post Image</FormLabel>
 								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='Image' />
 							</FormControl>

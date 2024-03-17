@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import Cookies from 'js-cookie';
 import { useNavigate } from '@remix-run/react';
 import { useEffect } from 'react';
-import { AuthService } from '~/services/services';
+import { AuthService } from '~/services';
 
 export default function Login() {
 	const navigate = useNavigate();

@@ -3,11 +3,9 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from "@remix-run/react";
 import { AuthRedirect } from '~/components/AuthRedirect';
-import { ChannelService, CommunityService, UserService } from '~/services/services';
+import { ChannelService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
-import { MainLayout } from '~/components/MainLayout';
-import { FeedSelector } from '~/components/FeedSelector';
 import { ChatFeed } from '~/components/ChatFeed';
 
 let socket = io('http://localhost:8500/message/');
@@ -17,8 +15,6 @@ export default function CommunityPage() {
 	const currentCommunity: number = Number(communityId);
 	const currentChannelId: number = Number(channelId);
 	const [currentChannelName, setCurrentChannelName] = useState('');
-	const [community, setCommunity] = useState({});
-	const [channels, setChannels] = useState([]);
 	const [messages, setMessages] = useState<any>([]);
 	const [userTyping, setUserTyping] = useState('');
 
@@ -30,7 +26,6 @@ export default function CommunityPage() {
 			const userId = Number(Cookies.get('userId'));
 			socket.emit('message', {content: values.message, userId});
 			const user = await UserService.getUser(userId);
-			console.log(user);
 			const newMessage = {content: values.message, user: user, createdAt: new Date()};
 			setMessages((message: any) => [newMessage, ...messages]);
 			values.message = '';
@@ -60,13 +55,6 @@ export default function CommunityPage() {
 	}, [currentChannelId]);
 
 	useEffect(() => {
-		CommunityService.getCommunity(currentCommunity).then((data): void => {
-			setCommunity({...data, id: currentCommunity});
-			setChannels(data.channels);
-		});
-	}, [currentCommunity]);
-
-	useEffect(() => {
 		if (currentChannelId!== 0) {
 			ChannelService.getChannel(currentChannelId).then((data) => {
 				setCurrentChannelName(data.name);
@@ -86,11 +74,8 @@ export default function CommunityPage() {
 
 	return (
 		<AuthRedirect>
-			<Flex>
-				<MainLayout>
-					<FeedSelector community={community} channels={channels} />
-					<ChatFeed currentChannelId={currentChannelId} currentChannelName={currentChannelName} messages={messages} userTyping={userTyping} formik={formik} />
-				</MainLayout>
+			<Flex w='100%'>
+				<ChatFeed currentChannelId={currentChannelId} currentChannelName={currentChannelName} messages={messages} userTyping={userTyping} formik={formik} />
 			</Flex>
 		</AuthRedirect>
 	);

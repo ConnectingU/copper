@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AuthRedirect } from '~/components/AuthRedirect';
-import { CommunityService } from '~/services/services';
-import { MainLayout } from '~/components/MainLayout';
+import { CommunityService } from '~/services';
+import { CommunitySelector } from '~/components/CommunitySelector';
 import { FeedSelector } from '~/components/FeedSelector';
 import { PostFeed } from '~/components/PostFeed';
 import { useParams } from '@remix-run/react';
@@ -24,11 +24,8 @@ export default function Index() {
 
 	return (
 		<AuthRedirect>
-			<Flex>
-				<MainLayout>
-					<FeedSelector community={community} channels={channels} />
-					<PostFeed posts={posts} />
-				</MainLayout>
+			<Flex w='100%'>
+				<PostFeed posts={posts} />
 			</Flex>
 		</AuthRedirect>
 	);

@@ -1,18 +1,25 @@
-import { Flex, Box, Text, Input, FormControl, Button } from "@chakra-ui/react";
-import { Post } from "./Post";
-import { ArrowBigRight } from "lucide-react";
-import { CreatePostModal } from "./CreatePostModal";
+import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from "@chakra-ui/react";
+import { Post } from "./UI/Post";
+import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
+import { CreatePostModal } from "./Modals/CreatePostModal";
+import SquareButton from "./UI/SquareButton";
 
 interface ChatFeed {
-	posts: any;
+	posts: any[];
 }
 
 export function PostFeed(props: ChatFeed) {
 	return (
 		<Box w='100%'>
+			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl' px={4}>
+				<Text fontSize={16} fontWeight='bold' textColor='white'>Posts</Text>
+				<Spacer />
+				<CreatePostModal />
+			</Box>
 			<Flex
 				direction='column'
-				h='100vh'
+				minH='calc(100vh - 4rem)'
+				maxH='calc(100vh - 4rem)'
 				gap={3}
 				px={4}
 				pt={2}
@@ -20,17 +27,22 @@ export function PostFeed(props: ChatFeed) {
 				alignItems='center'
 				css={{
 					'&::-webkit-scrollbar': {
-						width: '0.4rem',
-					},
-					'&::-webkit-scrollbar-thumb': {
-						backgroundColor: '#FFB669',
+						width: '0rem',
 					},
 				}}
 			>
-				<CreatePostModal />
-				{props.posts.map((post: any, index: number) => (
+				{props.posts.length === 0 ? 
+					(
+						<Flex h='calc(100vh - 4rem)' alignItems='center'>
+							<Flex alignItems='center' direction='column' gap={5}>
+								<Frown color='white' size={80}/>
+								<Text fontSize={16} textColor='white'>No posts yet! Be the first to make one!</Text>
+							</Flex>
+						</Flex>
+					) 
+					: (props.posts.map((post: any, index: number) => (
 					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} avatarUrl={post.user.avatarUrl} date={post.createdAt} imgUrl={post.image} />
-				))}
+				)))}
 			</Flex>
 		</Box>
 	);
