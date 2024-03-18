@@ -7,8 +7,8 @@ import { Outlet, useNavigate, useParams } from '@remix-run/react';
 import { CreateCommunityModal } from "../components/Modals/CreateCommunityModal";
 import { colours } from "~/ui-config";
 import { SettingsModal } from "../components/Modals/SettingsModal";
-import { CommunitySelector } from "~/components/CommunitySelector";
-import { FeedSelector } from "~/components/FeedSelector";
+import { CommunitySelector } from "~/components/Selectors/CommunitySelector";
+import { FeedSelector } from "~/components/Selectors/FeedSelector";
 
 export default function Layout() {
 	const { communityId } = useParams();

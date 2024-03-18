@@ -44,6 +44,12 @@ export class PostService {
 						avatarUrl: true,
 					}
 				},
+				likes: {
+					select: {
+						id: true,
+						userId: true,
+					}
+				},
 				createdAt: true,
 				updatedAt: true,
 			}

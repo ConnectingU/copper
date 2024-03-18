@@ -2,11 +2,11 @@ import { Flex } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from "@remix-run/react";
-import { AuthRedirect } from '~/components/AuthRedirect';
+import { AuthRedirect } from '~/components/Util/AuthRedirect';
 import { ChannelService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
-import { ChatFeed } from '~/components/ChatFeed';
+import { ChatFeed } from '~/components/Feed/ChatFeed';
 
 let socket = io('http://localhost:8500/message/');
 

@@ -2,12 +2,12 @@ import { Wrap, Flex, Text, Image, Heading, Box, Button, FormControl, Input} from
 import { useFormik } from 'formik';
 import { ArrowBigRight, Globe2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { AuthRedirect } from '~/components/AuthRedirect';
+import { AuthRedirect } from '~/components/Util/AuthRedirect';
 import { Message } from '~/components/UI/Message';
 import { ChannelService, CommunityService, MessageService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
-import { CommunitySelector } from '~/components/CommunitySelector';
+import { CommunitySelector } from '~/components/Selectors/CommunitySelector';
 import { Post } from '~/components/UI/Post';
 
 export default function Index() {
@@ -63,7 +63,7 @@ export default function Index() {
 					<Box w='100%'>
 						<Flex direction='column' h='100vh' gap={3} px={4} pt={2} overflow='scroll' alignItems='center'>
 							{posts.map((post: any, index: number) => (
-								<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} />
+								<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} date={post.createdAt} likes={post.likes} id={0} />
 							))}
 						</Flex>
 					</Box>

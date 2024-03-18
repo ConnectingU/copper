@@ -1,14 +1,15 @@
 import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from "@chakra-ui/react";
-import { Post } from "./UI/Post";
+import { Post } from "../UI/Post";
 import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
-import { CreatePostModal } from "./Modals/CreatePostModal";
-import SquareButton from "./UI/SquareButton";
+import { CreatePostModal } from "../Modals/CreatePostModal";
+import SquareButton from "../UI/SquareButton";
 
 interface ChatFeed {
 	posts: any[];
 }
 
 export function PostFeed(props: ChatFeed) {
+	console.log(props.posts);
 	return (
 		<Box w='100%'>
 			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl' px={4}>
@@ -41,7 +42,7 @@ export function PostFeed(props: ChatFeed) {
 						</Flex>
 					) 
 					: (props.posts.map((post: any, index: number) => (
-					<Post key={index} title={post.title} description={post.content} name={post.user.displayName || post.user.username} avatarUrl={post.user.avatarUrl} date={post.createdAt} imgUrl={post.image} />
+					<Post key={index} id={post.id} title={post.title} description={post.content} name={post.user.displayName || post.user.username} avatarUrl={post.user.avatarUrl} date={post.createdAt} imgUrl={post.image} likes={post.likes} />
 				)))}
 			</Flex>
 		</Box>

@@ -4,10 +4,10 @@ import { UserService } from "~/services";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from '@remix-run/react';
-import { CreateCommunityModal } from "./Modals/CreateCommunityModal";
+import { CreateCommunityModal } from "../Modals/CreateCommunityModal";
 import { colours } from "~/ui-config";
-import { SettingsModal } from "./Modals/SettingsModal";
-import SquareButton from "./UI/SquareButton";
+import { SettingsModal } from "../Modals/SettingsModal";
+import SquareButton from "../UI/SquareButton";
 
 interface CommunitySelectorProps {
 	children: React.ReactNode;

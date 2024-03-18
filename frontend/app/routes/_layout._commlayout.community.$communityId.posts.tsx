@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { AuthRedirect } from '~/components/AuthRedirect';
+import { AuthRedirect } from '~/components/Util/AuthRedirect';
 import { CommunityService } from '~/services';
-import { CommunitySelector } from '~/components/CommunitySelector';
-import { FeedSelector } from '~/components/FeedSelector';
-import { PostFeed } from '~/components/PostFeed';
+import { CommunitySelector } from '~/components/Selectors/CommunitySelector';
+import { FeedSelector } from '~/components/Selectors/FeedSelector';
+import { PostFeed } from '~/components/Feed/PostFeed';
 import { useParams } from '@remix-run/react';
 
 export default function Index() {

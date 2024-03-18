@@ -5,3 +5,4 @@ export {default as CommunityService} from './community.service';
 export {default as MessageService} from './messages.service';
 export {default as UserService} from './user.service';
 export {default as PostService} from './posts.service';
+export {default as LikeService} from './like.service';

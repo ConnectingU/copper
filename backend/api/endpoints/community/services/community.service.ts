@@ -63,6 +63,7 @@ export class CommunityService {
 				avatarUrl: true,
 				posts: {
 					select: {
+						id: true,
 						title: true,
 						content: true,
 						image: true,
@@ -72,7 +73,13 @@ export class CommunityService {
 								username: true,
 								avatarUrl: true,
 							}
-						}
+						},
+						likes: {
+							select: {
+								id: true,
+								userId: true,
+							}
+						},
 					},
 					orderBy: {
 						createdAt: 'desc'
