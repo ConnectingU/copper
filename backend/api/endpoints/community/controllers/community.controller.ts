@@ -1,6 +1,6 @@
 import { JsonController, Post, Get, Patch, UseBefore, Req, Res, Authorized, HttpError, UploadedFile, Delete } from 'routing-controllers';
 import { Service } from 'typedi';
-import { Logger } from '../../../libs/logger';
+// import { Logger } from '../../../libs/logger';
 import { CommunityService } from '../services/community.service';
 import { Request, Response } from 'express';
 import {json as bodyParserJson} from 'body-parser';
@@ -33,10 +33,10 @@ export class CommunityController {
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.create(req);
-			Logger.info('Controller: Community - create', 'Response:' + JSON.stringify(resp));
+			//Logger.info('Controller: Community - create', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community - create', 'ErrorInfo:' + JSON.stringify(error));
+			//Logger.error('Controller: Community - create', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -50,10 +50,10 @@ export class CommunityController {
 	public async all(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.all(req);
-			Logger.info('Controller: Community - all', 'Response:' + JSON.stringify(resp));
+			//Logger.info('Controller: Community - all', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community - all', 'ErrorInfo:' + JSON.stringify(error));
+			//Logger.error('Controller: Community - all', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -67,10 +67,10 @@ export class CommunityController {
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.read(req);
-			Logger.info('Controller: Community - read', 'Response:' + JSON.stringify(resp));
+			//Logger.info('Controller: Community - read', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
-			Logger.error('Controller: Community - read', 'ErrorInfo:' + JSON.stringify(error));
+			//Logger.error('Controller: Community - read', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -84,10 +84,10 @@ export class CommunityController {
 	public async update(@Req() req: Request, @Res() res: Response, @UploadedFile('avatar', { options: fileUploadOptions}) file) {
 		try {
 			const resp = await this.service.update(req);
-			Logger.info('Controller: Community - update', 'Response:' + JSON.stringify(resp) + 'File:' + JSON.stringify(file));
+			//Logger.info('Controller: Community - update', 'Response:' + JSON.stringify(resp) + 'File:' + JSON.stringify(file));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community - update', 'ErrorInfo:' + JSON.stringify(error));
+			//Logger.error('Controller: Community - update', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -101,10 +101,10 @@ export class CommunityController {
 	public async delete(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.delete(req);
-			Logger.info('Controller: Community - delete', 'Response:' + JSON.stringify(resp));
+			//Logger.info('Controller: Community - delete', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community - delete', 'ErrorInfo:' + JSON.stringify(error));
+			//Logger.error('Controller: Community - delete', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}

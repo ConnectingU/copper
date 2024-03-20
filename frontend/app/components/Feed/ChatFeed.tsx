@@ -62,6 +62,7 @@ export function ChatFeed(props: ChatFeed) {
 								onChange={props.formik.handleChange}
 								autoComplete="off"
 								value={props.formik.values.message}
+								textColor='white'
 							/>
 						</FormControl>
 						<Button type='submit' bgColor='rgba(0, 0, 0, 0.2)'><ArrowBigRight color='gray'/></Button>

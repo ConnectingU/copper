@@ -9,7 +9,6 @@ interface ChatFeed {
 }
 
 export function PostFeed(props: ChatFeed) {
-	console.log(props.posts);
 	return (
 		<Box w='100%'>
 			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl' px={4}>

@@ -4,7 +4,6 @@ import { Service } from "./service";
 class LikeService extends Service {
 	async createLike(userId: number, postId: number) {
 		const body = {userId, postId};
-		console.log(body)
 		const config = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
@@ -25,8 +24,6 @@ class LikeService extends Service {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
-
-		console.log(likeId)
 
 		try {	
 			const resp = await this.http.delete(`http://localhost:8500/api/like/${likeId}`, config);

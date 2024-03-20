@@ -37,11 +37,11 @@ export default function Login() {
 	}, []);
 
 	return (
-		<Flex as='main' w='100%' h='100vh' flexDir='column' justify='center' alignItems='center' p={6}>
+		<Flex as='main' w='100%' h='100vh' flexDir='column' justify='center' alignItems='center'>
 			<Stack spacing={8}>
-				<Stack spacing={4} textAlign='center'>
+				<Stack spacing={3} textAlign='center'>
 					<img src='\logo-transparent.png' alt='logo' width='400px' />
-					<Heading fontSize='4xl'>Log in to your account</Heading>
+					<Heading color='white' fontSize='4xl'>Log in to your account</Heading>
 					<Text color='gray'>
 						Don't have an account? <Link color='lightblue' href='/signup'>Sign up</Link>
 					</Text>
@@ -54,9 +54,10 @@ export default function Login() {
 					bg='white'
 					maxW='lg'
 					width='100%'
+					bgColor='rgba(0, 0, 0, 0.2)'
 				>
 					<form onSubmit={formik.handleSubmit}>
-						<Stack spacing={2}>
+						<Stack spacing={2} textColor='white'>
 							<FormControl>
 								<Input
 									id='email'
@@ -64,7 +65,8 @@ export default function Login() {
 									placeholder='E-Mail'
 									onChange={formik.handleChange}
 									value={formik.values.email}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
 							<FormControl>
@@ -74,10 +76,11 @@ export default function Login() {
 									placeholder='Password'
 									onChange={formik.handleChange}
 									value={formik.values.password}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
-							<Button type='submit' bgColor='orange'>Sign in</Button>
+							<Button type='submit' textColor='lightgray' bgColor='rgba(0, 0, 0, 0.35)' _hover={{bg: 'rgba(0, 0, 0, 0.45)'}}>Sign in</Button>
 						</Stack>
 					</form>
 				</Box>

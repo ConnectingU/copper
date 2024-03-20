@@ -1,8 +1,9 @@
 import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton } from "@chakra-ui/react";
 import { Heart, MessageCircle, MessageSquare, Speech } from "lucide-react";
 import Cookies from "js-cookie";
-import { LikeService } from "~/services";
+import { LikeService, CommentService } from "~/services";
 import { useEffect, useState } from "react";
+import { CommentModal } from "../Modals/CommentModal";
 
 interface PostProps {
 	id: number;
@@ -17,6 +18,20 @@ interface PostProps {
 
 export function Post(props: PostProps) {
 	const [likes, setLikes] = useState(props.likes);
+	const [comments, setComments] = useState<any>([]);
+
+	useEffect(() => {
+		CommentService.getComments(props.id).then((data) => {
+			console.log(data)
+			setComments(data);
+		});
+	}, []);
+
+	let date = new Date(props.date).toDateString();
+	if (date == new Date().toDateString()) {
+		date = 'Today';
+	}
+	let formatedDate: string = date + ' ';
 
 	return (
 		<Box>
@@ -42,7 +57,6 @@ export function Post(props: PostProps) {
 										size='xs'
 										icon={<Heart style={{padding: 0, margin: 0}} size={25} color='hotpink' fill='hotpink' />} 
 										onClick={async () => {
-											console.log()
 											await LikeService.deleteLike(likes.find(element => element.userId == Cookies.get('userId')).id);
 											setLikes(likes.filter(element => element.userId != Cookies.get('userId')));
 										}}
@@ -63,11 +77,12 @@ export function Post(props: PostProps) {
 								<Text>{likes.length}</Text>
 							</Flex>
 							<Flex gap={2}>
-								<MessageSquare size={25} color='gray' />
-								<Text>3</Text>
+								<CommentModal id={props.id} comments={comments} setComments={setComments} />
+								<Text>{comments.length}</Text>
 							</Flex>
 						</Flex>
-						<Text fontSize={16} px={4} pb={4} textColor='lightgray'>{props.description}</Text>
+						<Text fontSize={16} px={4} pb={1} textColor='lightgray'>{props.description}</Text>
+						<Text fontSize={16} px={4} pb={2} textColor='gray'>{formatedDate}</Text>
 					</VStack>
 				</Box>
 			</Card>

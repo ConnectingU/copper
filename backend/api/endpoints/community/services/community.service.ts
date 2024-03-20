@@ -80,6 +80,7 @@ export class CommunityService {
 								userId: true,
 							}
 						},
+						createdAt: true,
 					},
 					orderBy: {
 						createdAt: 'desc'

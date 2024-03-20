@@ -1,15 +1,17 @@
 import { Button } from "@chakra-ui/react";
 
 interface SquareButtonProps {
-	onClick: () => void;
-	children: React.ReactNode;
+	type?: string
+	onClick?: () => void;
+	children?: React.ReactNode;
 	w: number;
 	h: number;
 }
 
 export default function SquareButton(props: SquareButtonProps) {
 	return (
-		<Button 
+		<Button
+			type={props.type as 'button' | 'submit' | 'reset'}			
 			w={props.w}
 			h={props.h}
 			bgColor='rgba(0, 0, 0, 0.35)'

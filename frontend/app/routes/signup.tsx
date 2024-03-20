@@ -54,7 +54,7 @@ export default function Signup() {
 		<Flex as='main' w='100%' h='100vh' flexDir='column' justify='center' alignItems='center' p={6}>
 			<Stack spacing={8}>
 				<Stack spacing={4} textAlign='center'>
-					<Heading fontSize='4xl'>Sign up for an account</Heading>
+					<Heading fontSize='4xl' textColor='white'>Sign up for an account</Heading>
 					<Text color='gray'>
 						Already have an account? <Link color='lightblue' href='/login'>Sign in</Link>
 					</Text>
@@ -67,11 +67,12 @@ export default function Signup() {
 					bg='white'
 					maxW='lg'
 					width='100%'
+					bgColor='rgba(0, 0, 0, 0.2)'
 				>
 					{passwordInvalid && (<Text color='red'>Passwords do not match</Text>)}
 					{usernameInvalid && (<Text color='red'>Username must be between 3 and 20 characters and not contain '@'</Text>)}
 					<form onSubmit={formik.handleSubmit}>
-						<Stack spacing={2}>
+						<Stack spacing={2} textColor='white'>
 							<FormControl>
 								<Input
 									id='email'
@@ -79,7 +80,8 @@ export default function Signup() {
 									placeholder='E-Mail'
 									onChange={formik.handleChange}
 									value={formik.values.email}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
 							<FormControl>
@@ -89,7 +91,8 @@ export default function Signup() {
 									placeholder='Username'
 									onChange={formik.handleChange}
 									value={formik.values.username}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
 							<FormControl>
@@ -99,7 +102,8 @@ export default function Signup() {
 									placeholder='Password'
 									onChange={formik.handleChange}
 									value={formik.values.password}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
 							<FormControl>
@@ -109,10 +113,11 @@ export default function Signup() {
 									placeholder='Confirm Password'
 									onChange={formik.handleChange}
 									value={formik.values.confirmpassword}
-									autoComplete="off"
+									autoComplete='off'
+									border='1px solid rgba(0, 0, 0, 0.2)'
 								/>
 							</FormControl>
-							<Button type='submit' bgColor='orange'>Sign up</Button>
+							<Button type='submit' textColor='lightgray' bgColor='rgba(0, 0, 0, 0.35)' _hover={{bg: 'rgba(0, 0, 0, 0.45)'}}>Sign up</Button>
 						</Stack>
 					</form>
 				</Box>

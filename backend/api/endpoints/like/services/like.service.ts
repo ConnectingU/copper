@@ -7,7 +7,6 @@ export class LikeService {
 	constructor() {}
 
 	async create(req) {
-		console.log(req.body);
 		const { userId, postId } = req.body;
 
 		if (!userId || !postId) {
