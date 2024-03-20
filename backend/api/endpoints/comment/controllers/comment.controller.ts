@@ -32,7 +32,6 @@ export class CommentController {
 	@UseBefore(bodyParserJson())
 	public async all(@Req() req: Request, @Res() res: Response) {
 		try {
-			console.log('please')
 			const resp = await this.service.all(req);
 			Logger.info('Controller: Comment - all', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);

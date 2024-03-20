@@ -33,7 +33,6 @@ export class CommentService {
 				createdAt: true,
 			}
 		});
-		console.log(comment)
 		return comment;
 	}
 
@@ -58,7 +57,6 @@ export class CommentService {
 				updatedAt: true,
 			}
 		});
-		console.log(comments)
 		return comments;
 	}
 
