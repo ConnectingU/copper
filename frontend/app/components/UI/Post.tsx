@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton } from "@chakra-ui/react";
+import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton, Link } from "@chakra-ui/react";
 import { Heart, MessageCircle, MessageSquare, Speech } from "lucide-react";
 import Cookies from "js-cookie";
 import { LikeService, CommentService } from "~/services";
@@ -14,6 +14,7 @@ interface PostProps {
 	imgUrl?: string;
 	date: Date;
 	likes: any[];
+	community?: any
 }
 
 export function Post(props: PostProps) {
@@ -40,7 +41,7 @@ export function Post(props: PostProps) {
 					<Avatar name={props.name} bgColor='lightGray' src={`http://localhost:8500/user-avatars/${props.avatarUrl}`} />
 					<VStack alignItems='start' gap={0}>
 						<Text fontSize={24} textColor='white'>{props.title}</Text>
-						<Text fontSize={16} textColor='gray'>By: {props.name}</Text>
+						<Flex><Text fontSize={16} textColor='gray'>By: {props.name}</Text>{props.community ? <Text textColor='gray' pl={1}>in <Link href={`/community/${props.community.id}/posts`}>{props.community.name}</Link></Text> : null}</Flex>
 					</VStack>
 				</Box>
 				<Box w='512px'>

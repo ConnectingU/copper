@@ -7,3 +7,4 @@ export {default as UserService} from './user.service';
 export {default as PostService} from './posts.service';
 export {default as LikeService} from './like.service';
 export {default as CommentService} from './comment.service';
+export {default as GlobalFeedService} from './global-feed.service';
