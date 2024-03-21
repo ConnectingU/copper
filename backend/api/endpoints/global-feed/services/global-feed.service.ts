@@ -13,7 +13,7 @@ export class GlobalFeedService {
 				communityId: true,
 			}
 		});
-		let communityIds = [];
+		const communityIds = [];
 
 		communities.map((element) => {
 			communityIds.push(element.communityId);
@@ -50,7 +50,7 @@ export class GlobalFeedService {
 			orderBy: {
 				createdAt: 'desc'
 			}
-		})
+		});
 
 		return posts;
 	}
