@@ -3,6 +3,8 @@ import { Link, useMatches } from "@remix-run/react";
 import { CreateChannelModal } from "../Modals/CreateChannelModal";
 import { colours } from "~/ui-config";
 import { EditCommunityModal } from "../Modals/EditCommunityModal";
+import { useEffect } from "react";
+import { ChannelButton } from "../UI/ChannelButton";
 
 interface FeedSelectorProps {
 	community: any;
@@ -56,29 +58,7 @@ export function FeedSelector(props: FeedSelectorProps) {
 					</Button>
 					<Text fontSize={18} textColor='white'>Channels</Text>
 					{props.channels.map((channel: any, index: number) => (
-						<Button
-							key={index}
-							w={236}
-							h={8}
-							as={Link}
-							textColor='white'
-							bgColor='rgba(0, 0, 0, 0.35)'
-							to={`/community/${props.community.id}/${channel.id}`}
-							style={
-								activeButton === index
-									? {
-											borderRadius: '10px',
-											background: 'rgba(33, 33, 33, 0.35)',
-											boxShadow: '-3px -3px 6px #666666, 3px 3px 6px #666666',
-									  }
-									: {
-											borderRadius: '10px',
-											background: 'rgba(0, 0, 0, 0.35)',
-											boxShadow: 'none',
-									  }
-							}>
-							#{channel.name}
-						</Button>
+						<ChannelButton key={index} community={props.community} channel={channel} index={index} activeButton={activeButton}/>
 					))}
 					<CreateChannelModal />
 				</Flex>

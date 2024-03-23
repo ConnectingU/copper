@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from "@remix-run/react";
 import { AuthRedirect } from '~/components/Util/AuthRedirect';
-import { ChannelService, UserService } from '~/services';
+import { ChannelService, HistoryService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { ChatFeed } from '~/components/Feed/ChatFeed';
@@ -71,6 +71,11 @@ export default function CommunityPage() {
 			socket.emit('typing', {userId: Number(Cookies.get('userId')), isTyping: false});
 		}
 	}, [formik.values.message]);
+
+	useEffect(() => {
+		const userId = Number(Cookies.get('userId'));
+		HistoryService.updateHistory(userId, currentChannelId, new Date())
+	}, [currentChannelId]);
 
 	return (
 		<AuthRedirect>

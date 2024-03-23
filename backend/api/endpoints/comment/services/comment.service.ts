@@ -55,6 +55,9 @@ export class CommentService {
 				},
 				createdAt: true,
 				updatedAt: true,
+			},
+			orderBy: {
+				createdAt: 'desc'
 			}
 		});
 		return comments;

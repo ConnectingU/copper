@@ -25,6 +25,20 @@ export class MessageService {
 				updatedAt: true,
 			}
 		});
+
+		const history = await db.history.findFirst({
+			where: { userId: message.userId, channelId },
+			select: {
+				id: true,
+			}
+		});
+
+		await db.history.update({
+			where: { id: history.id },
+			data: {
+				lastVisited: new Date()
+			}
+		});
 		socket.broadcast.emit('message', newMessage);
 		Logger.info('Socket-Controller: Message', 'Message: ' +  JSON.stringify(newMessage));
 	}

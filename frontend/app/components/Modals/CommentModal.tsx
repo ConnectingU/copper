@@ -25,7 +25,8 @@ export function CommentModal(props: CommentModalProps) {
 		onSubmit: async (values) => {
 			const userId = Number(Cookies.get('userId'));
 			const comment = await CommentService.createComment(values.comment, userId, props.id);
-			props.setComments([...props.comments, comment])
+			props.setComments([comment, ...props.comments]);
+			values.comment = '';
 		}
 	});
 
@@ -53,8 +54,8 @@ export function CommentModal(props: CommentModalProps) {
 					<ModalCloseButton />
 					<Flex
 						direction='column'
-						minH='70vh'
-						maxH='70vh'
+						minH='50vh'
+						maxH='50vh'
 						gap={3}
 						px={4}
 						pt={2}
