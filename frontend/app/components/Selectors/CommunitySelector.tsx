@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from '@remix-run/react';
 import { CreateCommunityModal } from "../Modals/CreateCommunityModal";
+import { AcceptInvitationModal } from "../Modals/AcceptInvitationModal";
 import { colours } from "~/ui-config";
 import { SettingsModal } from "../Modals/SettingsModal";
 import SquareButton from "../UI/SquareButton";
@@ -52,6 +53,7 @@ export function CommunitySelector(props: CommunitySelectorProps) {
 						</SquareButton>
 					))}
 					<CreateCommunityModal />
+					<AcceptInvitationModal />
 				</Flex>
 				<Flex alignItems='center' gap={3} direction='column'>
 					<SettingsModal />

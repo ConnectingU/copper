@@ -1,7 +1,7 @@
 import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex, Textarea, Text } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { ArrowBigUp, Frown, MessageSquare, Pencil, Square } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import { Comment } from "../UI/Comment";
 import SquareButton from "../UI/SquareButton";
 import { CommentService } from "~/services";
@@ -14,9 +14,9 @@ interface CommentModalProps {
 }
 
 export function CommentModal(props: CommentModalProps) {
-	const { isOpen, onOpen, onClose } = useDisclosure()
-	const initialRef = React.useRef(null)
-	const finalRef = React.useRef(null)
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const initialRef = React.useRef(null);
+	const finalRef = React.useRef(null);
 
 	const formik = useFormik({
 		initialValues: {
@@ -25,7 +25,7 @@ export function CommentModal(props: CommentModalProps) {
 		onSubmit: async (values) => {
 			const userId = Number(Cookies.get('userId'));
 			const comment = await CommentService.createComment(values.comment, userId, props.id);
-			props.setComments([...props.comments, comment])
+			props.setComments([...props.comments, comment]);
 		}
 	});
 

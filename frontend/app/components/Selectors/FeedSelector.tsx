@@ -1,7 +1,7 @@
-import { Box, Button, Flex, IconButton, Text, Spacer } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Spacer } from "@chakra-ui/react";
 import { Link, useMatches } from "@remix-run/react";
 import { CreateChannelModal } from "../Modals/CreateChannelModal";
-import { colours } from "~/ui-config";
+import {SendInvitationModal} from "../Modals/SendInvitationModal";
 import { EditCommunityModal } from "../Modals/EditCommunityModal";
 
 interface FeedSelectorProps {
@@ -54,6 +54,7 @@ export function FeedSelector(props: FeedSelectorProps) {
 						}>
 						Posts
 					</Button>
+					<SendInvitationModal/>
 					<Text fontSize={18} textColor='white'>Channels</Text>
 					{props.channels.map((channel: any, index: number) => (
 						<Button

@@ -13,7 +13,7 @@ datasource db {
 model User {
   id          Int @id @default(autoincrement())
   email       String @unique
-  username    String
+  username    String @unique
   password    String
   displayName String?
   bio         String?
@@ -106,4 +106,16 @@ model Comment {
   postId      Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Invitation {
+  id              Int @id @default(autoincrement())
+  communityId     Int
+  communityName   String
+  communityAvatar String?
+  userId          Int
+  accepted        Boolean @default(false)
+  declined        Boolean @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
