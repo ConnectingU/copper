@@ -50,16 +50,15 @@ export class InvitationService {
 
 		if (communityId) {
 			const invitations = await db.invitation.findMany({
-				where: { communityId: communityId
-				},
-				select:{
+				where: { communityId },
+				select: {
 					id: true,
 					communityId: true,
 					userId: true,
 					accepted: true,
 					declined: true,
 					createdAt: true,
-				}
+				},
 			});
 
 			if (!invitations) {
@@ -71,8 +70,7 @@ export class InvitationService {
 
 		// If the all method is called without a community id than is must be called with a userId
 		const invitations = await db.invitation.findMany({
-			where: { userId: userId
-			},
+			where: { userId },
 			select:{
 				id: true,
 				communityId: true,

@@ -44,7 +44,7 @@ class InvitationService extends Service {
 		}
 
 		try {
-			const resp = await this.http.get(`${this.baseURL}/invitation/${userId}/${communityId}`, config);
+			const resp = await this.http.get(`${this.baseURL}/invitation/all/${userId}/${communityId}`, config);
 			return resp.data;
 		} catch(error) {
 			console.error(error);

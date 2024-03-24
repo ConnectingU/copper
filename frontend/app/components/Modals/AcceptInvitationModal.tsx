@@ -15,9 +15,10 @@ export function AcceptInvitationModal() {
 
 	useEffect(() => {
 		InvitationService.getAllInvitations(userId, undefined).then((data): void => {
+			console.log(data)
 			setInvites(data);
 		});
-	}, [onOpen]);
+	}, []);
 
 	return (
 		<>

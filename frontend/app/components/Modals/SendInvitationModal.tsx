@@ -5,6 +5,8 @@ import React from "react";
 import {InvitationService } from "~/services";
 
 export function SendInvitationModal() {
+	const { communityId } = useParams();
+	const currentCommunity: number = Number(communityId);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialRef = React.useRef(null);
 	const finalRef = React.useRef(null);
@@ -15,9 +17,7 @@ export function SendInvitationModal() {
 			username: '',
 		},
 		onSubmit: async (values) => {
-			const { communityId } = useParams();
-			const currentCommunity: number = Number(communityId);
-			const invite = await InvitationService.createInvitation(values.username, currentCommunity);
+			await InvitationService.createInvitation(values.username, currentCommunity);
 			values.username = '';
 			window.location.reload();
 		}

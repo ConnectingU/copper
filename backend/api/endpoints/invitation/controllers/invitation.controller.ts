@@ -28,7 +28,7 @@ export class InvitationController {
 	}
 
 	@Authorized()
-	@Get('/all/:id')
+	@Get('/all/:userId/:communityId')
 	@UseBefore(bodyParserJson())
 	public async all(@Req() req: Request, @Res() res: Response) {
 		try {
