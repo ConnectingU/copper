@@ -1,9 +1,9 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
-import { useFormik } from "formik";
-import { PlusCircle } from "lucide-react";
-import React from "react";
-import { ChannelService } from "~/services";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
+import { useParams } from '@remix-run/react';
+import { useFormik } from 'formik';
+import { PlusCircle } from 'lucide-react';
+import React from 'react';
+import { ChannelService } from '~/services';
 
 export function CreateChannelModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -43,14 +43,14 @@ export function CreateChannelModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Create a new channel</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody pb={6}>
 							<FormControl>
 								<FormLabel>Channel Name</FormLabel>
-								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='#channel-name' autoComplete="off" />
+								<Input id='name' ref={initialRef} onChange={formik.handleChange} value={formik.values.name} placeholder='#channel-name' autoComplete='off' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

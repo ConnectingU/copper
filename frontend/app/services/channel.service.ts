@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
-import { Service } from "./service";
+import Cookies from 'js-cookie';
+import { Service } from './service';
 
 class ChannelService extends Service {
 	async createChannel(name: string, communityId: number) {

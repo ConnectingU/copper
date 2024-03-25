@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class GlobalFeedService extends Service {
 	async getGlobalFeed(userId: number) {

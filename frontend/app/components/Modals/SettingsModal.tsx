@@ -1,11 +1,11 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
-import { useFormik } from "formik";
-import { Settings } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
+import { useParams } from '@remix-run/react';
+import { useFormik } from 'formik';
+import { Settings } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { UserService, PostService } from "~/services";
-import SquareButton from "../UI/SquareButton";
+import { UserService, PostService } from '~/services';
+import SquareButton from '../UI/SquareButton';
 
 export function SettingsModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,14 +49,14 @@ export function SettingsModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Settings</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody pb={1}>
 							<FormControl>
 								<FormLabel>Display Name</FormLabel>
-								<Input id='displayName' ref={initialRef} onChange={formik.handleChange} value={formik.values.displayName} placeholder={currentUser.displayName || 'Display Name'} autoComplete="off" />
+								<Input id='displayName' ref={initialRef} onChange={formik.handleChange} value={formik.values.displayName} placeholder={currentUser.displayName || 'Display Name'} autoComplete='off' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Avatar</FormLabel>

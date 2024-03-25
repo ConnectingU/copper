@@ -1,11 +1,11 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
-import { useFormik } from "formik";
-import { SquarePen } from "lucide-react";
-import React, { useState } from "react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
+import { useParams } from '@remix-run/react';
+import { useFormik } from 'formik';
+import { SquarePen } from 'lucide-react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import { PostService } from "~/services";
-import SquareButton from "../UI/SquareButton";
+import { PostService } from '~/services';
+import SquareButton from '../UI/SquareButton';
 
 export function CreatePostModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,18 +49,18 @@ export function CreatePostModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Create a new post</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody>
 							<FormControl>
 								<FormLabel>Post Title</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete="off" />
+								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete='off' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Post Content</FormLabel>
-								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' autoComplete="off" />
+								<Input id='content' ref={initialRef} onChange={formik.handleChange} value={formik.values.content} placeholder='Content' autoComplete='off' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Post Image</FormLabel>

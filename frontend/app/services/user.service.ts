@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class UserService extends Service {
 	async signup(email: string, password: string, username: string) {

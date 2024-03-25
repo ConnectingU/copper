@@ -1,9 +1,9 @@
-import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton, Link } from "@chakra-ui/react";
-import { Heart, MessageCircle, MessageSquare, Speech } from "lucide-react";
-import Cookies from "js-cookie";
-import { LikeService, CommentService } from "~/services";
-import { useEffect, useState } from "react";
-import { CommentModal } from "../Modals/CommentModal";
+import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton, Link } from '@chakra-ui/react';
+import { Heart, MessageCircle, MessageSquare, Speech } from 'lucide-react';
+import Cookies from 'js-cookie';
+import { LikeService, CommentService } from '~/services';
+import { useEffect, useState } from 'react';
+import { CommentModal } from '../Modals/CommentModal';
 
 interface PostProps {
 	id: number;
@@ -54,7 +54,7 @@ export function Post(props: PostProps) {
 										bgColor='rgba(0, 0, 0, 0)'
 										_hover={{ bg: 'rgba(0, 0, 0, 0)' }}
 										p={0}
-										aria-label={""}
+										aria-label={''}
 										size='xs'
 										icon={<Heart style={{padding: 0, margin: 0}} size={25} color='hotpink' fill='hotpink' />} 
 										onClick={async () => {
@@ -66,7 +66,7 @@ export function Post(props: PostProps) {
 										bgColor='rgba(0, 0, 0, 0)'
 										_hover={{ bg: 'rgba(0, 0, 0, 0)' }}
 										p={0}
-										aria-label={""}
+										aria-label={''}
 										size='xs'
 										icon={<Heart style={{padding: 0, margin: 0}} size={25} color='hotpink' />} 
 										onClick={async () => {

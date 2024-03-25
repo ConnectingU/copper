@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
-import { Service } from "./service";
+import Cookies from 'js-cookie';
+import { Service } from './service';
 
 class LikeService extends Service {
 	async createLike(userId: number, postId: number) {
