@@ -15,11 +15,11 @@ The core idea of Copper is to give commmunities a hub to communicate and share c
 4. Run `npm i` in both instances for the frontend and backend
 5. Run `npm run dev` in both instances for the frontend and backend  
 
-The frontend should now be running on `localhost:3000` 
+The frontend should now be running on `localhost:3000`  
 
 ### Debugging
 
-- 
+-  
 
 ## Using Copper
 
@@ -56,7 +56,7 @@ When you click on a community, you will be taken to the community page. By defau
     - A node package for making HTTP calls simple to implement. It is more versatile than the built-in Fetch API.
 - Backend
   - Express.js
-    - Backend framework for building high-performance RESTful APIs 
+    - Backend framework for building high-performance RESTful APIs  
   - Prisma
     - A powerful ORM for ensuring a solid request and response schema for the database makes queries much easier to develop while also ensuring language continuity by writing queries in TypeScript rather than SQL.
   - SQLite
