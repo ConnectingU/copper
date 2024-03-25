@@ -1,7 +1,6 @@
 import { Flex, Box, Text, Input, FormControl, Button } from "@chakra-ui/react";
 import { Message } from "../UI/Message";
 import { ArrowBigRight } from "lucide-react";
-import { colours } from "~/ui-config";
 
 interface ChatFeed {
 	currentChannelId: number;

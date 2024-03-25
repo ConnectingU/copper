@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import Cookies from 'js-cookie';
 
 export class Service {
 	protected headers = {

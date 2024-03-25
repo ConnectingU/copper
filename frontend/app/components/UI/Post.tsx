@@ -1,5 +1,5 @@
-import { Avatar, Box, Card, Flex, VStack, Text, Image, Button, IconButton, Link } from '@chakra-ui/react';
-import { Heart, MessageCircle, MessageSquare, Speech } from 'lucide-react';
+import { Avatar, Box, Card, Flex, VStack, Text, Image, IconButton, Link } from '@chakra-ui/react';
+import { Heart } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { LikeService, CommentService } from '~/services';
 import { useEffect, useState } from 'react';

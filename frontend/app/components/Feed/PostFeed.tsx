@@ -1,8 +1,7 @@
 import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from "@chakra-ui/react";
 import { Post } from "../UI/Post";
-import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
+import {  Frown } from "lucide-react";
 import { CreatePostModal } from "../Modals/CreatePostModal";
-import SquareButton from "../UI/SquareButton";
 
 interface ChatFeed {
 	posts: any[];

@@ -1,9 +1,7 @@
 import { Box, Button, Flex, IconButton, Text, Spacer } from '@chakra-ui/react';
 import { Link, useMatches } from '@remix-run/react';
 import { CreateChannelModal } from '../Modals/CreateChannelModal';
-import { colours } from '~/ui-config';
 import { EditCommunityModal } from '../Modals/EditCommunityModal';
-import { useEffect } from 'react';
 import { ChannelButton } from '../UI/ChannelButton';
 
 interface FeedSelectorProps {

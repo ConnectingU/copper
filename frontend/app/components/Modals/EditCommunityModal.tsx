@@ -1,7 +1,7 @@
 import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
 import { useParams } from '@remix-run/react';
 import { useFormik } from 'formik';
-import { Pencil, Square } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import React, { useState } from 'react';
 import {CommunityService } from '~/services';
 import SquareButton from '../UI/SquareButton';
