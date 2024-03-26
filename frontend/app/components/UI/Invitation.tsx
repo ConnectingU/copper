@@ -1,6 +1,6 @@
-import { HStack, Text, Box, Flex, IconButton, Avatar } from "@chakra-ui/react";
-import { CheckSquare, XSquare } from "lucide-react";
-import { InvitationService, CommunityUserService } from "~/services";
+import { HStack, Text, Box, Flex, IconButton, Avatar } from '@chakra-ui/react';
+import { CheckSquare, XSquare } from 'lucide-react';
+import { InvitationService, CommunityUserService } from '~/services';
 
 
 interface InvitationProps {
@@ -34,8 +34,8 @@ export function Invitation(props: InvitationProps) {
 	let formatedDate: string = date + ' ';
 
 	return (
-        <Box w='100%' border="1px" borderColor="gray.200" borderRadius="md" p={4}>
-            <Flex justifyContent="space-between" alignItems="center">		
+        <Box w='100%' border='1px' borderColor='gray.200' borderRadius='md' p={4}>
+            <Flex justifyContent='space-between' alignItems='center'>		
                 <HStack alignItems='start' gap={2}>
                     <Avatar name={props.communityName} bgColor='lightGray' src={`http://localhost:8500/community-avatars/${props.avatarUrl}`} />
                     <Text fontSize={20} pt={2} textColor='white'>{props.communityName}</Text>
@@ -64,7 +64,7 @@ export function Invitation(props: InvitationProps) {
                     />    
                 </HStack>
             </Flex>
-            <Box border="1px" borderColor="gray.200" borderRadius="md" mt={2} p={2}>
+            <Box border='1px' borderColor='gray.200' borderRadius='md' mt={2} p={2}>
                 <Text fontSize={12} textColor='white'>{formatedDate}</Text>
             </Box>
         </Box>

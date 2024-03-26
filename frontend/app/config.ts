@@ -1,6 +1,6 @@
 const config = {
-	"api": {
-		"baseUrl": "http://localhost:8500"
+	'api': {
+		'baseUrl': 'http://localhost:8500'
 	}
 }
 

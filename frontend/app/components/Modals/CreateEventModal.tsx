@@ -1,11 +1,11 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
-import { Form, useFormik } from "formik";
-import { CalendarPlus, ImagePlus } from "lucide-react";
-import React, { useRef, useState } from "react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex } from '@chakra-ui/react';
+import { useParams } from '@remix-run/react';
+import { Form, useFormik } from 'formik';
+import { CalendarPlus, ImagePlus } from 'lucide-react';
+import React, { useRef, useState } from 'react';
 import Cookies from 'js-cookie';
-import { EventService, PostService } from "~/services";
-import SquareButton from "../UI/SquareButton";
+import { EventService, PostService } from '~/services';
+import SquareButton from '../UI/SquareButton';
 
 export function CreateEventModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -53,18 +53,18 @@ export function CreateEventModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Create a new event</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody>
 							<FormControl>
 								<FormLabel>Event Title</FormLabel>
-								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete="off" />
+								<Input id='title' ref={initialRef} onChange={formik.handleChange} value={formik.values.title} placeholder='Title' autoComplete='off' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Event Description</FormLabel>
-								<Input id='description' ref={initialRef} onChange={formik.handleChange} value={formik.values.description} placeholder='Description' autoComplete="off" />
+								<Input id='description' ref={initialRef} onChange={formik.handleChange} value={formik.values.description} placeholder='Description' autoComplete='off' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Event Image</FormLabel>
@@ -92,11 +92,11 @@ export function CreateEventModal() {
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>From</FormLabel>
-								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFromDate(new Date(event.target.value))} placeholder='From' />
+								<Input id='to' type='datetime-local' onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFromDate(new Date(event.target.value))} placeholder='From' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>To</FormLabel>
-								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setToDate(new Date(event.target.value))} placeholder='To' />
+								<Input id='to' type='datetime-local' onChange={(event: React.ChangeEvent<HTMLInputElement>) => setToDate(new Date(event.target.value))} placeholder='To' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

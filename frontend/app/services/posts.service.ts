@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class PostService extends Service {
 	async createPost(title: string, content: string, communityId: number, userId: number) {

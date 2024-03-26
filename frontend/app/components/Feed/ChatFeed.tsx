@@ -1,7 +1,7 @@
-import { Flex, Box, Text, Input, FormControl, Button } from "@chakra-ui/react";
-import { Message } from "../UI/Message";
-import { ArrowBigRight } from "lucide-react";
-import { colours } from "~/ui-config";
+import { Flex, Box, Text, Input, FormControl, Button } from '@chakra-ui/react';
+import { Message } from '../UI/Message';
+import { ArrowBigRight } from 'lucide-react';
+import { colours } from '~/ui-config';
 
 interface ChatFeed {
 	currentChannelId: number;
@@ -60,7 +60,7 @@ export function ChatFeed(props: ChatFeed) {
 								placeholder='Message'
 								border='1px solid rgba(0, 0, 0, 0.2)'
 								onChange={props.formik.handleChange}
-								autoComplete="off"
+								autoComplete='off'
 								value={props.formik.values.message}
 								textColor='white'
 							/>

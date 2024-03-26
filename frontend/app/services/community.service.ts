@@ -1,5 +1,5 @@
-import Cookies from "js-cookie";
-import { Service } from "./service";
+import Cookies from 'js-cookie';
+import { Service } from './service';
 
 class CommunityService extends Service {
 	async getCommunity(communityId: number) {

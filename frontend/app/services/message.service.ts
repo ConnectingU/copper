@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class MessageService extends Service {
 	async sendMessage(content: string, channelId: number, userId: number) {

@@ -1,11 +1,11 @@
-import { Box, Card, Flex, VStack, Text, Image, Spacer, IconButton } from "@chakra-ui/react";
-import SquareButton from "./SquareButton";
-import { useNavigate } from "@remix-run/react";
-import { UserRound, UserRoundCheck } from "lucide-react";
-import Cookies from "js-cookie";
-import { useState } from "react";
-import { GoingService } from "~/services";
-import config from "~/config";
+import { Box, Card, Flex, VStack, Text, Image, Spacer, IconButton } from '@chakra-ui/react';
+import SquareButton from './SquareButton';
+import { useNavigate } from '@remix-run/react';
+import { UserRound, UserRoundCheck } from 'lucide-react';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
+import { GoingService } from '~/services';
+import config from '~/config';
 
 interface EventProps {
 	id: number;
@@ -62,7 +62,7 @@ export function Event(props: EventProps) {
 										bgColor='rgba(0, 0, 0, 0)'
 										_hover={{ bg: 'rgba(0, 0, 0, 0)' }}
 										p={0}
-										aria-label={""}
+										aria-label={''}
 										size='xs'
 										icon={<UserRound style={{padding: 0, margin: 0}} size={25} color='lightgreen' />} 
 										onClick={async () => {
@@ -74,7 +74,7 @@ export function Event(props: EventProps) {
 										bgColor='rgba(0, 0, 0, 0)'
 										_hover={{ bg: 'rgba(0, 0, 0, 0)' }}
 										p={0}
-										aria-label={""}
+										aria-label={''}
 										size='xs'
 										icon={<UserRoundCheck style={{padding: 0, margin: 0}} size={25} color='gray' />} 
 										onClick={async () => {

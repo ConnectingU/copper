@@ -1,8 +1,8 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
-import { useParams } from "@remix-run/react";
-import { useFormik } from "formik";
-import React from "react";
-import {InvitationService } from "~/services";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
+import { useParams } from '@remix-run/react';
+import { useFormik } from 'formik';
+import React from 'react';
+import {InvitationService } from '~/services';
 
 export function SendInvitationModal() {
 	const { communityId } = useParams();
@@ -48,14 +48,14 @@ export function SendInvitationModal() {
 				
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Invite User</ModalHeader>
 					<ModalCloseButton />
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody pb={1}>
 							<FormControl>
 								<FormLabel>Username</FormLabel>
-								<Input id='username' ref={initialRef} onChange={formik.handleChange} value={formik.values.username} placeholder='Username' autoComplete="off" />
+								<Input id='username' ref={initialRef} onChange={formik.handleChange} value={formik.values.username} placeholder='Username' autoComplete='off' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

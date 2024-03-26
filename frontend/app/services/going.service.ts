@@ -1,6 +1,6 @@
-import Cookies from "js-cookie";
-import { Service } from "./service";
-import config from "~/config";
+import Cookies from 'js-cookie';
+import { Service } from './service';
+import config from '~/config';
 
 class GoingService extends Service {
 	async createGoing(userId: number, eventId: number) {

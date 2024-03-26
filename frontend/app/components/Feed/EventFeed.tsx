@@ -1,8 +1,8 @@
-import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from "@chakra-ui/react";
-import { Event } from "../UI/Event";
-import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
-import SquareButton from "../UI/SquareButton";
-import { CreateEventModal } from "../Modals/CreateEventModal";
+import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from '@chakra-ui/react';
+import { Event } from '../UI/Event';
+import { ArrowBigRight, Frown, SquarePen } from 'lucide-react';
+import SquareButton from '../UI/SquareButton';
+import { CreateEventModal } from '../Modals/CreateEventModal';
 
 interface EventFeed {
 	events: any[];

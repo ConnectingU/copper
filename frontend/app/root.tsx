@@ -16,14 +16,14 @@ import { ServerStyleContext, ClientStyleContext } from './context'
 
 export const meta: MetaFunction = () => {
 	return [
-	  { title: "Copper" },
+	  { title: 'Copper' },
 	  {
-		property: "og:title",
-		content: "Copper",
+		property: 'og:title',
+		content: 'Copper',
 	  },
 	  {
-		name: "description",
-		content: "Copper",
+		name: 'description',
+		content: 'Copper',
 	  },
 	];
   };
@@ -63,7 +63,7 @@ const Document = withEmotionCache(
 		}, []);
 
 		return (
-			<html lang="en">
+			<html lang='en'>
 				<head>
 					<Meta />
 					<Links />

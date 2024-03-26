@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class HistoryService extends Service {
 	async getHistory(userId: number, channelId: number) {

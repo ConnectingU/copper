@@ -17,7 +17,7 @@ import { AuthService } from '~/services';
 import { IncorrectPasswordModal } from '~/components/Modals/IncorrectPasswordModal';
 
 export default function Login() {
-	const [txt, setTxt] = useState<string>("");
+	const [txt, setTxt] = useState<string>('');
 	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
@@ -27,13 +27,13 @@ export default function Login() {
 		onSubmit: async (values) => {
 			try {
 				await AuthService.login(values.email, values.password);
-				setTxt("")
+				setTxt('')
 				if(Cookies.get('auth')) {
 					navigate('/');
 				}
 			}
 			catch {
-				setTxt(" Incorrect username or password \n Please try again! ")
+				setTxt(' Incorrect username or password \n Please try again! ')
 			}
 		}
 	});

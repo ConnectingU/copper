@@ -1,11 +1,11 @@
-import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex, Textarea, Text } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { ArrowBigUp, Frown, MessageSquare, Pencil, Square } from "lucide-react";
-import React from "react";
-import { Comment } from "../UI/Comment";
-import SquareButton from "../UI/SquareButton";
-import { CommentService } from "~/services";
-import Cookies from "js-cookie";
+import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex, Textarea, Text } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { ArrowBigUp, Frown, MessageSquare, Pencil, Square } from 'lucide-react';
+import React from 'react';
+import { Comment } from '../UI/Comment';
+import SquareButton from '../UI/SquareButton';
+import { CommentService } from '~/services';
+import Cookies from 'js-cookie';
 
 interface CommentModalProps {
 	id: number,
@@ -36,7 +36,7 @@ export function CommentModal(props: CommentModalProps) {
 				bgColor='rgba(0, 0, 0, 0)'
 				_hover={{ bg: 'rgba(0, 0, 0, 0)' }}
 				p={0}
-				aria-label={""}
+				aria-label={''}
 				size='xs'
 				icon={<MessageSquare style={{padding: 0, margin: 0}} size={25} color='gray' />} 
 				onClick={onOpen}
@@ -49,7 +49,7 @@ export function CommentModal(props: CommentModalProps) {
 				
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white' minW='50%'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white' minW='50%'>
 					<ModalHeader>Comments</ModalHeader>
 					<ModalCloseButton />
 					<Flex
@@ -83,7 +83,7 @@ export function CommentModal(props: CommentModalProps) {
 					<form onSubmit={formik.handleSubmit}>
 						<ModalBody display='flex' gap={4} pb={8} alignItems='center'>
 							<FormControl>
-								<Textarea id='comment' ref={initialRef} onChange={formik.handleChange} value={formik.values.comment} placeholder='Comment' autoComplete="off" />
+								<Textarea id='comment' ref={initialRef} onChange={formik.handleChange} value={formik.values.comment} placeholder='Comment' autoComplete='off' />
 							</FormControl>
 							<SquareButton type='submit' w={14} h={14}><ArrowBigUp /></SquareButton>
 						</ModalBody>

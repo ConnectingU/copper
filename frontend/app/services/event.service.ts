@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { Service } from "./service";
+import { Service } from './service';
 
 class EventService extends Service {
 	async createEvent(title: string, description: string, communityId: number, fromDate: Date, toDate: Date) {

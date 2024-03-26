@@ -1,4 +1,4 @@
-import { Service } from "./service";
+import { Service } from './service';
 
 class AuthService extends Service {
 	async login(email: string, password: string) {

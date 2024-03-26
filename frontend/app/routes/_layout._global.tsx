@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button } from '@chakra-ui/react';
 import { Link, Outlet, useMatches } from '@remix-run/react';
 
 export default function Layout() {

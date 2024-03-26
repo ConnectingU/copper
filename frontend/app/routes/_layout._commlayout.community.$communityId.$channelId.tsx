@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useParams } from "@remix-run/react";
+import { useParams } from '@remix-run/react';
 import { AuthRedirect } from '~/components/Util/AuthRedirect';
 import { ChannelService, HistoryService, UserService } from '~/services';
 import io from 'socket.io-client';

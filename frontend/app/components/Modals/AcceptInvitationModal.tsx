@@ -1,10 +1,10 @@
-import { useDisclosure, Button, Box, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Text, ModalFooter } from "@chakra-ui/react";
-import { Frown, Users } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { InvitationService } from "~/services";
-import Cookies from "js-cookie";
-import SquareButton from "../UI/SquareButton";
-import { Invitation } from "../UI/Invitation";
+import { useDisclosure, Button, Box, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Text, ModalFooter } from '@chakra-ui/react';
+import { Frown, Users } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { InvitationService } from '~/services';
+import Cookies from 'js-cookie';
+import SquareButton from '../UI/SquareButton';
+import { Invitation } from '../UI/Invitation';
 
 export function AcceptInvitationModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,7 +35,7 @@ export function AcceptInvitationModal() {
 				onClose={onClose}
 			>
 				<ModalOverlay />
-				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter="blur(12px)" textColor='white'>
+				<ModalContent bgColor='rgba(0, 0, 0, 0.2)' backdropFilter='blur(12px)' textColor='white'>
 					<ModalHeader>Pending Invitations</ModalHeader>
 					<ModalCloseButton />
 						<ModalBody pb={6}>
