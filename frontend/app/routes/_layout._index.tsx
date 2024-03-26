@@ -1,13 +1,9 @@
-import { Wrap, Flex, Text, Image, Heading, Box, Button, FormControl, Input} from '@chakra-ui/react';
-import { useFormik } from 'formik';
-import { ArrowBigRight, Frown, Globe2 } from 'lucide-react';
+import { Flex, Text, Box } from '@chakra-ui/react';
+import { Frown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { AuthRedirect } from '~/components/Util/AuthRedirect';
-import { Message } from '~/components/UI/Message';
-import { ChannelService, CommunityService, GlobalFeedService, MessageService, UserService } from '~/services';
-import io from 'socket.io-client';
+import { GlobalFeedService } from '~/services';
 import Cookies from 'js-cookie';
-import { CommunitySelector } from '~/components/Selectors/CommunitySelector';
 import { Post } from '~/components/UI/Post';
 
 export default function Index() {

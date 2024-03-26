@@ -4,8 +4,8 @@ interface SquareButtonProps {
 	type?: string
 	onClick?: () => void;
 	children?: React.ReactNode;
-	w: number;
-	h: number;
+	w: any;
+	h: any;
 }
 
 export default function SquareButton(props: SquareButtonProps) {

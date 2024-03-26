@@ -9,3 +9,5 @@ export {default as LikeService} from './like.service';
 export {default as CommentService} from './comment.service';
 export {default as GlobalFeedService} from './global-feed.service';
 export {default as HistoryService} from './history.service';
+export {default as EventService} from './event.service';
+export {default as GoingService} from './going.service';

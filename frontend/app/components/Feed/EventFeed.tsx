@@ -1,20 +1,21 @@
 import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from "@chakra-ui/react";
-import { Post } from "../UI/Post";
+import { Event } from "../UI/Event";
 import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
-import { CreatePostModal } from "../Modals/CreatePostModal";
 import SquareButton from "../UI/SquareButton";
+import { CreateEventModal } from "../Modals/CreateEventModal";
 
-interface PostFeed {
-	posts: any[];
+interface EventFeed {
+	events: any[];
 }
 
-export function PostFeed(props: PostFeed) {
+export function EventFeed(props: EventFeed) {
+	console.log(props.events);
 	return (
 		<Box w='100%'>
 			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl' px={4}>
-				<Text fontSize={16} fontWeight='bold' textColor='white'>Posts</Text>
+				<Text fontSize={16} fontWeight='bold' textColor='white'>Events</Text>
 				<Spacer />
-				<CreatePostModal />
+				<CreateEventModal />
 			</Box>
 			<Flex
 				direction='column'
@@ -31,17 +32,17 @@ export function PostFeed(props: PostFeed) {
 					},
 				}}
 			>
-				{props.posts.length === 0 ? 
+				{props.events.length === 0 ? 
 					(
 						<Flex h='calc(100vh - 4rem)' alignItems='center'>
 							<Flex alignItems='center' direction='column' gap={5}>
 								<Frown color='white' size={80}/>
-								<Text fontSize={16} textColor='white'>No posts yet! Be the first to make one!</Text>
+								<Text fontSize={16} textColor='white'>No events right now!</Text>
 							</Flex>
 						</Flex>
 					) 
-					: (props.posts.map((post: any, index: number) => (
-					<Post key={index} id={post.id} title={post.title} description={post.content} name={post.user.displayName || post.user.username} avatarUrl={post.user.avatarUrl} date={post.createdAt} imgUrl={post.image} likes={post.likes} />
+					: (props.events.map((event: any, index: number) => (
+					<Event key={index} id={event.id} title={event.title} description={event.description} fromDate={event.fromDate} toDate={event.toDate} imgUrl={event.image} community={event.community} goings={event.going} />
 				)))}
 			</Flex>
 		</Box>

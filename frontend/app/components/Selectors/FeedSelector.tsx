@@ -16,7 +16,14 @@ export function FeedSelector(props: FeedSelectorProps) {
 	const matches = useMatches();
 
 	// Get the active button index from the current URL
-	const activeButton = matches.findIndex((match) => match.pathname.includes('/posts')) !== -1 ? null : props.channels.findIndex((channel) => matches.some((match) => match.pathname.includes(channel.id)));
+	let activeButton = null;
+	if (matches.findIndex((match) => match.pathname.includes('/posts')) !== -1) {
+		activeButton = 'posts';
+	} else if (matches.findIndex((match) => match.pathname.includes('/events')) !== -1) {
+		activeButton = 'events';
+	} else {
+		activeButton = props.channels.findIndex((channel) => matches.some((match) => match.pathname.includes(channel.id)));
+	}
 
 	return (
 		<>
@@ -42,7 +49,7 @@ export function FeedSelector(props: FeedSelectorProps) {
 						bgColor='rgba(0, 0, 0, 0.35)'
 						to={`/community/${props.community.id}/posts`}
 						style={
-							activeButton === null
+							activeButton === 'posts'
 								? {
 										borderRadius: '10px',
 										background: 'rgba(33, 33, 33, 0.35)',
@@ -55,6 +62,28 @@ export function FeedSelector(props: FeedSelectorProps) {
 								  }
 						}>
 						Posts
+					</Button>
+					<Button
+						w={236}
+						h={8}
+						as={Link}
+						textColor='white'
+						bgColor='rgba(0, 0, 0, 0.35)'
+						to={`/community/${props.community.id}/events`}
+						style={
+							activeButton === 'events'
+								? {
+										borderRadius: '10px',
+										background: 'rgba(33, 33, 33, 0.35)',
+										boxShadow: '-3px -3px 6px #666666, 3px 3px 6px #666666',
+								  }
+								: {
+										borderRadius: '10px',
+										background: 'rgba(0, 0, 0, 0.35)',
+										boxShadow: 'none',
+								  }
+						}>
+						Events
 					</Button>
 					<Text fontSize={18} textColor='white'>Channels</Text>
 					{props.channels.map((channel: any, index: number) => (
