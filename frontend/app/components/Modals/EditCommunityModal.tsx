@@ -1,20 +1,13 @@
 import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, HStack } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
-<<<<<<< HEAD
-import { Pencil, Square } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
-import {CommunityService } from "~/services";
-import SquareButton from "../UI/SquareButton";
-import config from "~/config";
-=======
 import { Pencil } from "lucide-react";
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import {CommunityService, CommunityUserService, UserService } from "~/services";
 import SquareButton from "../UI/SquareButton";
 import Cookies from "js-cookie";
 import { useNavigate } from '@remix-run/react';
->>>>>>> e394e7288d133d10d504620c6e1b78d09bd26367
+import config from "~/config";
 
 export function EditCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
