@@ -60,7 +60,6 @@ export class GoingService {
 
 	async delete(req) {
 		const goingId: number = +req.params.id;
-		console.log(goingId)
 		await db.going.delete({
 			where: {
 				id: goingId,

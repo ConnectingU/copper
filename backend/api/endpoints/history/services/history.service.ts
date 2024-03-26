@@ -66,6 +66,6 @@ export class HistoryService {
 				lastVisited
 			}
 		});
-		return updatedHistory
+		return updatedHistory;
 	}
 }
