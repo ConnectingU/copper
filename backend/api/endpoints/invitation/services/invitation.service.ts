@@ -20,7 +20,7 @@ export class InvitationService {
 			select:{
 				id: true,
 			}
-		})
+		});
 
 		const invitation = await db.invitation.create({
 			data: {

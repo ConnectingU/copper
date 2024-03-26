@@ -99,8 +99,8 @@ export class CommunityUserService {
 	async delete(req) {
 		const id: number = +req.params.communityUserId;
 		const communityId: number = +req.params.communityId;
-		console.log("CommunityUserId: ", id)
-		console.log("CommunityId: ", communityId)
+		console.log('CommunityUserId: ', id);
+		console.log('CommunityId: ', communityId);
 
 		await db.communityUser.delete({
 			where: {
