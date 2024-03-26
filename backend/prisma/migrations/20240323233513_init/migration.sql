@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "Invitation" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "communityId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "accepted" BOOLEAN NOT NULL,
+    "declined" BOOLEAN NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);

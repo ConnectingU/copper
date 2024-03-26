@@ -21,81 +21,83 @@ export class GlobalFeedService {
 		});
 		
 		switch (filter) {
-			case 'posts':
-				const posts = await db.post.findMany({
-					where: { communityId: { in: communityIds}},
-					select: {
-						id: true,
-						title: true,
-						content: true,
-						image: true,
-						user: {
-							select: {
-								displayName: true,
-								username: true,
-								avatarUrl: true,
-							}
-						},
-						likes: {
-							select: {
-								id: true,
-								userId: true,
-							}
-						},
-						community: {
-							select: {
-								id: true,
-								name: true,
-							}
-						},
-						createdAt: true,
-					},
-					orderBy: {
-						createdAt: 'desc'
-					}
-				});
-
-				return posts;
-			
-			case 'events':
-				const events = await db.event.findMany({
-					where: {
-						communityId: { in: communityIds},
-						toDate: {
-							gte: new Date().toISOString()
+		case 'posts': {
+			const posts = await db.post.findMany({
+				where: { communityId: { in: communityIds}},
+				select: {
+					id: true,
+					title: true,
+					content: true,
+					image: true,
+					user: {
+						select: {
+							displayName: true,
+							username: true,
+							avatarUrl: true,
 						}
 					},
-					select: {
-						id: true,
-						title: true,
-						description: true,
-						image: true,
-						community: {
-							select: {
-								id: true,
-								name: true,
-								avatarUrl: true,
-							}
-						},
-						going: {
-							select: {
-								id: true,
-								userId: true,
-							}
-						},
-						fromDate: true,
-						toDate: true,
-						createdAt: true,
+					likes: {
+						select: {
+							id: true,
+							userId: true,
+						}
 					},
-					orderBy: {
-						createdAt: 'desc'
+					community: {
+						select: {
+							id: true,
+							name: true,
+						}
+					},
+					createdAt: true,
+				},
+				orderBy: {
+					createdAt: 'desc'
+				}
+			});
+
+			return posts;
+		}
+
+		case 'events': {
+			const events = await db.event.findMany({
+				where: {
+					communityId: { in: communityIds},
+					toDate: {
+						gte: new Date().toISOString()
 					}
-				});
+				},
+				select: {
+					id: true,
+					title: true,
+					description: true,
+					image: true,
+					community: {
+						select: {
+							id: true,
+							name: true,
+							avatarUrl: true,
+						}
+					},
+					going: {
+						select: {
+							id: true,
+							userId: true,
+						}
+					},
+					fromDate: true,
+					toDate: true,
+					createdAt: true,
+				},
+				orderBy: {
+					createdAt: 'desc'
+				}
+			});
 
-				return events;
+			return events;
+		}
 
-			default:
-				return [];
+		default:
+			return [];
 		}
 	}
 }

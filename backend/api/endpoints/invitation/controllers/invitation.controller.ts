@@ -1,14 +1,14 @@
 import { JsonController, Post, Get, Patch, UseBefore, Req, Res, Authorized, HttpError, Delete } from 'routing-controllers';
 import { Service } from 'typedi';
 import { Logger } from '../../../libs/logger';
-import { CommunityUserService } from '../services/community-user.service';
+import { InvitationService } from '../services/invitation.service';
 import { Request, Response } from 'express';
 import {json as bodyParserJson} from 'body-parser';
 
-@JsonController('/community-user')
+@JsonController('/invitation')
 @Service()
-export class CommunityUserController {
-	constructor(public service: CommunityUserService) { }
+export class InvitationController {
+	constructor(public service: InvitationService) { }
 
 	@Authorized()
 	@Post()
@@ -16,10 +16,10 @@ export class CommunityUserController {
 	public async create(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.create(req);
-			Logger.info('Controller: Community-User - create', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: invitation - create', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community-User - create', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: invitation - create', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -28,15 +28,15 @@ export class CommunityUserController {
 	}
 
 	@Authorized()
-	@Get('/all/:id')
+	@Get('/all/:userId/:communityId')
 	@UseBefore(bodyParserJson())
 	public async all(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.all(req);
-			Logger.info('Controller: Community-User - all', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: invitation - all', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
-			Logger.error('Controller: Community-User - all', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: invitation - all', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -50,10 +50,10 @@ export class CommunityUserController {
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.read(req);
-			Logger.info('Controller: Community-User - read', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: invitation - read', 'Response:' + JSON.stringify(resp));
 			return res.send(resp);
 		} catch (error) {
-			Logger.error('Controller: Community-User - read', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: invitation - read', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -67,10 +67,10 @@ export class CommunityUserController {
 	public async update(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.update(req);
-			Logger.info('Controller: Community-User - update', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: invitation - update', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community-User - update', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: invitation - update', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
@@ -79,15 +79,15 @@ export class CommunityUserController {
 	}
 
 	@Authorized()
-	@Delete('/:communityUserId/:communityId')
+	@Delete('/:id')
 	@UseBefore(bodyParserJson())
 	public async delete(@Req() req: Request, @Res() res: Response) {
 		try {
 			const resp = await this.service.delete(req);
-			Logger.info('Controller: Community-User - delete', 'Response:' + JSON.stringify(resp));
+			Logger.info('Controller: invitation - delete', 'Response:' + JSON.stringify(resp));
 			return res.json(resp);
 		} catch (error) {
-			Logger.error('Controller: Community-User - delete', 'ErrorInfo:' + JSON.stringify(error));
+			Logger.error('Controller: invitation - delete', 'ErrorInfo:' + JSON.stringify(error));
 			if (error instanceof HttpError) {
 				res.status(error.httpCode).json(error);
 			}
