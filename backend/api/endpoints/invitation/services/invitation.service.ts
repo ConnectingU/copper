@@ -22,22 +22,10 @@ export class InvitationService {
 			}
 		})
 
-		const community = await db.community.findUnique({
-			where:{
-				id: communityId,
-			},
-			select:{
-				name: true,
-				avatarUrl: true
-			}
-		});
-
 		const invitation = await db.invitation.create({
 			data: {
 				userId: user.id,
 				communityId,
-				communityName: community.name,
-				communityAvatar: community.avatarUrl,
 			}
 		});
 
@@ -53,8 +41,19 @@ export class InvitationService {
 				where: { communityId },
 				select: {
 					id: true,
-					communityId: true,
 					userId: true,
+					user: {
+						select: {
+							displayName: true,
+						}
+					},
+					communityId: true,
+					community: {
+						select: {
+							name: true,
+							avatarUrl: true,
+						}
+					},
 					accepted: true,
 					declined: true,
 					createdAt: true,
@@ -70,11 +69,26 @@ export class InvitationService {
 
 		// If the all method is called without a community id than is must be called with a userId
 		const invitations = await db.invitation.findMany({
-			where: { userId },
+			where: { 
+				userId,
+				accepted: false,
+				declined: false,
+			},
 			select:{
 				id: true,
-				communityId: true,
 				userId: true,
+				user: {
+					select: {
+						displayName: true,
+					}
+				},
+				communityId: true,
+				community: {
+					select: {
+						name: true,
+						avatarUrl: true,
+					}
+				},
 				accepted: true,
 				declined: true,
 				createdAt: true,
@@ -94,8 +108,19 @@ export class InvitationService {
 			where: { id: invitationId },
 			select: {
 				id: true,
-				communityId: true,
 				userId: true,
+				user: {
+					select: {
+						displayName: true,
+					}
+				},
+				communityId: true,
+				community: {
+					select: {
+						name: true,
+						avatarUrl: true,
+					}
+				},
 				accepted: true,
 				declined: true,
 				createdAt: true,
@@ -111,12 +136,12 @@ export class InvitationService {
 	}
 	
 	async update(req) {
-		const invitationId: number = +req.params.invitationId;
+		const id: number = +req.params.id;
 		const body = req.body;
 
 		const invitation = await db.invitation.update({
 			where: {
-				id: invitationId,
+				id,
 			},
 			data: {
 				accepted: body.accepted || undefined,

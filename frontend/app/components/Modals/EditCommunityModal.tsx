@@ -1,11 +1,20 @@
-import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
+import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, HStack } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
+<<<<<<< HEAD
 import { Pencil, Square } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import {CommunityService } from "~/services";
 import SquareButton from "../UI/SquareButton";
 import config from "~/config";
+=======
+import { Pencil } from "lucide-react";
+import React, { memo, useState } from "react";
+import {CommunityService, CommunityUserService, UserService } from "~/services";
+import SquareButton from "../UI/SquareButton";
+import Cookies from "js-cookie";
+import { useNavigate } from '@remix-run/react';
+>>>>>>> e394e7288d133d10d504620c6e1b78d09bd26367
 
 export function EditCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -16,6 +25,7 @@ export function EditCommunityModal() {
 	const currentCommunity: number = Number(communityId);
 	const [community, setCommunity] = useState<any>({});
 	const [file, setFile] = useState<File | undefined>(undefined);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		CommunityService.getCommunity(currentCommunity).then((data) => {
@@ -34,6 +44,18 @@ export function EditCommunityModal() {
 			window.location.reload();
 		}
 	});
+
+	const leaveCommunity = async () => {
+        const userId = Number(Cookies.get('userId'));
+		const communityUserIds = await UserService.getUsersCommunitiesMembershipIds(userId);
+		communityUserIds.forEach(async function (id : number) {
+			try {
+				await CommunityUserService.removeCommunityUser(id, currentCommunity);
+			}
+			catch {}
+		});
+		window.location.reload();
+    };
 
 	return (
 		<>
@@ -90,9 +112,14 @@ export function EditCommunityModal() {
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>
-							<Button type='submit' onClick={onClose} colorScheme='blue' mr={3}>
-								Submit
-							</Button>
+							<HStack>
+								<Button onClick={leaveCommunity} mr={184} colorScheme='red' >
+									Leave Group
+								</Button>
+								<Button type='submit' onClick={onClose} colorScheme='blue'>
+									Submit
+								</Button>
+							</HStack>
 						</ModalFooter>
 					</form>
 				</ModalContent>
