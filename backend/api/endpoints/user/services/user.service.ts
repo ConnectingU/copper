@@ -50,6 +50,7 @@ export class UserService {
 				avatarUrl: true,
 				communityMembers: {
 					select: {
+						id: true,
 						community: {
 							select: {
 								id: true,

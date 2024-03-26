@@ -20,7 +20,7 @@ class InvitationService extends Service {
 		}
 	}
 	
-	async updateInvitation(invitationId?: number, accepted?: boolean, declined?: boolean) {
+	async updateInvitation(id?: number, accepted?: boolean, declined?: boolean) {
 		const config = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
@@ -29,7 +29,7 @@ class InvitationService extends Service {
 
         const body = {accepted, declined};
 		try {
-			return await this.http.patch(`${this.baseURL}/invitation/${invitationId}`, body, config);
+			return await this.http.patch(`${this.baseURL}/invitation/${id}`, body, config);
 		} catch(error) {
 			console.error(error);
 			throw error;

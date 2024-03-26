@@ -79,7 +79,7 @@ export class CommunityUserController {
 	}
 
 	@Authorized()
-	@Delete('/:id')
+	@Delete('/:communityUserId/:communityId')
 	@UseBefore(bodyParserJson())
 	public async delete(@Req() req: Request, @Res() res: Response) {
 		try {

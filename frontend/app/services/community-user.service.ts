@@ -34,6 +34,21 @@ class CommunityUserService extends Service {
 			throw error;
 		}
 	}
+
+	async removeCommunityUser(communityUserId: number, communityId: number) {
+		const config = {
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
+			}
+		}
+		try {
+			const resp = await this.http.delete(`${this.baseURL}/community-user/${communityUserId}/${communityId}`, config);
+			return resp.data;
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
+	}
 }
 
 const communityUserService = new CommunityUserService();

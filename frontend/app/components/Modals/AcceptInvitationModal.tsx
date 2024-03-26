@@ -15,7 +15,6 @@ export function AcceptInvitationModal() {
 
 	useEffect(() => {
 		InvitationService.getAllInvitations(userId, undefined).then((data): void => {
-			console.log(data)
 			setInvites(data);
 		});
 	}, []);
@@ -44,7 +43,7 @@ export function AcceptInvitationModal() {
 								<Flex
 									direction='column'
 									maxH='calc(100vh - 4rem)'
-									gap={3}
+									gap={5}
 									px={4}
 									pt={2}
 									overflow='scroll'
@@ -57,7 +56,7 @@ export function AcceptInvitationModal() {
 								>
 									{invites.length === 0 ? 
 										(
-											<Flex h='400' alignItems='center'>
+											<Flex h='200' alignItems='center'>
 												<Flex alignItems='center' direction='column' gap={5}>
 													<Frown color='white' size={80}/>
 													<Text fontSize={16} textColor='white'>No invitations yet!</Text>
@@ -65,7 +64,7 @@ export function AcceptInvitationModal() {
 											</Flex>
 										) 
 										: (invites.map((invitation: any, index: number) => (
-										<Invitation key={index} community={invitation.communityName} avatarUrl={invitation.communityAvatar} accepted={invitation.accepted} declined={invitation.declined} date={invitation.createdAt} />
+										<Invitation key={index} id={invitation.id} userId={invitation.userId} communityId={invitation.communityId} communityName={invitation.community.name} avatarUrl={invitation.community.avatarUrl} accepted={invitation.accepted} declined={invitation.declined} date={invitation.createdAt} />
 									)))}
 								</Flex>
 							</Box>

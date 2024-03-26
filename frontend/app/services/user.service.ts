@@ -47,6 +47,24 @@ class UserService extends Service {
 		}
 	}
 
+	async getUsersCommunitiesMembershipIds(userId: number) {
+		const config = {
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('auth')}`,
+			}
+		}
+
+		try {
+			const user = await this.http.get(`${this.baseURL}/user/${userId}`, config);
+			const communityMemberships = user.data.communityMembers;
+			const ids = communityMemberships.map((membership: any) => membership.id);
+			return ids;
+		} catch(error) {
+			console.error(error);
+			throw error;
+		}
+	}
+
 	async updateUser(userId: number, displayName?: string, image?: File) {
 		const config = {
 			headers: {
