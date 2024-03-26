@@ -1,4 +1,5 @@
 import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
+import config from '~/config';
 
 interface CommentProps {
 	content: string;
@@ -17,7 +18,7 @@ export function Comment(props: CommentProps) {
 	return (
 		<Box w='100%' pt={2}>
 			<Flex gap='2'>
-				<Avatar name={props.name} bgColor='lightGray' src={`http://localhost:8500/user-avatars/${props.avatarUrl}`} />
+				<Avatar name={props.name} bgColor='lightGray' src={`${config.api.baseUrl}/user-avatars/${props.avatarUrl}`} />
 				<Flex direction='column' textColor='lightgray'>
 					<Box display='flex' alignItems='center'>
 						<Text fontWeight='bold' fontSize='20' textColor='white'>{props.name}</Text>

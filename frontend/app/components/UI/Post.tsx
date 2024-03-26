@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { LikeService, CommentService } from "~/services";
 import { useEffect, useState } from "react";
 import { CommentModal } from "../Modals/CommentModal";
+import config from "~/config";
 
 interface PostProps {
 	id: number;
@@ -38,7 +39,7 @@ export function Post(props: PostProps) {
 		<Box>
 			<Card boxShadow='xl' maxW='512px' overflow='hidden' bgColor='rgba(0, 0, 0, 0.2)'>
 				<Box maxW='512px' h='80px' display='flex' alignItems='center' px={4} gap={3}>
-					<Avatar name={props.name} bgColor='lightGray' src={`http://localhost:8500/user-avatars/${props.avatarUrl}`} />
+					<Avatar name={props.name} bgColor='lightGray' src={`${config.api.baseUrl}/user-avatars/${props.avatarUrl}`} />
 					<VStack alignItems='start' gap={0}>
 						<Text fontSize={24} textColor='white'>{props.title}</Text>
 						<Flex><Text fontSize={16} textColor='gray'>By: {props.name}</Text>{props.community ? <Text textColor='gray' pl={1}>in <Link href={`/community/${props.community.id}/posts`}>{props.community.name}</Link></Text> : null}</Flex>
@@ -46,7 +47,7 @@ export function Post(props: PostProps) {
 				</Box>
 				<Box w='512px'>
 					<VStack alignItems='start'>
-						{props.imgUrl ? (<Image w='768px' objectFit='cover' src={`http://localhost:8500/post-images/${props.imgUrl}`}/>) : null}
+						{props.imgUrl ? (<Image w='768px' objectFit='cover' src={`${config.api.baseUrl}/post-images/${props.imgUrl}`}/>) : null}
 						<Flex px={4} gap={3} justify='center' textColor='lightgray'>
 							<Flex gap={2}>
 								{likes.find(element => element.userId == Cookies.get('userId')) ? 

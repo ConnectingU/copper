@@ -1,16 +1,17 @@
 import Cookies from "js-cookie";
 import { Service } from "./service";
+import config from "~/config";
 
 class CommentService extends Service {
 	async createComment(content: string, userId: number, postId: number) {
 		const body = {content, userId, postId};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 		try {
-			const resp = await this.http.post('http://localhost:8500/api/comment', body, config);
+			const resp = await this.http.post(`${this.baseURL}/comment`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -19,14 +20,14 @@ class CommentService extends Service {
 	}
 
 	async getComments(postId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {	
-			const resp = await this.http.get(`http://localhost:8500/api/comment/all/${postId}`, config);
+			const resp = await this.http.get(`${this.baseURL}/comment/all/${postId}`, serviceConfig);
 			console.log('data pls',resp)
 			return resp.data
 		} catch(error) {

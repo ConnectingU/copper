@@ -11,7 +11,7 @@ export class GlobalFeedController {
 	constructor(public service: GlobalFeedService) { }
 
 	@Authorized()
-	@Get('/:id')
+	@Get('/:id/:filter')
 	@UseBefore(bodyParserJson())
 	public async read(@Req() req: Request, @Res() res: Response) {
 		try {

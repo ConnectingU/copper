@@ -3,7 +3,7 @@ import { Service } from "./service";
 
 class PostService extends Service {
 	async createPost(title: string, content: string, communityId: number, userId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
@@ -11,7 +11,7 @@ class PostService extends Service {
 
 		const body = { title, content, communityId, userId};
 		try {
-			return await this.http.post(`${this.baseURL}/post`, body, config);
+			return await this.http.post(`${this.baseURL}/post`, body, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;
@@ -19,7 +19,7 @@ class PostService extends Service {
 	}
 
 	async updatePost(postId?: number, title?: string, content?: string, image?: File) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 				'Content-Type': 'multipart/form-data',
@@ -34,7 +34,7 @@ class PostService extends Service {
 		}
 		
 		try {
-			return await this.http.patch(`${this.baseURL}/post/${postId}`, formData, config);
+			return await this.http.patch(`${this.baseURL}/post/${postId}`, formData, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;

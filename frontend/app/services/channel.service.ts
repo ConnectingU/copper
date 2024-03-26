@@ -1,16 +1,17 @@
 import Cookies from "js-cookie";
 import { Service } from "./service";
+import config from "~/config";
 
 class ChannelService extends Service {
 	async createChannel(name: string, communityId: number) {
 		const body = {name, communityId};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 		try {
-			const resp = await this.http.post('http://localhost:8500/api/channel', body, config);
+			const resp = await this.http.post(`${this.baseURL}/channel`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -19,14 +20,14 @@ class ChannelService extends Service {
 	}
 
 	async getChannel(channelId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {	
-			const resp = await this.http.get(`http://localhost:8500/api/channel/${channelId}`, config);
+			const resp = await this.http.get(`${this.baseURL}/channel/${channelId}`, serviceConfig);
 			return resp.data
 		} catch(error) {
 			console.error(error);

@@ -86,6 +86,38 @@ export class CommunityService {
 						createdAt: 'desc'
 					}
 				},
+				events: {
+					where: {
+						toDate: {
+							gte: new Date().toISOString()
+						}
+					},
+					select: {
+						id: true,
+						title: true,
+						description: true,
+						image: true,
+						community: {
+							select: {
+								id: true,
+								name: true,
+								avatarUrl: true,
+							}
+						},
+						going: {
+							select: {
+								id: true,
+								userId: true,
+							}
+						},
+						fromDate: true,
+						toDate: true,
+						createdAt: true,
+					},
+					orderBy: {
+						createdAt: 'desc'
+					}
+				},
 				channels: true,
 				createdAt: true,
 			}

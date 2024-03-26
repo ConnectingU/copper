@@ -4,11 +4,11 @@ import { ArrowBigRight, Frown, SquarePen } from "lucide-react";
 import { CreatePostModal } from "../Modals/CreatePostModal";
 import SquareButton from "../UI/SquareButton";
 
-interface ChatFeed {
+interface PostFeed {
 	posts: any[];
 }
 
-export function PostFeed(props: ChatFeed) {
+export function PostFeed(props: PostFeed) {
 	return (
 		<Box w='100%'>
 			<Box w='100%' h='4rem' bgColor='rgba(0, 0, 0, 0.2)' display='flex' alignItems='center' boxShadow='2xl' px={4}>

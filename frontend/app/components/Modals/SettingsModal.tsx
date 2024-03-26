@@ -2,15 +2,17 @@ import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
 import { Settings } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Cookies from 'js-cookie';
 import { UserService, PostService } from "~/services";
 import SquareButton from "../UI/SquareButton";
+import config from "~/config";
 
 export function SettingsModal() {
-	const { isOpen, onOpen, onClose } = useDisclosure()
-	const initialRef = React.useRef(null)
-	const finalRef = React.useRef(null)
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
+	const hiddenFileInput = useRef(null);
 	const [currentUser, setCurrentUser] = useState<any>({});
     const userId: number = Number(Cookies.get('userId'));
 	const [file, setFile] = useState<File | null>(null);
@@ -60,7 +62,26 @@ export function SettingsModal() {
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Avatar</FormLabel>
-								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='Image' />
+								<SquareButton
+									w={14}
+									h={14}
+									onClick={() => {
+										if (hiddenFileInput.current) {
+											(hiddenFileInput.current as HTMLInputElement).click();
+										}
+									}}
+								>
+									{file ? <img src={URL.createObjectURL(file)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : (currentUser.avatarUrl ? <img src={`${config.api.baseUrl}/user-avatars/${currentUser.avatarUrl}`} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : null)}
+								</SquareButton>
+								<Input
+									id='image'
+									type='file'
+									display='none'
+									accept='.jpg,.jpeg,.png'
+									ref={hiddenFileInput}
+									onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}}
+									placeholder='Image'
+								/>
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

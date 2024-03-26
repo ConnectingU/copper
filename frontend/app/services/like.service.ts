@@ -4,13 +4,13 @@ import { Service } from "./service";
 class LikeService extends Service {
 	async createLike(userId: number, postId: number) {
 		const body = {userId, postId};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 		try {
-			const resp = await this.http.post('http://localhost:8500/api/like', body, config);
+			const resp = await this.http.post(`${this.baseURL}/like`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -19,14 +19,14 @@ class LikeService extends Service {
 	}
 
 	async deleteLike(likeId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {	
-			const resp = await this.http.delete(`http://localhost:8500/api/like/${likeId}`, config);
+			const resp = await this.http.delete(`${this.baseURL}/like/${likeId}`, serviceConfig);
 			return resp.data
 		} catch(error) {
 			console.error(error);

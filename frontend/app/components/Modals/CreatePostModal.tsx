@@ -1,16 +1,17 @@
-import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from "@chakra-ui/react";
+import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex } from "@chakra-ui/react";
 import { useParams } from "@remix-run/react";
 import { useFormik } from "formik";
-import { SquarePen } from "lucide-react";
-import React, { useState } from "react";
+import { ImagePlus, SquarePen } from "lucide-react";
+import React, { useRef, useState } from "react";
 import Cookies from 'js-cookie';
 import { PostService } from "~/services";
 import SquareButton from "../UI/SquareButton";
 
 export function CreatePostModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const initialRef = React.useRef(null)
-	const finalRef = React.useRef(null)
+	const initialRef = useRef(null)
+	const finalRef = useRef(null)
+	const hiddenFileInput = useRef(null);
 	const { communityId } = useParams();
 	const currentCommunity: number = Number(communityId);
     const userId: number = Number(Cookies.get('userId'));
@@ -64,7 +65,27 @@ export function CreatePostModal() {
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>Post Image</FormLabel>
-								<Input id='image' type='file' ref={initialRef} onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}} placeholder='Image' />
+								<SquareButton
+									w='100%'
+									h='100%'
+									onClick={() => {
+										if (hiddenFileInput.current) {
+											(hiddenFileInput.current as HTMLInputElement).click();
+										}
+									}}
+								>	
+
+									<Flex minH='15rem' alignItems='center'>{file ? <img src={URL.createObjectURL(file)} alt='Image' /> : <ImagePlus size={25} />}</Flex>
+								</SquareButton>
+								<Input
+									id='image'
+									type='file'
+									display='none'
+									accept='.jpg,.jpeg,.png'
+									ref={hiddenFileInput}
+									onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}}
+									placeholder='Image'
+								/>
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

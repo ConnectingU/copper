@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Image } from "@chakra-ui/react";
-import { Globe2, Settings } from "lucide-react";
+import { Flex, Image } from "@chakra-ui/react";
+import { Globe2 } from "lucide-react";
 import { UserService } from "~/services";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { AcceptInvitationModal } from "../Modals/AcceptInvitationModal";
 import { colours } from "~/ui-config";
 import { SettingsModal } from "../Modals/SettingsModal";
 import SquareButton from "../UI/SquareButton";
+import config from "~/config";
 
 interface CommunitySelectorProps {
 	children: React.ReactNode;
@@ -49,7 +50,7 @@ export function CommunitySelector(props: CommunitySelectorProps) {
 								navigate(`/community/${community.id}/posts`)
 							}}
 						>
-							{community.avatarUrl ? (<Image maxW={14} maxH={14} src={`http://localhost:8500/community-avatars/${community.avatarUrl}`}/>) : community.name.charAt(0) }
+							{community.avatarUrl ? (<Image maxW={14} maxH={14} src={`${config.api.baseUrl}/community-avatars/${community.avatarUrl}`}/>) : community.name.charAt(0) }
 						</SquareButton>
 					))}
 					<CreateCommunityModal />

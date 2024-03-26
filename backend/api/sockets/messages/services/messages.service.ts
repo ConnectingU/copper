@@ -2,7 +2,7 @@ import { Logger } from '../../../libs/logger';
 import { db } from '../../../app';
 
 export class MessageService {
-	static async handleMessage(socket: any, message: any, channelId: any) {
+	static async handleMessage(socket: any, message: any, channelId: number) {
 		const newMessage = await db.message.create({
 			data: {
 				content: message.content,
@@ -23,6 +23,20 @@ export class MessageService {
 				channelId: true,
 				createdAt: true,
 				updatedAt: true,
+			}
+		});
+
+		const history = await db.history.findFirst({
+			where: { userId: message.userId, channelId: Number(channelId) },
+			select: {
+				id: true,
+			}
+		});
+
+		await db.history.update({
+			where: { id: history.id },
+			data: {
+				lastVisited: new Date()
 			}
 		});
 		socket.broadcast.emit('message', newMessage);

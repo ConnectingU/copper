@@ -3,14 +3,14 @@ import { Service } from "./service";
 
 class CommunityService extends Service {
 	async getCommunity(communityId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {
-			const resp = await this.http.get(`${this.baseURL}/community/${communityId}`, config);
+			const resp = await this.http.get(`${this.baseURL}/community/${communityId}`, serviceConfig);
 			return resp.data
 		} catch(error) {
 			console.error(error);
@@ -20,14 +20,14 @@ class CommunityService extends Service {
 
 	async createCommunity(name: string, bio: string) {
 		const body = {name, bio};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {
-			const resp = await this.http.post(`${this.baseURL}/community`, body, config);
+			const resp = await this.http.post(`${this.baseURL}/community`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -36,7 +36,7 @@ class CommunityService extends Service {
 	}
 
 	async updateCommunity(communityId?: number, name?: string, bio?: string, image?: File) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 				'Content-Type': 'multipart/form-data',
@@ -51,7 +51,7 @@ class CommunityService extends Service {
 		}
 		
 		try {
-			return await this.http.patch(`${this.baseURL}/community/${communityId}`, formData, config);
+			return await this.http.patch(`${this.baseURL}/community/${communityId}`, formData, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;

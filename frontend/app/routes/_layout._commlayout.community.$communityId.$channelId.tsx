@@ -3,12 +3,13 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from "@remix-run/react";
 import { AuthRedirect } from '~/components/Util/AuthRedirect';
-import { ChannelService, UserService } from '~/services';
+import { ChannelService, HistoryService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { ChatFeed } from '~/components/Feed/ChatFeed';
+import config from '~/config';
 
-let socket = io('http://localhost:8500/message/');
+let socket = io(`${config.api.baseUrl}/message/`);
 
 export default function CommunityPage() {
 	const { communityId, channelId } = useParams();
@@ -46,7 +47,7 @@ export default function CommunityPage() {
 		if(currentChannelId !== 0) {
 			socket.disconnect();
 			socket = io(
-				`http://localhost:8500/message/${currentChannelId}`, {
+				`${config.api.baseUrl}/message/${currentChannelId}`, {
 					reconnection: false,
 					reconnectionAttempts: 3,
 				}
@@ -71,6 +72,11 @@ export default function CommunityPage() {
 			socket.emit('typing', {userId: Number(Cookies.get('userId')), isTyping: false});
 		}
 	}, [formik.values.message]);
+
+	useEffect(() => {
+		const userId = Number(Cookies.get('userId'));
+		HistoryService.updateHistory(userId, currentChannelId, new Date())
+	}, [currentChannelId]);
 
 	return (
 		<AuthRedirect>
