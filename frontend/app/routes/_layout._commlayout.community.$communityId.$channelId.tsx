@@ -7,8 +7,9 @@ import { ChannelService, HistoryService, UserService } from '~/services';
 import io from 'socket.io-client';
 import Cookies from 'js-cookie';
 import { ChatFeed } from '~/components/Feed/ChatFeed';
+import config from '~/config';
 
-let socket = io('http://localhost:8500/message/');
+let socket = io(`${config.api.baseUrl}/message/`);
 
 export default function CommunityPage() {
 	const { communityId, channelId } = useParams();
@@ -46,7 +47,7 @@ export default function CommunityPage() {
 		if(currentChannelId !== 0) {
 			socket.disconnect();
 			socket = io(
-				`http://localhost:8500/message/${currentChannelId}`, {
+				`${config.api.baseUrl}/message/${currentChannelId}`, {
 					reconnection: false,
 					reconnectionAttempts: 3,
 				}

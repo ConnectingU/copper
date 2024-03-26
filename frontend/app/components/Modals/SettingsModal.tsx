@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Cookies from 'js-cookie';
 import { UserService, PostService } from "~/services";
 import SquareButton from "../UI/SquareButton";
+import config from "~/config";
 
 export function SettingsModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -70,7 +71,7 @@ export function SettingsModal() {
 										}
 									}}
 								>
-									{file ? <img src={URL.createObjectURL(file)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : (currentUser.avatarUrl ? <img src={`http://localhost:8500/user-avatars/${currentUser.avatarUrl}`} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : null)}
+									{file ? <img src={URL.createObjectURL(file)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : (currentUser.avatarUrl ? <img src={`${config.api.baseUrl}/user-avatars/${currentUser.avatarUrl}`} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : null)}
 								</SquareButton>
 								<Input
 									id='image'

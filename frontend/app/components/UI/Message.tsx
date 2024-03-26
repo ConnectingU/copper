@@ -1,4 +1,5 @@
 import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
+import config from '~/config';
 
 interface MessageProps {
 	message: string;
@@ -18,7 +19,7 @@ export function Message(props: MessageProps) {
 	return (
 		<Box w='100%' pl={props.hideInfo ? 14 : 0} pt={props.hideInfo ? 0 : 2}>
 			<Flex gap='2'>
-				<Avatar name={props.name} bgColor='lightGray' hidden={props.hideInfo} src={`http://localhost:8500/user-avatars/${props.avatarUrl}`} />
+				<Avatar name={props.name} bgColor='lightGray' hidden={props.hideInfo} src={`${config.api.baseUrl}/user-avatars/${props.avatarUrl}`} />
 				<Flex direction='column' textColor='lightgray'>
 					<Box display='flex' alignItems='center' hidden={props.hideInfo}>
 						<Text fontWeight='bold' fontSize='20' textColor='white'>{props.name}</Text>

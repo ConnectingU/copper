@@ -1,16 +1,17 @@
 import Cookies from "js-cookie";
 import { Service } from "./service";
+import config from "~/config";
 
 class GoingService extends Service {
 	async createGoing(userId: number, eventId: number) {
 		const body = {userId, eventId};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 		try {
-			const resp = await this.http.post('http://localhost:8500/api/going', body, config);
+			const resp = await this.http.post(`${this.baseURL}/going`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -19,14 +20,14 @@ class GoingService extends Service {
 	}
 
 	async deleteGoing(goingId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {	
-			const resp = await this.http.delete(`http://localhost:8500/api/going/${goingId}`, config);
+			const resp = await this.http.delete(`${this.baseURL}/going/${goingId}`, serviceConfig);
 			return resp.data
 		} catch(error) {
 			console.error(error);

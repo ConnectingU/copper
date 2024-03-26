@@ -5,6 +5,7 @@ import { Pencil, Square } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import {CommunityService } from "~/services";
 import SquareButton from "../UI/SquareButton";
+import config from "~/config";
 
 export function EditCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -75,7 +76,7 @@ export function EditCommunityModal() {
 										}
 									}}
 								>
-									{file ? <img src={URL.createObjectURL(file)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : (community.avatarUrl ? <img src={`http://localhost:8500/community-avatars/${community.avatarUrl}`} style={{width: '100%', height: '100%', objectFit: 'contain'}}/> : null)}
+									{file ? <img src={URL.createObjectURL(file)} style={{width: '100%', height: '100%', objectFit: 'cover'}}/> : (community.avatarUrl ? <img src={`${config.api.baseUrl}/community-avatars/${community.avatarUrl}`} style={{width: '100%', height: '100%', objectFit: 'contain'}}/> : null)}
 								</SquareButton>
 								<Input
 									id='image'

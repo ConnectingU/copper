@@ -28,7 +28,7 @@ export function CreateEventModal() {
 				if (values.title !== '' && values.description !== '') {
 					const event = await EventService.createEvent(values.title, values.description, currentCommunity, fromDate!, toDate!);
 					if (file) {
-						await PostService.updatePost(event.data.id, undefined, undefined, file);
+						await EventService.updateEvent(event.data.id, undefined, undefined, file);
 					}
 				}
 				values.title = '';
@@ -92,11 +92,11 @@ export function CreateEventModal() {
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>From</FormLabel>
-								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setToDate(new Date(event.target.value))} placeholder='From' />
+								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFromDate(new Date(event.target.value))} placeholder='From' />
 							</FormControl>
 							<FormControl pt={2}>
 								<FormLabel>To</FormLabel>
-								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFromDate(new Date(event.target.value))} placeholder='To' />
+								<Input id='to' type="datetime-local" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setToDate(new Date(event.target.value))} placeholder='To' />
 							</FormControl>
 						</ModalBody>
 						<ModalFooter>

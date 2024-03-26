@@ -4,14 +4,14 @@ import { Service } from "./service";
 class CommunityUserService extends Service {
 	async createCommunityUser(userId: number, communityId: number) {
 		const body = {userId, communityId};
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {
-			const resp = await this.http.post(`${this.baseURL}/community-user`, body, config);
+			const resp = await this.http.post(`${this.baseURL}/community-user`, body, serviceConfig);
 			return resp.data;
 		} catch(error) {
 			console.error(error);
@@ -20,14 +20,14 @@ class CommunityUserService extends Service {
 	}
 	
 	async getCommunityUser(communityId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {	
-			const resp = await this.http.get(`${this.baseURL}/community/${communityId}`, config);
+			const resp = await this.http.get(`${this.baseURL}/community/${communityId}`, serviceConfig);
 			return resp.data
 		} catch(error) {
 			console.error(error);

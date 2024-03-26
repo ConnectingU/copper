@@ -5,6 +5,7 @@ import { UserRound, UserRoundCheck } from "lucide-react";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { GoingService } from "~/services";
+import config from "~/config";
 
 interface EventProps {
 	id: number;
@@ -43,25 +44,19 @@ export function Event(props: EventProps) {
 								navigate(`/community/${props.community.id}/events`)
 							}}
 						>
-							{props.community.avatarUrl ? (<Image maxW={14} maxH={14} src={`http://localhost:8500/community-avatars/${props.community.avatarUrl}`}/>) : props.community.name.charAt(0) }
+							{props.community.avatarUrl ? (<Image maxW={14} maxH={14} src={`${config.api.baseUrl}/community-avatars/${props.community.avatarUrl}`}/>) : props.community.name.charAt(0) }
 						</SquareButton>
 						<VStack alignItems='start' gap={0}>
 							<Text fontSize={24} textColor='white'>{props.title}</Text>
 							<Text fontSize={16} textColor='gray'>{props.community.name}</Text>
 						</VStack>
 					</Flex>
-					<Spacer />
-					<VStack alignItems='center' gap={0}>
-						<Text fontSize={14} textColor='gray'>{formatDate(props.fromDate)}</Text>
-						<Text fontSize={14} textColor='gray'>to</Text>
-						<Text fontSize={14} textColor='gray'>{formatDate(props.toDate)}</Text>
-					</VStack>
 				</Box>
 				<Box w='512px'>
 					<VStack alignItems='start'>
-						{props.imgUrl ? (<Image w='768px' objectFit='cover' src={`http://localhost:8500/post-images/${props.imgUrl}`}/>) : null}
+						{props.imgUrl ? (<Image w='768px' objectFit='cover' src={`${config.api.baseUrl}/event-images/${props.imgUrl}`}/>) : null}
 						<Flex px={4} gap={3} justify='center' textColor='lightgray'>
-							<Flex gap={2}>
+							<Flex gap={2} alignItems='center'>
 								{goings.find(element => element.userId == Cookies.get('userId')) ? 
 									<IconButton
 										bgColor='rgba(0, 0, 0, 0)'
@@ -89,6 +84,7 @@ export function Event(props: EventProps) {
 									/>
 								}
 								<Text>{goings.length}</Text>
+								<Text fontSize={14} textColor='gray'>When: {formatDate(props.fromDate)} to {formatDate(props.toDate)}</Text>
 							</Flex>
 						</Flex>
 						<Text fontSize={16} px={4} pb={3} textColor='lightgray'>{props.description}</Text>

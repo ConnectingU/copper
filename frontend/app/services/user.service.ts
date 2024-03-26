@@ -14,14 +14,14 @@ class UserService extends Service {
 	}
 
 	async getUser(userId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 		
 		try {
-			const user = await this.http.get(`${this.baseURL}/user/${userId}`, config);
+			const user = await this.http.get(`${this.baseURL}/user/${userId}`, serviceConfig);
 			return user.data;
 		} catch(error) {
 			console.error(error);
@@ -30,14 +30,14 @@ class UserService extends Service {
 	}
 
 	async getCommunities(userId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
 		}
 
 		try {
-			const user = await this.http.get(`${this.baseURL}/user/${userId}`, config);
+			const user = await this.http.get(`${this.baseURL}/user/${userId}`, serviceConfig);
 			const communityMemberships = user.data.communityMembers;
 			const commmunites = communityMemberships.map((membership: any) => membership.community);
 			return commmunites;
@@ -48,7 +48,7 @@ class UserService extends Service {
 	}
 
 	async updateUser(userId: number, displayName?: string, image?: File) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 				'Content-Type': 'multipart/form-data',
@@ -62,7 +62,7 @@ class UserService extends Service {
 		}
 		
 		try {
-			return await this.http.patch(`${this.baseURL}/user/${userId}`, formData, config);
+			return await this.http.patch(`${this.baseURL}/user/${userId}`, formData, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;

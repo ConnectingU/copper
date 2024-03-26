@@ -3,7 +3,7 @@ import { Service } from "./service";
 
 class MessageService extends Service {
 	async sendMessage(content: string, channelId: number, userId: number) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
@@ -11,7 +11,7 @@ class MessageService extends Service {
 
 		const body = { content, channelId, userId};
 		try {
-			return await this.http.post(`${this.baseURL}/message`, body, config);
+			return await this.http.post(`${this.baseURL}/message`, body, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;

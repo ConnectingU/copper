@@ -3,7 +3,7 @@ import { Service } from "./service";
 
 class EventService extends Service {
 	async createEvent(title: string, description: string, communityId: number, fromDate: Date, toDate: Date) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 			}
@@ -11,7 +11,7 @@ class EventService extends Service {
 
 		const body = { title, description, communityId, fromDate, toDate };
 		try {
-			return await this.http.post(`${this.baseURL}/event`, body, config);
+			return await this.http.post(`${this.baseURL}/event`, body, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;
@@ -19,7 +19,7 @@ class EventService extends Service {
 	}
 
 	async updateEvent(eventId?: number, title?: string, description?: string, image?: File) {
-		const config = {
+		const serviceConfig = {
 			headers: {
 				'Authorization': `Bearer ${Cookies.get('auth')}`,
 				'Content-Type': 'multipart/form-data',
@@ -34,7 +34,7 @@ class EventService extends Service {
 		}
 		
 		try {
-			return await this.http.patch(`${this.baseURL}/event/${eventId}`, formData, config);
+			return await this.http.patch(`${this.baseURL}/event/${eventId}`, formData, serviceConfig);
 		} catch(error) {
 			console.error(error);
 			throw error;
