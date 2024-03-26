@@ -63,7 +63,6 @@ export function FeedSelector(props: FeedSelectorProps) {
 						}>
 						Posts
 					</Button>
-					<SendInvitationModal/>
 					<Button
 						w={236}
 						h={8}
@@ -86,6 +85,7 @@ export function FeedSelector(props: FeedSelectorProps) {
 						}>
 						Events
 					</Button>
+					<SendInvitationModal/>
 					<Text fontSize={18} textColor='white'>Channels</Text>
 					{props.channels.map((channel: any, index: number) => (
 						<ChannelButton key={index} community={props.community} channel={channel} index={index} activeButton={activeButton}/>

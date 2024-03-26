@@ -77,7 +77,7 @@ export function SettingsModal() {
 									id='image'
 									type='file'
 									display='none'
-									accept='.jpg,.jpeg,.png'
+									accept='.jpg,.jpeg,.png,.webp'
 									ref={hiddenFileInput}
 									onChange={(event) => {setFile(event.target.files ? event.target.files[0] : null)}}
 									placeholder='Image'

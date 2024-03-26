@@ -25,7 +25,7 @@ useExpressServer(expressApp, {
 	controllers: [baseDir + '/endpoints/**/controllers/*{.js,.ts}'],
 	authorizationChecker: TokenVerification.verify,
 	cors: {
-		origin:'*',
+		origin:'http://localhost:3000',
 		credentials: true,
 	},
 });
@@ -38,7 +38,7 @@ expressApp.use(bodyParser.json());
 const server = http.createServer(expressApp);
 const io = new Server(server, {
 	cors: {
-		origin: '*',
+		origin: 'http://localhost:3000',
 	},
 });
 
