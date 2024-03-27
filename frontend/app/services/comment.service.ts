@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import { Service } from './service';
-import config from '~/config';
 
 class CommentService extends Service {
 	async createComment(content: string, userId: number, postId: number) {

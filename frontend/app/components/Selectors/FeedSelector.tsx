@@ -3,7 +3,6 @@ import { Link, useMatches } from '@remix-run/react';
 import { CreateChannelModal } from '../Modals/CreateChannelModal';
 import {SendInvitationModal} from '../Modals/SendInvitationModal';
 import { EditCommunityModal } from '../Modals/EditCommunityModal';
-import { useEffect } from 'react';
 import { ChannelButton } from '../UI/ChannelButton';
 
 interface FeedSelectorProps {

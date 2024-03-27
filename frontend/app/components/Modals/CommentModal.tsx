@@ -1,7 +1,7 @@
-import { useDisclosure, Button, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex, Textarea, Text } from '@chakra-ui/react';
+import { useDisclosure, IconButton, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, Flex, Textarea, Text } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { ArrowBigUp, Frown, MessageSquare, Pencil, Square } from 'lucide-react';
-import React from 'react';
+import { ArrowBigUp, Frown, MessageSquare } from 'lucide-react';
+import { useRef } from 'react';
 import { Comment } from '../UI/Comment';
 import SquareButton from '../UI/SquareButton';
 import { CommentService } from '~/services';
@@ -15,8 +15,8 @@ interface CommentModalProps {
 
 export function CommentModal(props: CommentModalProps) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const initialRef = React.useRef(null);
-	const finalRef = React.useRef(null);
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
 
 	const formik = useFormik({
 		initialValues: {

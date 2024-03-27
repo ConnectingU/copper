@@ -1,10 +1,9 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
-import { useParams } from '@remix-run/react';
 import { useFormik } from 'formik';
 import { Settings } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
-import { UserService, PostService } from '~/services';
+import { UserService } from '~/services';
 import SquareButton from '../UI/SquareButton';
 import config from '~/config';
 

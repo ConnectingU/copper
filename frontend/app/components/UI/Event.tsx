@@ -1,4 +1,4 @@
-import { Box, Card, Flex, VStack, Text, Image, Spacer, IconButton } from '@chakra-ui/react';
+import { Box, Card, Flex, VStack, Text, Image, IconButton } from '@chakra-ui/react';
 import SquareButton from './SquareButton';
 import { useNavigate } from '@remix-run/react';
 import { UserRound, UserRoundCheck } from 'lucide-react';

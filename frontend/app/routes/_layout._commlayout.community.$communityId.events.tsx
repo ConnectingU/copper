@@ -2,8 +2,6 @@ import { Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AuthRedirect } from '~/components/Util/AuthRedirect';
 import { CommunityService } from '~/services';
-import { CommunitySelector } from '~/components/Selectors/CommunitySelector';
-import { FeedSelector } from '~/components/Selectors/FeedSelector';
 import { EventFeed } from '~/components/Feed/EventFeed';
 import { useParams } from '@remix-run/react';
 

@@ -14,7 +14,6 @@ import Cookies from 'js-cookie';
 import { useNavigate } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { AuthService } from '~/services';
-import { IncorrectPasswordModal } from '~/components/Modals/IncorrectPasswordModal';
 
 export default function Login() {
 	const [txt, setTxt] = useState<string>('');

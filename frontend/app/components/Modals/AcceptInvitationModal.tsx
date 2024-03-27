@@ -1,6 +1,6 @@
 import { useDisclosure, Button, Box, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Text, ModalFooter } from '@chakra-ui/react';
 import { Frown, Users } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { InvitationService } from '~/services';
 import Cookies from 'js-cookie';
 import SquareButton from '../UI/SquareButton';
@@ -8,8 +8,8 @@ import { Invitation } from '../UI/Invitation';
 
 export function AcceptInvitationModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const initialRef = React.useRef(null);
-	const finalRef = React.useRef(null);
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
 	const [invites, setInvites] = useState<any>([]);
 	const userId = Number(Cookies.get('userId'));
 

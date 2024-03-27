@@ -2,14 +2,14 @@ import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { useFormik } from 'formik';
 import { PlusSquare } from 'lucide-react';
 import Cookies from 'js-cookie';
-import React from 'react';
+import { useRef } from 'react';
 import { CommunityService, CommunityUserService } from '~/services';
 import SquareButton from '../UI/SquareButton';
 
 export function CreateCommunityModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const initialRef = React.useRef(null)
-	const finalRef = React.useRef(null)
+	const initialRef = useRef(null)
+	const finalRef = useRef(null)
 
 	const formik = useFormik({
 		initialValues: {

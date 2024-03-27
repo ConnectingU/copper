@@ -2,7 +2,7 @@ import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { useParams } from '@remix-run/react';
 import { useFormik } from 'formik';
 import { ImagePlus, SquarePen } from 'lucide-react';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { PostService } from '~/services';
 import SquareButton from '../UI/SquareButton';

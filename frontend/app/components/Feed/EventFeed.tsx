@@ -1,7 +1,6 @@
-import { Flex, Box, Text, Input, FormControl, Button, Spacer, AbsoluteCenter } from '@chakra-ui/react';
+import { Flex, Box, Text, Spacer } from '@chakra-ui/react';
 import { Event } from '../UI/Event';
-import { ArrowBigRight, Frown, SquarePen } from 'lucide-react';
-import SquareButton from '../UI/SquareButton';
+import { Frown } from 'lucide-react';
 import { CreateEventModal } from '../Modals/CreateEventModal';
 
 interface EventFeed {

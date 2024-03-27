@@ -1,10 +1,10 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, Flex } from '@chakra-ui/react';
 import { useParams } from '@remix-run/react';
-import { Form, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { CalendarPlus, ImagePlus } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import Cookies from 'js-cookie';
-import { EventService, PostService } from '~/services';
+import { EventService } from '~/services';
 import SquareButton from '../UI/SquareButton';
 
 export function CreateEventModal() {
@@ -14,7 +14,6 @@ export function CreateEventModal() {
 	const hiddenFileInput = useRef(null);
 	const { communityId } = useParams();
 	const currentCommunity: number = Number(communityId);
-    const userId: number = Number(Cookies.get('userId'));
 	const [file, setFile] = useState<File | null>(null);
 	const [fromDate, setFromDate] = useState<Date | null>(null);
 	const [toDate, setToDate] = useState<Date | null>(null);

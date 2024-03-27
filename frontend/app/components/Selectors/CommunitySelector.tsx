@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from '@remix-run/react';
 import { CreateCommunityModal } from '../Modals/CreateCommunityModal';
 import { AcceptInvitationModal } from '../Modals/AcceptInvitationModal';
-import { colours } from '~/ui-config';
 import { SettingsModal } from '../Modals/SettingsModal';
 import SquareButton from '../UI/SquareButton';
 import config from '~/config';

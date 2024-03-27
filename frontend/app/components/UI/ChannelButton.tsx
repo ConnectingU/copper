@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Spacer, Text } from '@chakra-ui/react';
+import { Button, Flex, Spacer, Text } from '@chakra-ui/react';
 import { Link } from '@remix-run/react';
 import { useEffect, useState } from 'react';
 import { HistoryService } from '~/services';

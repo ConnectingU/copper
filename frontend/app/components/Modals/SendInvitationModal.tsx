@@ -1,15 +1,15 @@
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter } from '@chakra-ui/react';
 import { useParams } from '@remix-run/react';
 import { useFormik } from 'formik';
-import React from 'react';
+import { useRef } from 'react';
 import {InvitationService } from '~/services';
 
 export function SendInvitationModal() {
 	const { communityId } = useParams();
 	const currentCommunity: number = Number(communityId);
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const initialRef = React.useRef(null);
-	const finalRef = React.useRef(null);
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
 	
 
 	const formik = useFormik({

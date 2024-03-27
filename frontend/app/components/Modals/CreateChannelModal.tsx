@@ -2,13 +2,13 @@ import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, 
 import { useParams } from '@remix-run/react';
 import { useFormik } from 'formik';
 import { PlusCircle } from 'lucide-react';
-import React from 'react';
+import { useRef } from 'react';
 import { ChannelService } from '~/services';
 
 export function CreateChannelModal() {
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const initialRef = React.useRef(null)
-	const finalRef = React.useRef(null)
+	const initialRef = useRef(null)
+	const finalRef = useRef(null)
 	const { communityId } = useParams();
 	const currentCommunity: number = Number(communityId);
 
