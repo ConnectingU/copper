@@ -5,4 +5,4 @@ services:
     image: copper-api
     build: ./.
     ports:
-      - "127.0.0.1:80:8500"
+      - "987:8500"
