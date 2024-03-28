@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "npx eslint api",
     "dev": "tsc & nodemon api/app.ts",
+    "build": "tsc",
     "migrate": "npx prisma migrate dev --name init"
   },
   "author": "",
